@@ -14,3 +14,6 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Depends:
+        ggplot2(>= 3.3.3),
+        htmltools(>= 0.5.1.1)
