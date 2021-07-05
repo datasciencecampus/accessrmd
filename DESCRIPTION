@@ -1,19 +1,23 @@
 Package: accessrmd
-Title: What the Package Does (One Line, Title Case)
+Title: Intended to Improve the Accessibility of Rmarkdown Documents. 
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Rich",
+           family = "Leyshon",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "richard.leyshon@ons.gov.uk")
 Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+License: `use_mit_license()`
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Depends:
-        ggplot2(>= 3.3.3),
-        htmltools(>= 0.5.1.1)
+    ggplot2(>= 3.3.3)
+Suggests:
+    testthat,
+    knitr,
+    rmarkdown,
+    markdown,
+    covr
+VignetteBuilder: knitr

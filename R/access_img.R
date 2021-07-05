@@ -11,7 +11,7 @@
 #' accessibility.
 #' 
 #' @importFrom ggplot2 last_plot ggsave
-#' @importFrom htmltools tags$img
+#' @import utils digest
 
 access_img <- function(img = last_plot(), alt = NULL, wid = 500,
                        ht = 500, dpi = 300){
