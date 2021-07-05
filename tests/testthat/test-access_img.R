@@ -1,9 +1,13 @@
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
-})
-
-
+# dependencies ------------------------------------------------------------
 # produce basic plot
 plot(pressure)
+
+# tests -------------------------------------------------------------------
+
+test_that("errors as expected", {
+  # errors on null alt text
+  expect_error(access_img(), "Please include alt text.")
+  
+})
 
 

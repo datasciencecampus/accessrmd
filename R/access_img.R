@@ -15,7 +15,7 @@
 
 access_img <- function(img = last_plot(), alt = NULL, wid = 500,
                        ht = 500, dpi = 300){
-  if(is.null(alt)){
+  if(is.null(alt) | length(alt) == 0){
     stop("Please include alt text.")
   } else if(is.null(img)){
     stop("No img found.")
