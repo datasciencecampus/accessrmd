@@ -31,7 +31,7 @@ access_img <- function(img = last_plot(), alt = NULL, wid = 500,
   # save the img to tempfile
   ggsave(filename = tmp, plot = img, device = png(), dpi = dpi)
   # construct the html tag
-  return(img(src = tmp, alt = alt, width = wid, height = ht))
+  return(tags$img(src = tmp, alt = alt, width = wid, height = ht))
   
 
 }
