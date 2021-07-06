@@ -2,6 +2,11 @@
 accessrmd is a package with functions intended to improve the accessibility of Rmarkdown documents. 
 
 
+## Parked
+
+### access_head
+
+* Only works for ggplot charts. Need to include logic for base plots too.
 
 
 ## Tests
