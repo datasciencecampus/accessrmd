@@ -25,6 +25,6 @@ accessibility.
 }
 \description{
 Reads in an image and produces the HTML structure expected by web
-accessibility checkers such as WAVE. Also works as a wrapper or around
-charts.
+accessibility checkers such as WAVE. Also works as a wrapper around
+ggplot2 charts.
 }

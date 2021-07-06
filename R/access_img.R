@@ -1,8 +1,8 @@
 #' Produce an accessible image or chart.
 #'
 #' Reads in an image and produces the HTML structure expected by web
-#' accessibility checkers such as WAVE. Also works as a wrapper or around
-#' charts.
+#' accessibility checkers such as WAVE. Also works as a wrapper around
+#' ggplot2 charts.
 #'
 #' @param img The image to include as accessible HTML. Defaults to
 #' 'ggplot2::last_plot()'. Can be replaced with an image written to disc.
@@ -20,10 +20,11 @@
 #' @export
 access_img <- function(img = last_plot(), alt = NULL, wid = 500,
                        ht = 500, dpi = 300){
-  if(is.null(alt) | length(alt) == 0){
-    stop("Please include alt text.")
-  } else if(is.null(img)){
+  
+  if(is.null(img)){
     stop("No img found.")
+  } else if(is.null(alt) || alt == ""){
+    stop("Please include alt text.")
   }
   # create tempfile
   tmp <- tempfile(fileext = ".png")
