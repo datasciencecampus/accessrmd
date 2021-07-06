@@ -2,7 +2,7 @@
 % Please edit documentation in R/access_img.R
 \name{access_img}
 \alias{access_img}
-\title{access_img}
+\title{Produce an accessible image or chart.}
 \usage{
 access_img(img = last_plot(), alt = NULL, wid = 500, ht = 500, dpi = 300)
 }
@@ -24,5 +24,7 @@ Inline HTML with the necessary structure for screen reader
 accessibility.
 }
 \description{
-access_img
+Reads in an image and produces the HTML structure expected by web
+accessibility checkers such as WAVE. Also works as a wrapper or around
+charts.
 }

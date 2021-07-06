@@ -1,25 +1,19 @@
-#' access_head
+#' Convert YAML to an accessible header
+#' 
+#' Reads an Rmd file, converting the YAML header to a format that is screen
+#' reader friendly.
 #'
-#' @param rmd_path Path to the Rmd that requires accessible header metadata. Tmd
+#' @param rmd_path Path to the Rmd that requires accessible header metadata. Rmd
 #' must be output type html.
-#' 
-#' @param replace Defaults to FALSE. Should the YAML be replaced or
-#' supplemented.
-#' 
-#' @param lang Identify the language of text content.
+#' @param lan Identify the language of text content.
 #' 
 #' @return Adjust the Rmd YAML provided to `rmd_path`, improving its
 #' accessibility for screen readers. Only works with html output.
 #' 
-#' @import utils digest
 #' @importFrom stringr str_split
-
-
-# delete me ---------------------------------------------------------------
-rmd_path = "content/test.Rmd"
-# delete me ---------------------------------------------------------------
-
-access_head <- function(rmd_path = NULL, replace = FALSE, lang = NULL){
+#' @importFrom htmltools withTags
+#' @export
+access_head <- function(rmd_path = NULL, lan = NULL){
   if(is.null(rmd_path)){
     stop("rmd_path not found.")
     
@@ -65,7 +59,7 @@ access_head <- function(rmd_path = NULL, replace = FALSE, lang = NULL){
   title_index <- grep("title:", head)
   # produce the accessible title
   html_title <- tags$title(
-    h1(str_split(head[title_index], pattern = ":")[[1]][2])
+    tags$h1(str_split(head[title_index], pattern = ":")[[1]][2])
   )
   # find indices for additional header titles
   hd_indices <- grep("author:|date:", head)
@@ -80,7 +74,7 @@ access_head <- function(rmd_path = NULL, replace = FALSE, lang = NULL){
   # set the html lang
   paste(
     "<!DOCTYPE html>",
-    tags$html(html_head, rmd_body, lang = lang), sep = "\n"
+    tags$html(html_head, rmd_body, lang = lan), sep = "\n"
     )
 
 }

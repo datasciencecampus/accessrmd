@@ -1,4 +1,8 @@
-#' access_img
+#' Produce an accessible image or chart.
+#'
+#' Reads in an image and produces the HTML structure expected by web
+#' accessibility checkers such as WAVE. Also works as a wrapper or around
+#' charts.
 #'
 #' @param img The image to include as accessible HTML. Defaults to
 #' 'ggplot2::last_plot()'. Can be replaced with an image written to disc.
@@ -7,12 +11,13 @@
 #' @param wid Width of the image in pixels. Defaults to 500.
 #' @param ht Height of the image in pixels. Defaults to 500.
 #' @param dpi Resolution. Please see `?ggplot2::ggsave()` for details.
+#' 
 #' @return Inline HTML with the necessary structure for screen reader
 #' accessibility.
 #' 
 #' @importFrom ggplot2 last_plot ggsave
-#' @import utils digest
-
+#' @importFrom grDevices png
+#' @export
 access_img <- function(img = last_plot(), alt = NULL, wid = 500,
                        ht = 500, dpi = 300){
   if(is.null(alt) | length(alt) == 0){
@@ -25,7 +30,7 @@ access_img <- function(img = last_plot(), alt = NULL, wid = 500,
   # save the img to tempfile
   ggsave(filename = tmp, plot = img, device = png(), dpi = dpi)
   # construct the html tag
-  return(tags$img(src = tmp, alt = alt, width = wid, height = ht))
+  return(img(src = tmp, alt = alt, width = wid, height = ht))
   
 
 }
