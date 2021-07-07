@@ -2,9 +2,19 @@
 accessrmd is a package with functions intended to improve the accessibility of Rmarkdown documents. 
 
 
-## Parked
+## Todo
 
 ### access_head
+
+* indexing end of rmd is awkward, getting NAs introduced or incomplete final
+line error if no empty trailing line left.
+* Hyperlinks are breaking, example output: "&lt;http://rmarkdown.rstudio.com&gt;"
+* Add expected CSS selectors to all header elements.
+* additional required functionality: toc, toc_float, subtitle, lang.
+
+## Parked
+
+### access_img
 
 * Only works for ggplot charts. Need to include logic for base plots too.
 
