@@ -12,11 +12,12 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Depends:
+    ggplot2
 Imports:
     utils,
     htmltools,
-    stringr,
-    ggplot2
+    stringr
 Suggests:
     testthat,
     knitr,

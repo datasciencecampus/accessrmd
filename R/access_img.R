@@ -26,12 +26,26 @@ access_img <- function(img = last_plot(), alt = NULL, wid = 500,
   } else if(is.null(alt) || alt == ""){
     stop("Please include alt text.")
   }
-  # create tempfile
-  tmp <- tempfile(fileext = ".png")
-  # save the img to tempfile
-  ggsave(filename = tmp, plot = img, device = png(), dpi = dpi)
-  # construct the html tag
-  return(tags$img(src = tmp, alt = alt, width = wid, height = ht))
   
+  tryCatch({
+    # if the file already exists on disk, do not create tempfile
+    file.exists(img)
+    # if img is on disk, return NA
+    message("img derived from disk.")
+    return(tags$img(src = img, alt = alt, width = wid, height = ht))
+    
+  },
+  error = function(cond){
+    message("img derived from inline R code.")
+    # create tempfile
+    tmp <- tempfile(fileext = ".png")
+    # save the img to tempfile
+    ggsave(filename = tmp, plot = img, device = png(), dpi = dpi)
+    return(tags$img(src = tmp, alt = alt, width = wid, height = ht))
+    
+  })
+  
+  # # construct the html tag
+  # return(tags$img(src = tmp, alt = alt, width = wid, height = ht))
 
 }

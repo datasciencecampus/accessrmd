@@ -1,3 +1,5 @@
+# any temp pngs created
+*.png
 # History files
 .Rhistory
 .Rapp.history

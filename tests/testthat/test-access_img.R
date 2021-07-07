@@ -17,9 +17,9 @@ test_that("alt text errors", {
 
 test_that("success produces the required structure", {
   # wrapped in img tag
-  expect_match(as.character(access_img(alt = "some alt text")), "^<img src=")
+  expect_match(as.character(access_img(alt = "testing img tag")), "^<img src=")
   # alt is equivalent to user defined alt text
-  expect_match(as.character(access_img(alt = "some alt text")),
-               'alt="some alt text"')
+  expect_match(as.character(access_img(alt = "testing alt text")),
+               'alt="testing alt text"')
 
 })
