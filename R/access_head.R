@@ -72,10 +72,17 @@ access_head <- function(rmd_path = NULL, lan = NULL){
   html_head <- tags$header(html_title, unname(html_h2s))
   
   # set the html lang
-  paste(
-    "<!DOCTYPE html>",
-    tags$html(html_head, rmd_body, lang = lan), sep = "\n"
-    )
+  
+  return(tags$html(html_head, rmd_body, lang = lan))
 
 }
+
+
+# delete me ---------------------------------------------------------------
+rmd_path <- "tests/testfiles/test.Rmd"
+
+
+# delete me ---------------------------------------------------------------
+
+access_head(rmd_path = rmd_path, lan = "en")
 
