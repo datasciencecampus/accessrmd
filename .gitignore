@@ -1,5 +1,3 @@
-# access_head output folder
-tests/testfiles/accessrmd
 # any temp pngs created
 *.png
 # History files
