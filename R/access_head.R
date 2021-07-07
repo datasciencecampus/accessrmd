@@ -64,13 +64,13 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   # produce the accessible title
   html_title <- tags$title(title_content)
   # h1 needs to be the same as title 
-  h1_content <- tags$h1(title_content)
+  h1_content <- tags$h1(title_content, id = "title toc-ignore")
   # find indices for additional header titles
   hd_indices <- grep("author:|date:", head)
   # produce the accessible h2 titles styled as h4
   h2s <- sapply(str_split(head[hd_indices], pattern = ":"), "[[", 2)
   # produce the accessible headers
-  html_h2s <- sapply(h2s, tags$h2, simplify = FALSE)
+  html_h2s <- sapply(h2s, tags$h2, class = "header_h2s", simplify = FALSE)
 
 # reassemble the accessible head ------------------------------------------
   html_head <- tags$header(html_title, h1_content, unname(html_h2s))
