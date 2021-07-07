@@ -39,7 +39,8 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   # extract rmd body
   rmd_body <- lines[(max(yaml_seq) + 1):length(lines)]
   # append the body with element tags
-  rmd_body <- withTags(body(paste(rmd_body, collapse = "\n")))
+  rmd_body <- tags$body(paste(rmd_body, collapse = "\n"))
+
 # dynamic head logic ------------------------------------------------------
   # Will need to identify YAML elements present and convert to html flexibly
   # remove YAML bounds "---"
@@ -75,6 +76,12 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   
   # set the html lang
   html_out <- tags$html(html_head, rmd_body, lang = lan)
+
+# cleaning of html reserved words -----------------------------------------
+  # <> have been replaced with &lt; and &gt; due to HTML reserved words
+  # gsub them back
+  html_out <- gsub("&lt;", "<", html_out)
+  html_out <- gsub("&gt;", ">", html_out)
   
   if(inplace == TRUE){
     # outfile will be the same as infile
