@@ -20,8 +20,8 @@ access_head <- function(rmd_path = NULL, lan = NULL){
   } else if(!grepl(pattern = ".rmd", x = rmd_path, ignore.case = TRUE)){
     stop("Ensure that an Rmd file is passed to rmd_path.")
   }
-  # read in the file lines
-  lines <- readLines(rmd_path)
+  # read in the file lines, warn to FALSE if no EOF / empty line on end
+  lines <- readLines(rmd_path, warn = FALSE)
   # check for presence of YAML features
   yaml_bounds <- grep(pattern = "^---$", lines)
   # stop if YAML bounds not standard
@@ -72,7 +72,6 @@ access_head <- function(rmd_path = NULL, lan = NULL){
   html_head <- tags$header(html_title, unname(html_h2s))
   
   # set the html lang
-  
   return(tags$html(html_head, rmd_body, lang = lan))
 
 }
