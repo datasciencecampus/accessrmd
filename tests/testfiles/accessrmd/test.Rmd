@@ -9,6 +9,27 @@
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## Dependencies
+
+```{r deps}
+library(ggplot2)
+library(devtools)
+```
+
+
+## Installing accessrmd
+
+```{r instgithub, eval=FALSE}
+
+install_github("datasciencecampus/accessrmd")
+
+```
+
+
+```{r accessrmd}
+library(accessrmd)
+```
+
 
 ## R Markdown
 
@@ -24,9 +45,12 @@ summary(cars)
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r pressure, echo=TRUE}
+plt <- ggplot(pressure, aes(x = temperature, y = pressure)) +
+  geom_point()
+
+access_img(plt, alt = "temperature vs pressure in base R pressure dataset.")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.</body>
+Note that the `echo = TRUE` parameter was added to the code chunk to print the R code that generated the plot.</body>
 </html>
