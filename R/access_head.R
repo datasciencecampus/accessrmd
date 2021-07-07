@@ -60,10 +60,11 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   head <- gsub("[^A-Za-z0-9:/]", "", head)
   # find title
   title_index <- grep("title:", head)
+  title_content <- str_split(head[title_index], pattern = ":")[[1]][2]
   # produce the accessible title
-  html_title <- tags$title(
-    tags$h1(str_split(head[title_index], pattern = ":")[[1]][2])
-  )
+  html_title <- tags$title(title_content)
+  # h1 needs to be the same as title 
+  h1_content <- tags$h1(title_content)
   # find indices for additional header titles
   hd_indices <- grep("author:|date:", head)
   # produce the accessible h2 titles styled as h4
@@ -72,7 +73,7 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   html_h2s <- sapply(h2s, tags$h2, simplify = FALSE)
 
 # reassemble the accessible head ------------------------------------------
-  html_head <- tags$header(html_title, unname(html_h2s))
+  html_head <- tags$header(html_title, h1_content, unname(html_h2s))
   
   # set the html lang
   html_out <- tags$html(html_head, rmd_body, lang = lan)
