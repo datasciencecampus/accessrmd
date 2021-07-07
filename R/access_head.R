@@ -12,8 +12,8 @@
 #' @return Adjust the Rmd YAML provided to `rmd_path`, improving its
 #' accessibility for screen readers. Only works with html output.
 #' 
-#' @importFrom stringr str_split
-#' @importFrom htmltools withTags
+#' @importFrom stringr str_split str_remove
+#' 
 #' @export
 access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   if(is.null(rmd_path)){
@@ -107,10 +107,10 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
 
 
 # delete me ---------------------------------------------------------------
-rmd_path <- "tests/testfiles/test.Rmd"
-
-
-# delete me ---------------------------------------------------------------
-
-access_head(rmd_path = rmd_path, lan = "en")
+# rmd_path <- "tests/testfiles/test.Rmd"
+# 
+# 
+# # delete me ---------------------------------------------------------------
+# 
+# access_head(rmd_path = rmd_path, lan = "en")
 
