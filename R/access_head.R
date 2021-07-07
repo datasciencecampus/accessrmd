@@ -6,6 +6,8 @@
 #' @param rmd_path Path to the Rmd that requires accessible header metadata. Rmd
 #' must be output type html.
 #' @param lan Identify the language of text content.
+#' @param inplace When set to FALSE (the default) writes to new file
+#' (accessrmd_<rmd_path>). If TRUE, writes in place.
 #' 
 #' @return Adjust the Rmd YAML provided to `rmd_path`, improving its
 #' accessibility for screen readers. Only works with html output.
@@ -13,7 +15,7 @@
 #' @importFrom stringr str_split
 #' @importFrom htmltools withTags
 #' @export
-access_head <- function(rmd_path = NULL, lan = NULL){
+access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   if(is.null(rmd_path)){
     stop("rmd_path not found.")
     
@@ -72,7 +74,26 @@ access_head <- function(rmd_path = NULL, lan = NULL){
   html_head <- tags$header(html_title, unname(html_h2s))
   
   # set the html lang
-  return(tags$html(html_head, rmd_body, lang = lan))
+  html_out <- tags$html(html_head, rmd_body, lang = lan)
+  
+  if(inplace == TRUE){
+    # outfile will be the same as infile
+    outfile <- rmd_path
+  } else {
+    # outfile should be placed in accessrmd folder
+    # get the file
+    rmd_file <- basename(rmd_path)
+    # get the directory
+    rdm_dir <- str_remove(rmd_path, rmd_file)
+    # store dir loc
+    dir_loc <- paste0(rdm_dir, "accessrmd/")
+    # create the accessrmd dir
+    dir.create(dir_loc)
+    # outfile saves to accessrmd dir
+    outfile <- paste0(dir_loc, rmd_file)
+    
+  }
+  return(writeLines(paste(html_out), con = outfile))
 
 }
 
