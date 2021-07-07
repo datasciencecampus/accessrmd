@@ -6,7 +6,7 @@ accessrmd is a package with functions intended to improve the accessibility of R
 
 ### access_head
 
-* Hyperlinks are breaking, example output: "&lt;http://rmarkdown.rstudio.com&gt;"
+* Add YAML title as html title and h1
 * Add expected CSS selectors to all header elements.
 * additional required functionality: toc, toc_float, subtitle, lang.
 
