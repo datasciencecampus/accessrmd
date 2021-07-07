@@ -1,3 +1,5 @@
+with(globalenv(), {.old_wd <- setwd(tempdir())})
+
 # tests -------------------------------------------------------------------
 test_that("null img error", {
   expect_error(access_img(alt = "good alt"), "No img found.")
@@ -15,7 +17,7 @@ test_that("alt text errors", {
   
 })
 
-test_that("success produces the required structure", {
+test_that("success for inline code", {
   # wrapped in img tag
   expect_match(as.character(access_img(alt = "testing img tag")), "^<img src=")
   # alt is equivalent to user defined alt text
@@ -23,3 +25,20 @@ test_that("success produces the required structure", {
                'alt="testing alt text"')
 
 })
+
+# create a png to test
+png(filename = "test.png")
+
+test_that("success for disk images", {
+  # wrapped in img tag
+  expect_match(as.character(
+    access_img(img = "test.png", alt = "testing img tag")
+    ), "^<img src=")
+  # alt is equivalent to user defined alt text
+  expect_match(as.character(
+    access_img(img = "test.png", alt = "testing alt text")
+    ), 'alt="testing alt text"')
+
+})
+
+with(globalenv(), {setwd(.old_wd)})

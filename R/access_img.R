@@ -44,8 +44,5 @@ access_img <- function(img = last_plot(), alt = NULL, wid = 500,
     return(tags$img(src = tmp, alt = alt, width = wid, height = ht))
     
   })
-  
-  # # construct the html tag
-  # return(tags$img(src = tmp, alt = alt, width = wid, height = ht))
 
 }
