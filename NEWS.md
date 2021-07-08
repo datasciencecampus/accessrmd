@@ -12,6 +12,8 @@ author and date.
 #### access_img
 
 * Compatible with ggplot2 charts and pngs saved to disk.
+* "" alt text warning for decorative images only.
+
 
 ***
 
@@ -26,7 +28,7 @@ normal text and 4.4:1 for large text.
 * correct header hierarchy
 * broken links
 * suspicious alt text feature request: alt text is identical to file name
-* alt text exceeding a limit (find out which limit that is)
+* alt text exceeding a lang specific limit (see readme).
 
 ### access_head
 
@@ -35,7 +37,6 @@ inline r code for date.
 
 ### access_img
 
-* "" alt text should be warning for decorative images only.
 * suspicious alt text feature request: alt text is identical to file name
 * alt text exceeding a limit (find out which limit that is)
 * intermediate plots occasionally appear in dir
