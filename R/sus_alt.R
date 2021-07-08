@@ -10,4 +10,10 @@
 #' @importFrom ggplot2 last_plot ggsave
 #' @importFrom grDevices png
 #' @export
-# sus_alt <- function(rmd_path = NULL){}
+sus_alt <- function(rmd_path = NULL){
+  # define placeholder values
+  place_val <- c("nbsp", "spacer")
+  
+  lines <- handle_rmd_path()
+  
+}

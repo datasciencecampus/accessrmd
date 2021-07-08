@@ -1,0 +1,109 @@
+---
+title: "test_alt_text"
+author: "Richard Leyshon"
+date: "08/07/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## alt text testing
+
+This markdown is used for testing functions that handle alt text conditions. 
+
+In [acceptable format](#accept) there are variations on img tags that should all
+be valid html. Functions should ignore these.
+
+In [problem formats](#problems) there are variations on img tags and markdown
+syntax that would not pass an accessibility check. Functions should not ignore
+these.
+
+
+
+There 
+
+### acceptable format{#accept}
+
+8 acceptable
+
+<img src="something" alt="something else" />
+<br>
+<img src="something" alt="something else"/>
+<br>
+<img src = "something" alt="something else"/>
+<br>
+<img src="something" alt = "something else"/>
+<br>
+<img src = "something" alt = "something else"/>
+<br>
+<img src = "something" alt="something else" />
+<br>
+<img src="something" alt = "something else" />
+<br>
+<img src = "something" alt = "something else" />
+
+***
+
+### problem format{#problems}
+
+28 problems
+
+![something else](something)
+<br>
+![something](something)
+<br>
+<img src="something" alt="something" />
+<br>
+<img src="something" alt="something"/>
+<br>
+<img src="something" alt = "something"/>
+<br>
+<img src = "something" alt="something"/>
+<br>
+<img src = "something" alt = "something"/>
+<br>
+<img src="something" alt = "something" />
+<br>
+<img src = "something" alt="something" />
+<br>
+<img src = "something" alt = "something" />
+
+![spacer](something)
+<br>
+![nbsp](something)
+<br>
+<img src="something" alt="spacer"/>
+<br>
+<img src = "something" alt="spacer"/>
+<br>
+<img src="something" alt = "spacer"/>
+<br>
+<img src = "something" alt = "spacer"/>
+<br>
+<img src="something" alt="spacer" />
+<br>
+<img src = "something" alt="spacer" />
+<br>
+<img src="something" alt = "spacer" />
+<br>
+<img src = "something" alt = "spacer" />
+<br>
+
+<img src="something" alt="nbsp"/>
+<br>
+<img src = "something" alt="nbsp"/>
+<br>
+<img src="something" alt = "nbsp"/>
+<br>
+<img src = "something" alt = "nbsp"/>
+<br>
+<img src="something" alt="nbsp" />
+<br>
+<img src = "something" alt="nbsp" />
+<br>
+<img src="something" alt = "nbsp" />
+<br>
+<img src = "something" alt = "nbsp" />
+<br>
