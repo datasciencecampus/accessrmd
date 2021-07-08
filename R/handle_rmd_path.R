@@ -7,12 +7,19 @@
 #' @return Error if file does not exist or is not an rmd file.
 #' 
 handle_rmd_path <- function(rmd_path = NULL){
+  # stop if null
   if(is.null(rmd_path)){
-    stop("rmd_path not found.")
-    
+    stop("rmd_path is NULL.")
+    # stop if not a *.rmd
   } else if(!grepl(pattern = ".rmd$", x = rmd_path, ignore.case = TRUE)){
     stop("Ensure that an Rmd file is passed to rmd_path.")
+    
+  } else if(!file.exists(rmd_path)){
+    # stop if file doesn't exist
+    stop("rmd file not found.")
+    
   } else(
     return(rmd_path)
   )
+  
 }
