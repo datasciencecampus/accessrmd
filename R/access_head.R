@@ -16,12 +16,8 @@
 #' 
 #' @export
 access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
-  if(is.null(rmd_path)){
-    stop("rmd_path not found.")
-    
-  } else if(!grepl(pattern = ".rmd", x = rmd_path, ignore.case = TRUE)){
-    stop("Ensure that an Rmd file is passed to rmd_path.")
-  }
+  # check rmd_path
+  handle_rmd_path(rmd_path)
   # read in the file lines, warn to FALSE if no EOF / empty line on end
   lines <- readLines(rmd_path, warn = FALSE)
   # check for presence of YAML features
@@ -104,13 +100,3 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   return(writeLines(paste(html_out), con = outfile))
 
 }
-
-
-# delete me ---------------------------------------------------------------
-# rmd_path <- "tests/testfiles/test.Rmd"
-# 
-# 
-# # delete me ---------------------------------------------------------------
-# 
-# access_head(rmd_path = rmd_path, lan = "en")
-
