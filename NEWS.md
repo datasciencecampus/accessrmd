@@ -14,6 +14,10 @@ author and date.
 * Compatible with ggplot2 charts and pngs saved to disk.
 * "" alt text warning for decorative images only.
 
+#### handle_rmd_path
+
+* Not exported. Handler checks rmd path is valid.
+
 
 ***
 
