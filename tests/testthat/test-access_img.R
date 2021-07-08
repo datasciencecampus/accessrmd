@@ -10,12 +10,12 @@ test_that("null img error", {
 # produce plot
 ggplot(mpg, aes(displ, hwy)) + geom_point()
 
-test_that("alt text errors", {
+test_that("alt text messages", {
   # errors on null alt text
   expect_error(access_img(), "Please include alt text.")
   # errors if alt text set to empty string
-  expect_error(access_img(alt = ""), "Please include alt text.")
-  
+  expect_warning(access_img(alt = ""),
+                 "Empty alt text should be used for decorative images only.")
 })
 
 test_that("success for inline code", {

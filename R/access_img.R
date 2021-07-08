@@ -23,8 +23,10 @@ access_img <- function(img = last_plot(), alt = NULL, wid = 500,
   
   if(is.null(img)){
     stop("No img found.")
-  } else if(is.null(alt) || alt == ""){
+  } else if(is.null(alt)){
     stop("Please include alt text.")
+  } else if(alt == ""){
+    warning("Empty alt text should be used for decorative images only.")
   }
   
   tryCatch({
