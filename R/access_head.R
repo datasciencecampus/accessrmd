@@ -17,9 +17,7 @@
 #' @export
 access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   # check rmd_path
-  handle_rmd_path(rmd_path)
-  # read in the file lines, warn to FALSE if no EOF / empty line on end
-  lines <- readLines(rmd_path, warn = FALSE)
+  lines <- handle_rmd_path(rmd_path)
   # check for presence of YAML features
   yaml_bounds <- grep(pattern = "^---$", lines)
   # stop if YAML bounds not standard

@@ -20,7 +20,7 @@ writeLines("placeholder text", con = tmp)
 
 # test success ------------------------------------------------------------
 test_that("Expected output on success", {
-  expect_equal(handle_rmd_path(tmp), tmp)
+  expect_equal(handle_rmd_path(tmp), "placeholder text")
 })
 
 

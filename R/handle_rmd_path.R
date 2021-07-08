@@ -19,7 +19,8 @@ handle_rmd_path <- function(rmd_path = NULL){
     stop("rmd file not found.")
     
   } else(
-    return(rmd_path)
+    # read in the file lines, warn to FALSE if no EOF / empty line on end
+    return(readLines(rmd_path, warn = FALSE))
   )
   
 }
