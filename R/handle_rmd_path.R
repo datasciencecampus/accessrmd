@@ -4,7 +4,8 @@
 #'
 #' @param rmd_path Path to the Rmd to check.
 #' 
-#' @return Error if file does not exist or is not an rmd file.
+#' @return Reads rmd lines on success. Error if file does not exist or is not an
+#' rmd file.
 #' 
 handle_rmd_path <- function(rmd_path = NULL){
   # stop if null

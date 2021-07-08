@@ -10,7 +10,8 @@ handle_rmd_path(rmd_path = NULL)
 \item{rmd_path}{Path to the Rmd to check.}
 }
 \value{
-Error if file does not exist or is not an rmd file.
+Reads rmd lines on success. Error if file does not exist or is not an
+rmd file.
 }
 \description{
 Checks rmd_path exists and that the file suffix is correct.
