@@ -4,6 +4,14 @@
 
 ### Version: 0.0.0.9000
 
+#### access_head
+
+* Replaces basic YAML with accessible HTML header. Currently supports title, 
+author and date.
+
+#### access_img
+
+* Compatible with ggplot2 charts and pngs saved to disk.
 
 ***
 
