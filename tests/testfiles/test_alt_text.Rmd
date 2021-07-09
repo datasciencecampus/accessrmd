@@ -22,7 +22,7 @@ these.
 
 ### acceptable format{#accept}
 
-17 acceptable
+18 acceptable
 
 <img src="something" alt="something else" />
 <br>
@@ -57,12 +57,14 @@ these.
 <img src = 'something' alt = 'something else' />
 <br>
 Also talk about an img tag should be ignored.
+<br>
+<img src = "something" alt = "something else" height = "400" width = "400"/>
 
 ***
 
 ### problem format{#problems}
 
-52 problems
+53 problems
 
 ![something else](something)
 <br>
@@ -173,3 +175,4 @@ Also talk about an img tag should be ignored.
 <br>
 <img src = 'something' alt = 'nbsp' />
 <br>
+<img src = "something" alt = "something" height = "400" width = "400"/>
