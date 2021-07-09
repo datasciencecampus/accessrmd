@@ -20,13 +20,9 @@ In [problem formats](#problems) there are variations on img tags and markdown
 syntax that would not pass an accessibility check. Functions should not ignore
 these.
 
-
-
-There 
-
 ### acceptable format{#accept}
 
-8 acceptable
+17 acceptable
 
 <img src="something" alt="something else" />
 <br>
@@ -44,15 +40,37 @@ There
 <br>
 <img src = "something" alt = "something else" />
 
+<img src='something' alt='something else' />
+<br>
+<img src='something' alt='something else'/>
+<br>
+<img src = 'something' alt='something else'/>
+<br>
+<img src='something' alt = 'something else'/>
+<br>
+<img src = 'something' alt = 'something else'/>
+<br>
+<img src = 'something' alt='something else' />
+<br>
+<img src='something' alt = 'something else' />
+<br>
+<img src = 'something' alt = 'something else' />
+<br>
+Also talk about an img tag should be ignored.
+
 ***
 
 ### problem format{#problems}
 
-28 problems
+52 problems
 
 ![something else](something)
 <br>
 ![something](something)
+<br>
+![spacer](something)
+<br>
+![nbsp](something)
 <br>
 <img src="something" alt="something" />
 <br>
@@ -70,9 +88,6 @@ There
 <br>
 <img src = "something" alt = "something" />
 
-![spacer](something)
-<br>
-![nbsp](something)
 <br>
 <img src="something" alt="spacer"/>
 <br>
@@ -106,4 +121,55 @@ There
 <img src="something" alt = "nbsp" />
 <br>
 <img src = "something" alt = "nbsp" />
+<br>
+
+<img src='something' alt='something' />
+<br>
+<img src='something' alt='something'/>
+<br>
+<img src='something' alt = 'something'/>
+<br>
+<img src = 'something' alt='something'/>
+<br>
+<img src = 'something' alt = 'something'/>
+<br>
+<img src='something' alt = 'something' />
+<br>
+<img src = 'something' alt='something' />
+<br>
+<img src = 'something' alt = 'something' />
+
+<br>
+<img src='something' alt='spacer'/>
+<br>
+<img src = 'something' alt='spacer'/>
+<br>
+<img src='something' alt = 'spacer'/>
+<br>
+<img src = 'something' alt = 'spacer'/>
+<br>
+<img src='something' alt='spacer' />
+<br>
+<img src = 'something' alt='spacer' />
+<br>
+<img src='something' alt = 'spacer' />
+<br>
+<img src = 'something' alt = 'spacer' />
+<br>
+
+<img src='something' alt='nbsp'/>
+<br>
+<img src = 'something' alt='nbsp'/>
+<br>
+<img src='something' alt = 'nbsp'/>
+<br>
+<img src = 'something' alt = 'nbsp'/>
+<br>
+<img src='something' alt='nbsp' />
+<br>
+<img src = 'something' alt='nbsp' />
+<br>
+<img src='something' alt = 'nbsp' />
+<br>
+<img src = 'something' alt = 'nbsp' />
 <br>
