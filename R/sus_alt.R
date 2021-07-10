@@ -25,8 +25,10 @@ sus_alt <- function(rmd_path = NULL){
   # need to obtain values of src and alt attributes
   # this can be img tag or markdown syntax
   # tested on https://regex101.com/r/2wKGsF/1
-  img_split <- str_split(img_only, pattern = "\"|'|!\\[|]\\(|\\)")
-  
+  # note: going for base strsplit as stringr::str_split produces "" padding
+  # that becomeas a problem when finding duplicates later
+  img_split <- strsplit(img_only, "\"|'|!\\[|]\\(|\\)")
+  # update indices
   names(img_split) <- names(img_only)
 # check for placeholder values --------------------------------------------
   plac_list <- list.apply(img_split, .fun = function(x) any(place_val %in% x))
@@ -35,11 +37,6 @@ sus_alt <- function(rmd_path = NULL){
   # store the lines where placeholders were used
   plac_found <- lines[plac_ind]
 # check for any images where src == alt -----------------------------------
-  # remove any "" false positives from the split lines
-  cond <- list.apply(img_split, function(x) x == "")
-stop('here')
-  list(unlist(foo)[unlist(list.apply(foo, function(x) x != "a"))])
-  
   # after some unsuccessful regex testing due to flexibility in valid HTML
   # I've taken the approach to warn where any element resulting from the
   # str_split above is potentially src == alt. This could fall down if
@@ -50,9 +47,32 @@ stop('here')
   dupe_ind <- as.numeric(names(dupe_list[dupe_list == TRUE]))
   # store the lines with duplicated attribute values
   dupe_found <- lines[dupe_ind]
+  # at this point, the only false positive cases are like:
+  # <img src = "something" alt = "something else" height = "400" width = "400"/>
+  # now need to remove these cases as not a problem
+  spec_dims <- dupe_found[grep(dupe_found, pattern = "height|width")]
+  # check if any spec_dims images have differing src & alt values
+  # regex texted https://regex101.com/r/UiKqmA/1
+  # extract only src and alt attribute values only
+  # flexible to use of " and '
+  srcs <- str_extract(
+    string = spec_dims,
+    "src *= *\\\\??\"(.*?)\"|src *= *\\\\??'(.*?)'"
+    )
 
-  
-  
+  alts <- str_extract(
+    string = spec_dims,
+    "alt *= *\\\\??\"(.*?)\"|alt *= *\\\\??'(.*?)'"
+  )
+  # clean up srcs and alts
+  srcs <- str_remove_all(srcs, "src| *")
+  alts <- str_remove_all(alts, "alt| *")
+  # compare the src with alt attributes and find the things to be ignored
+  # these should be where src and alt are not matches
+  prob_ind <- names(spec_dims[srcs != alts])
+  # remove any problem indices from the found duplicates
+  dupe_found <- dupe_found[setdiff(names(dupe_found), prob_ind)]
+
 
   
   
