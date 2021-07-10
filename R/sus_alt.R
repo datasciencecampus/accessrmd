@@ -25,7 +25,8 @@ sus_alt <- function(rmd_path = NULL){
   # need to obtain values of src and alt attributes
   # this can be img tag or markdown syntax
   # tested on https://regex101.com/r/2wKGsF/1
-  img_split <- str_split(img_only, pattern = "\"|'|!\\[|]\\(.+\\)")
+  img_split <- str_split(img_only, pattern = "\"|'|!\\[|]\\(|\\)")
+  
   names(img_split) <- names(img_only)
 # check for placeholder values --------------------------------------------
   plac_list <- list.apply(img_split, .fun = function(x) any(place_val %in% x))
@@ -34,6 +35,11 @@ sus_alt <- function(rmd_path = NULL){
   # store the lines where placeholders were used
   plac_found <- lines[plac_ind]
 # check for any images where src == alt -----------------------------------
+  # remove any "" false positives from the split lines
+  cond <- list.apply(img_split, function(x) x == "")
+stop('here')
+  list(unlist(foo)[unlist(list.apply(foo, function(x) x != "a"))])
+  
   # after some unsuccessful regex testing due to flexibility in valid HTML
   # I've taken the approach to warn where any element resulting from the
   # str_split above is potentially src == alt. This could fall down if
@@ -41,6 +47,9 @@ sus_alt <- function(rmd_path = NULL){
   # height and width being the same value.
   dupe_list <- list.apply(img_split, .fun = function(x) any(duplicated(x)))
   # filter for true cases only
+  dupe_ind <- as.numeric(names(dupe_list[dupe_list == TRUE]))
+  # store the lines with duplicated attribute values
+  dupe_found <- lines[dupe_ind]
 
   
   
@@ -50,197 +59,5 @@ sus_alt <- function(rmd_path = NULL){
   
 
 }
-
-
-
-
-"---"                                                                             
-"title: \"test_alt_text\""                                                        
-"author: \"Richard Leyshon\""                                                     
-"date: \"08/07/2021\""                                                            
-"output: html_document"                                                           
-"---"                                                                             
-"```{r setup, include=FALSE}"                                                     
-"knitr::opts_chunk$set(echo = TRUE)"                                              
-"```"                                                                             
-""                                                                                
-"## alt text testing"                                                             
-""                                                                                
-"This markdown is used for testing functions that handle alt text conditions. "   
-""                                                                                
-"In [acceptable format](#accept) there are variations on img tags that should all"
-"be valid html. Functions should ignore these."                                   
-""                                                                                
-"In [problem formats](#problems) there are variations on img tags and markdown"   
-"syntax that would not pass an accessibility check. Functions should not ignore"  
-"these."                                                                          
-""                                                                                
-"### acceptable format{#accept}"                                                  
-""                                                                                
-"17 acceptable"                                                                   
-""                                                                                
-"<img src=\"something\" alt=\"something else\" />"                                
-"<br>"                                                                            
-"<img src=\"something\" alt=\"something else\"/>"                                 
-"<br>"                                                                            
-"<img src = \"something\" alt=\"something else\"/>"                               
-"<br>"                                                                            
-"<img src=\"something\" alt = \"something else\"/>"                               
-"<br>"                                                                            
-"<img src = \"something\" alt = \"something else\"/>"                             
-"<br>"                                                                            
-"<img src = \"something\" alt=\"something else\" />"                              
-"<br>"                                                                            
-"<img src=\"something\" alt = \"something else\" />"                              
-"<br>"                                                                            
-"<img src = \"something\" alt = \"something else\" />"                            
-""                                                                                
-"<img src='something' alt='something else' />"                                    
-"<br>"                                                                            
-"<img src='something' alt='something else'/>"                                     
-"<br>"                                                                            
-"<img src = 'something' alt='something else'/>"                                   
-"<br>"                                                                            
-"<img src='something' alt = 'something else'/>"                                   
-"<br>"                                                                            
-"<img src = 'something' alt = 'something else'/>"                                 
-"<br>"                                                                            
-"<img src = 'something' alt='something else' />"                                  
-"<br>"                                                                            
-"<img src='something' alt = 'something else' />"                                  
-"<br>"                                                                            
-"<img src = 'something' alt = 'something else' />"                                
-"<br>"                                                                            
-"Also talk about an img tag should be ignored."                                   
-""                                                                                
-"***"                                                                             
-""                                                                                
-"### problem format{#problems}"                                                   
-""                                                                                
-"52 problems"                                                                     
-""                                                                                
-"![something else](something)"                                                    
-"<br>"                                                                            
-"![something](something)"                                                         
-"<br>"                                                                            
-"![spacer](something)"                                                            
-"<br>"                                                                            
-"![nbsp](something)"                                                              
-"<br>"                                                                            
-"<img src=\"something\" alt=\"something\" />"                                     
-"<br>"                                                                            
-"<img src=\"something\" alt=\"something\"/>"                                      
-"<br>"                                                                            
-"<img src=\"something\" alt = \"something\"/>"                                    
-"<br>"                                                                            
-"<img src = \"something\" alt=\"something\"/>"                                    
-"<br>"                                                                            
-"<img src = \"something\" alt = \"something\"/>"                                  
-"<br>"                                                                            
-"<img src=\"something\" alt = \"something\" />"                                   
-"<br>"                                                                            
-"<img src = \"something\" alt=\"something\" />"                                   
-"<br>"                                                                            
-"<img src = \"something\" alt = \"something\" />"                                 
-""                                                                                
-"<br>"                                                                            
-"<img src=\"something\" alt=\"spacer\"/>"                                         
-"<br>"                                                                            
-"<img src = \"something\" alt=\"spacer\"/>"                                       
-"<br>"                                                                            
-"<img src=\"something\" alt = \"spacer\"/>"                                       
-"<br>"                                                                            
-"<img src = \"something\" alt = \"spacer\"/>"                                     
-"<br>"                                                                            
-"<img src=\"something\" alt=\"spacer\" />"                                        
-"<br>"                                                                            
-"<img src = \"something\" alt=\"spacer\" />"                                      
-"<br>"                                                                            
-"<img src=\"something\" alt = \"spacer\" />"                                      
-"<br>"                                                                            
-"<img src = \"something\" alt = \"spacer\" />"                                    
-"<br>"                                                                            
-""                                                                                
-"<img src=\"something\" alt=\"nbsp\"/>"                                           
-"<br>"                                                                            
-"<img src = \"something\" alt=\"nbsp\"/>"                                         
-"<br>"                                                                            
-"<img src=\"something\" alt = \"nbsp\"/>"                                         
-"<br>"                                                                            
-"<img src = \"something\" alt = \"nbsp\"/>"                                       
-"<br>"                                                                            
-"<img src=\"something\" alt=\"nbsp\" />"                                          
-"<br>"                                                                            
-"<img src = \"something\" alt=\"nbsp\" />"                                        
-"<br>"                                                                            
-"<img src=\"something\" alt = \"nbsp\" />"                                        
-"<br>"                                                                            
-"<img src = \"something\" alt = \"nbsp\" />"                                      
-"<br>"                                                                            
-""                                                                                
-"<img src='something' alt='something' />"                                         
-"<br>"                                                                            
-"<img src='something' alt='something'/>"                                          
-"<br>"                                                                            
-"<img src='something' alt = 'something'/>"                                        
-"<br>"                                                                            
-"<img src = 'something' alt='something'/>"                                        
-"<br>"                                                                            
-"<img src = 'something' alt = 'something'/>"                                      
-"<br>"                                                                            
-"<img src='something' alt = 'something' />"                                       
-"<br>"                                                                            
-"<img src = 'something' alt='something' />"                                       
-"<br>"                                                                            
-"<img src = 'something' alt = 'something' />"                                     
-""                                                                                
-"<br>"                                                                            
-"<img src='something' alt='spacer'/>"                                             
-"<br>"                                                                            
-"<img src = 'something' alt='spacer'/>"                                           
-"<br>"                                                                            
-"<img src='something' alt = 'spacer'/>"                                           
-"<br>"                                                                            
-"<img src = 'something' alt = 'spacer'/>"                                         
-"<br>"                                                                            
-"<img src='something' alt='spacer' />"                                            
-"<br>"                                                                            
-"<img src = 'something' alt='spacer' />"                                          
-"<br>"                                                                            
-"<img src='something' alt = 'spacer' />"                                          
-"<br>"                                                                            
-"<img src = 'something' alt = 'spacer' />"                                        
-"<br>"                                                                            
-""                                                                                
-"<img src='something' alt='nbsp'/>"                                               
-"<br>"                                                                            
-"<img src = 'something' alt='nbsp'/>"                                             
-"<br>"                                                                            
-"<img src='something' alt = 'nbsp'/>"                                             
-"<br>"                                                                            
-"<img src = 'something' alt = 'nbsp'/>"                                           
-"<br>"                                                                            
-"<img src='something' alt='nbsp' />"                                              
-"<br>"                                                                            
-"<img src = 'something' alt='nbsp' />"                                            
-"<br>"                                                                            
-"<img src='something' alt = 'nbsp' />"                                            
-"<br>"                                                                            
-"<img src = 'something' alt = 'nbsp' />"                                          
-"<br>" 
-
-
-# This regex matches the img tags:
-"<img.* *>"
-# This matches the markdown syntax
-"\!\[.* *]\(.* *\)"
-# This matches all imgs
-"(<img.* *>|\!\[.* *]\(.* *\))"
-
-
-# another approach
-# match the src value then match the alt value,
-# any identical index is a problem
-
 
 
