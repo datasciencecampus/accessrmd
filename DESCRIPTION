@@ -17,7 +17,8 @@ Depends:
 Imports:
     utils,
     htmltools,
-    stringr
+    stringr,
+    rlist
 Suggests:
     testthat,
     knitr,

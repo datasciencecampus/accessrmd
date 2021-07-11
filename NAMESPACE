@@ -2,9 +2,13 @@
 
 export(access_head)
 export(access_img)
+export(sus_alt)
 importFrom(ggplot2,ggsave)
 importFrom(ggplot2,last_plot)
 importFrom(grDevices,png)
+importFrom(rlist,list.apply)
+importFrom(stringr,str_extract)
 importFrom(stringr,str_remove)
+importFrom(stringr,str_remove_all)
 importFrom(stringr,str_split)
 importFrom(utils,getFromNamespace)

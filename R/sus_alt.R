@@ -7,7 +7,7 @@
 #'
 #' @return Line numbers of images that has alt text equal to placeholder values.
 #'
-#' @importFrom stringr str_split
+#' @importFrom stringr str_split str_extract str_remove_all
 #' @importFrom rlist list.apply
 #' @export
 sus_alt <- function(rmd_path = NULL){
