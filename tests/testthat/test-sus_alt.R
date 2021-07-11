@@ -29,6 +29,7 @@ test_that("Messages when dupe alt is found", {
   expect_message(suppressWarnings(sus_alt(bad_img)),
                  "No images with placeholder text found.")
   expect_warning(sus_alt(bad_img), "alt text should not be equal to src.")
+  expect_warning(sus_alt(bad_img), "1")
   
 })
 
