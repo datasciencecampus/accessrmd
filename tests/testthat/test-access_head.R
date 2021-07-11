@@ -37,16 +37,23 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent",
   con = test_rmd
 )
 
+# expected output dir for inplace = FALSE
+rmd_file <- basename(test_rmd)
+# store dir loc
+dir_loc <- paste0(str_remove(test_rmd, rmd_file), "accessrmd/")
+# outfile saves to accessrmd dir
+outfile <- paste0(dir_loc, rmd_file)
+
 # tests -------------------------------------------------------------------
 
 test_that("behaviour on inplace = FALSE", {
+  # check no warnings
   expect_invisible(access_head(test_rmd, lan = "en"))
+  # check warnings for file exists
   expect_warning(access_head(test_rmd, lan = "en"), "already exists")
+  # check file exists
+  expect_true(file.exists(outfile))
 })
-
-
-
-
 
 # set the wd to test directory
 with(globalenv(), {setwd(.old_wd)})
