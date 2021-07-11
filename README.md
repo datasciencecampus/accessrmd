@@ -1,4 +1,9 @@
 # accessrmd
+
+  <!-- badges: start -->
+  [![Codecov test coverage](https://codecov.io/gh/datasciencecampus/accessrmd/branch/master/graph/badge.svg)](https://codecov.io/gh/datasciencecampus/accessrmd?branch=master)
+  <!-- badges: end -->
+
 accessrmd is a package with functions intended to improve the accessibility of Rmarkdown documents. 
 
 View a [comparison of accessibility checks](https://datasciencecampus.github.io/accessrmd/)
