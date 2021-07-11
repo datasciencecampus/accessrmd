@@ -37,7 +37,12 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent",
   con = test_rmd
 )
 
+# tests -------------------------------------------------------------------
 
+test_that("behaviour on inplace = FALSE", {
+  expect_invisible(access_head(test_rmd, lan = "en"))
+  expect_warning(access_head(test_rmd, lan = "en"), "already exists")
+})
 
 
 
