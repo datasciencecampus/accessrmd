@@ -36,7 +36,18 @@ sus_alt <- function(rmd_path = NULL){
   plac_ind <- as.numeric(names(plac_list[plac_list == TRUE]))
   # store the lines where placeholders were used
   plac_found <- lines[plac_ind]
-# check for any images where src == alt -----------------------------------
+  # messages for placeholder text
+  if(length(plac_found) == 0){
+    message("No images with placeholder text found.")
+  } else{
+    warning(paste(length(plac_found),
+                  "image(s) with placeholder text found.\n Check lines:\n",
+                  paste(names(plac_found), collapse = ", "),
+                  "\nalt text should not be equal to 'spacer' or 'nbsp'."
+                  ))
+
+    }
+  # check for any images where src == alt -----------------------------------
   # after some unsuccessful regex testing due to flexibility in valid HTML
   # I've taken the approach to warn where any element resulting from the
   # str_split above is potentially src == alt. This could fall down if
