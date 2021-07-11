@@ -18,6 +18,12 @@ author and date.
 
 * Not exported. Handler checks rmd path is valid.
 
+#### sus_alt
+
+* Searches Rmd files for suspicious alt text.
+* Warns on alt text set to placeholder text.
+* Warns on alt text equal to src attribute value.
+
 
 ***
 
@@ -31,8 +37,8 @@ access_img line. For WCAG 1.4.6 The contrast ratio should be at least 7:1 for
 normal text and 4.4:1 for large text.
 * correct header hierarchy
 * broken links
-* suspicious alt text feature request: alt text is identical to file name
 * alt text exceeding a lang specific limit (see readme).
+* search for Rmds within a file strutre and copy into a single dir.
 
 ### access_head
 
