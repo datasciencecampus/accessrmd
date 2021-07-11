@@ -70,7 +70,7 @@ sus_alt <- function(rmd_path = NULL){
     string = spec_dims,
     "src *= *\\\\??\"(.*?)\"|src *= *\\\\??'(.*?)'"
     )
-
+  
   alts <- str_extract(
     string = spec_dims,
     "alt *= *\\\\??\"(.*?)\"|alt *= *\\\\??'(.*?)'"
@@ -83,11 +83,17 @@ sus_alt <- function(rmd_path = NULL){
   prob_ind <- names(spec_dims[srcs != alts])
   # remove any problem indices from the found duplicates
   dupe_found <- dupe_found[setdiff(names(dupe_found), prob_ind)]
-
-
-  
-  
-  
+  # messages for dupe text
+  if(length(dupe_found) == 0){
+    message("No images with equal src and alt values found.")
+  } else{
+    warning(paste(length(dupe_found),
+                  "image(s) with equal src & img found.\n Check lines:\n",
+                  paste(names(dupe_found), collapse = ", "),
+                  "\nalt text should not be equal to src."
+    ))
+    
+  }
 
 }
 
