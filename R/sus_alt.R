@@ -11,6 +11,7 @@
 #' @importFrom rlist list.apply
 #' @export
 sus_alt <- function(rmd_path = NULL){
+  message(paste0("Checking ", rmd_path, "..."))
   # define placeholder values
   place_val <- c("nbsp", "spacer")
   # read lines form rmd_path if valid
