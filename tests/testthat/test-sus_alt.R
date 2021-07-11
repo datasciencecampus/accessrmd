@@ -13,6 +13,10 @@ bad_img <- tempfile(fileext = ".Rmd")
 file.create(bad_img)
 writeLines("<img src='something' alt='something'/>", con = bad_img)
 
+plac_img <- tempfile(fileext = ".Rmd")
+file.create(plac_img)
+writeLines("<img src='something' alt='nbsp'/>", con = plac_img)
+
 # tests -------------------------------------------------------------------
 
 test_that("Messages when no suspicious cases are found", {
@@ -34,9 +38,16 @@ test_that("Messages when dupe alt is found", {
   
 })
 
-
-
-
+test_that("Messages when placeholder alt is found", {
+  expect_message(suppressWarnings(sus_alt(plac_img)),
+                 paste0("Checking ", basename(plac_img), "..."))
+  expect_message(suppressWarnings(sus_alt(plac_img)),
+                 "No images with equal src and alt values found.")
+  expect_warning(sus_alt(plac_img),
+                 "alt text should not be equal to 'spacer' or 'nbsp'.")
+  expect_warning(sus_alt(plac_img), "1")
+  
+})
 
 # set the wd to test directory
 with(globalenv(), {setwd(.old_wd)})
