@@ -52,7 +52,7 @@ inline r code for date.
 
 ### access_img
 
-* alt text exceeding a limit (find out which limit that is)
+* alt text exceeding a limit
 * intermediate plots occasionally appear in dir
 
 
