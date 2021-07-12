@@ -97,5 +97,3 @@ sus_alt <- function(rmd_path = NULL){
   }
 
 }
-
-
