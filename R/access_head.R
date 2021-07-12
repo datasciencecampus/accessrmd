@@ -42,7 +42,7 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   # remove YAML bounds "---"
   head <- setdiff(yaml_head, "---")
   # check for html output type. Stop if not.
-  html_loc <- grepl(pattern = "^output: html_document$", head)
+  html_loc <- grepl(pattern = "html_document", head)
 
   if(any(html_loc)){
     # html found. subset out the html tag.
