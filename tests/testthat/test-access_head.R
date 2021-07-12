@@ -44,6 +44,24 @@ dir_loc <- paste0(str_remove(test_rmd, rmd_file), "accessrmd/")
 # outfile saves to accessrmd dir
 outfile <- paste0(dir_loc, rmd_file)
 
+# test file for no YAML
+noYAML_rmd <- tempfile(fileext = ".Rmd")
+file.create(noYAML_rmd)
+writeLines("```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a <http://rmarkdown.rstudio.com>."
+  
+)
+
+
+# test file for non-standard YAML
+
+# test file for non-Rmd filetype
+
 # tests -------------------------------------------------------------------
 
 test_that("behaviour on inplace = FALSE", {
@@ -53,6 +71,10 @@ test_that("behaviour on inplace = FALSE", {
   expect_warning(access_head(test_rmd, lan = "en"), "already exists")
   # check file exists
   expect_true(file.exists(outfile))
+})
+
+test_that("Errors on non-standard Rmd", {
+  expect_error(access_head(noYAML_rmd), "YAML header not found.")
 })
 
 # set the wd to test directory
