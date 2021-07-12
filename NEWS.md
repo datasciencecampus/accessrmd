@@ -9,6 +9,7 @@
 * Replaces basic YAML with accessible HTML header. Currently supports title, 
 author and date.
 
+
 #### access_img
 
 * Compatible with ggplot2 charts and pngs saved to disk.
@@ -38,7 +39,8 @@ normal text and 4.4:1 for large text.
 * correct header hierarchy
 * broken links
 * alt text exceeding a lang specific limit (see readme).
-* search for Rmds within a file strutre and copy into a single dir.
+* search for Rmds within a file structure and copy into a single dir.
+* access_head errors on no lang value attribute set.
 
 ### access_head
 
@@ -47,7 +49,6 @@ inline r code for date.
 
 ### access_img
 
-* suspicious alt text feature request: alt text is identical to file name
 * alt text exceeding a limit (find out which limit that is)
 * intermediate plots occasionally appear in dir
 
@@ -65,6 +66,10 @@ Results in non standard YAML bounds. Using regex to increase specificity but wou
 ### access_img
 
 * rmd knitting behaviour is producing saved intermediate chart images in the wd of the rmd. Once resolved, this would make a good test case.
+
+### sus_alt
+
+* More complex test cases including mix of acceptable html format and placeholder text.
 
 
 ## Parked
