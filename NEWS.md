@@ -46,6 +46,7 @@ normal text and 4.4:1 for large text.
 
 * additional required functionality: toc, toc_float, subtitle, lang,
 inline r code for date.
+* if lang is set to "" return a warning.
 
 ### access_img
 

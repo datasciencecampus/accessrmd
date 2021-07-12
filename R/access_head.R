@@ -25,6 +25,8 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
     stop("YAML header not found.")
   } else if(length(yaml_bounds) != 2){
     stop("Non standard YAML found.")
+  } else if(is.null(lan) | length(lan) == 0){
+    stop("lan requires a value.")
   }
   # produce yaml sequence
   yaml_seq <- yaml_bounds[1]:yaml_bounds[2]
