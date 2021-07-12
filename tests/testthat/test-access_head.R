@@ -77,7 +77,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown", con = errYAML_rmd)
 
-# test file for non-Rmd filetype
+# test file for non-HTML output
+non_html_rmd <- tempfile(fileext = ".Rmd")
+file.create(non_html_rmd)
+writeLines("---
+title: \"test\"
+author: \"Richard Leyshon\"
+date: \"02/07/2021\"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown", con = non_html_rmd)
 
 # tests -------------------------------------------------------------------
 
@@ -93,6 +107,7 @@ test_that("behaviour on inplace = FALSE", {
 test_that("Errors on non-standard Rmd", {
   expect_error(access_head(noYAML_rmd), "YAML header not found.")
   expect_error(access_head(errYAML_rmd), "Non standard YAML found.")
+  expect_error(access_head(non_html_rmd), "only works with html output.")
 })
 
 # set the wd to test directory
