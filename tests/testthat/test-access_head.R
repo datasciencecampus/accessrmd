@@ -95,7 +95,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # tests -------------------------------------------------------------------
 
-test_that("behaviour on inplace = FALSE", {
+test_that("Expected behaviour on inplace = FALSE", {
   # check no warnings
   expect_invisible(access_head(test_rmd, lan = "en"))
   # check warnings for file exists
@@ -108,6 +108,12 @@ test_that("Errors on non-standard Rmd", {
   expect_error(access_head(noYAML_rmd), "YAML header not found.")
   expect_error(access_head(errYAML_rmd), "Non standard YAML found.")
   expect_error(access_head(non_html_rmd), "only works with html output.")
+})
+
+test_that("Expected behaviour on inplace = TRUE", {
+  expect_invisible(access_head(test_rmd, lan = "en", inplace = TRUE))
+  # YAML should be replaced from source file with html
+  expect_false(all(grepl(pattern = "---", readLines(test_rmd))))
 })
 
 # set the wd to test directory
