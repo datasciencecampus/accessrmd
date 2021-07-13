@@ -139,6 +139,14 @@ test_that("YAML lang is set to HTML attr", {
                  "YAML lang found. Setting HTML lang as en")
 })
 
+# check structure has written
+lang_html <- readLines(lang_rmd)
+lang <- lang_html[grep("lang=", lang_html)]
+
+test_that("YAML lang has been written as HTML", {
+  expect_equal(lang, "<html lang=\"en\">")
+})
+
 test_that("Expected behaviour on inplace = TRUE", {
   expect_message(access_head(test_rmd, lan = "en", inplace = TRUE),
                  "Setting html lan to en")
