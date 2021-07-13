@@ -54,6 +54,8 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   if(length(lang) != 0){
     # split on "|' and take the second item
     lan <- unlist(strsplit(lang, '"|\''))[2]
+    message(paste("YAML lang found. Setting HTML lang as", lan))
+    
   }
 
   # stop if no lang value found
