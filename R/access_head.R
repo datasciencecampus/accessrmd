@@ -82,7 +82,8 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
 # reassemble the accessible head ------------------------------------------
   html_head <- tags$header(html_title, h1_content, unname(html_h2s))
   
-  # set the html lang
+  # set the html lang & message
+  message(paste("Setting html lan to", lan))
   html_out <- tags$html(html_head, rmd_body, lang = lan)
 
 # cleaning of html reserved words -----------------------------------------

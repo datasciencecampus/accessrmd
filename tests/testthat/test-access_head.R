@@ -97,7 +97,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 test_that("Expected behaviour on inplace = FALSE", {
   # check no warnings
-  expect_invisible(access_head(test_rmd, lan = "en"))
+  expect_message(access_head(test_rmd, lan = "en"), "Setting html lan to en")
   # check warnings for file exists
   expect_warning(access_head(test_rmd, lan = "en"), "already exists")
   # check file exists
@@ -117,7 +117,8 @@ test_that("Errors if no html lang attribute set", {
 })
 
 test_that("Expected behaviour on inplace = TRUE", {
-  expect_invisible(access_head(test_rmd, lan = "en", inplace = TRUE))
+  expect_message(access_head(test_rmd, lan = "en", inplace = TRUE),
+                 "Setting html lan to en")
   # YAML should be replaced from source file with html
   expect_false(all(grepl(pattern = "---", readLines(test_rmd))))
 })
