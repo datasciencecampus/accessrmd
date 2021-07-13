@@ -112,7 +112,8 @@ test_that("Errors on non-standard Rmd", {
 })
 
 test_that("Errors if no html lang attribute set", {
-  expect_error(access_head(test_rmd), "lan requires a value.")
+  expect_error(access_head(test_rmd),
+               'No value provided to "lan" or lang value found in YAML.')
 })
 
 test_that("Expected behaviour on inplace = TRUE", {

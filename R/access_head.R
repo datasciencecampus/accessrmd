@@ -25,9 +25,7 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
     stop("YAML header not found.")
   } else if(length(yaml_bounds) != 2){
     stop("Non standard YAML found.")
-  } else if(is.null(lan) | length(lan) == 0){
-    stop("lan requires a value.")
-  }
+  } 
   # produce yaml sequence
   yaml_seq <- yaml_bounds[1]:yaml_bounds[2]
   # extract yaml
@@ -50,6 +48,19 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   } else{
     stop("access_head() only works with html output.")
   }
+  # look for lang in YAML
+  lang <- head[grep("^    lang:", head)]
+  # above returns length 0 vector if not found
+  if(length(lang) != 0){
+    # split on "|' and take the second item
+    lan <- unlist(strsplit(lang, '"|\''))[2]
+  }
+
+  # stop if no lang value found
+  if(is.null(lan) | length(lan) == 0){
+    stop('No value provided to "lan" or lang value found in YAML.')
+  }
+  
   # Clean out the escape chars
   # remove all besides the alphabets, numbers, : and /
   # finding a simple implementation to remove single escapes is elusive
