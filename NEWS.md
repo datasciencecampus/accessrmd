@@ -9,6 +9,7 @@
 * Replaces basic YAML with accessible HTML header. Currently supports title, 
 author and date.
 * Error if lan is NULL.
+* if lang found in YAML, use for html lang tag.
 
 
 #### access_img
@@ -47,7 +48,7 @@ normal text and 4.4:1 for large text.
 
 * additional required functionality: toc, toc_float, subtitle, lang,
 inline r code for date.
-* if lang found in YAML, use for html lang tag.
+* module for find_lang and use as default behaviour for lan argument.
 
 
 ### access_img
