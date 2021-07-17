@@ -33,6 +33,7 @@ author and date.
 
 ## To do
 
+* refactor: funcs for detect html lang, find all imgs, find all alts
 * correct header hierarchy
 * alt text exceeding a lang specific limit (see readme).
 * search for Rmds within a file structure and copy into a single dir.

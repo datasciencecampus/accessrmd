@@ -2,7 +2,7 @@
 #' 
 #' Check any Rmd images for language specific alt text length limits. Limits used
 #' are: eng	100, ger	115, kor	90.
-#'
+#' 
 #' @param rmd_path Path to the Rmd that requires accessible header metadata. Rmd
 #' must be output type html.
 #' @param lan Identify the language of text content.
