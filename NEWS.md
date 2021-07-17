@@ -34,7 +34,6 @@ author and date.
 ## To do
 
 * correct header hierarchy
-* broken links
 * alt text exceeding a lang specific limit (see readme).
 * search for Rmds within a file structure and copy into a single dir.
 * wrapper function that finds all images and replaces with access_img code.
