@@ -10,6 +10,7 @@
 author and date.
 * Error if lan is NULL.
 * if lang found in YAML, use for html lang tag.
+* Errors if no lang value attribute set.
 
 
 #### access_img
@@ -32,17 +33,16 @@ author and date.
 
 ## To do
 
+* correct header hierarchy
+* broken links
+* alt text exceeding a lang specific limit (see readme).
+* search for Rmds within a file structure and copy into a single dir.
 * wrapper function that finds all images and replaces with access_img code.
 * wrapper function that packages up broken links, sus alt text, long alt text,
 header hierarchy, correct img HTML in one go.
 * There are 2 Errors on the accessrmd test.html relating to WCAG 1.4.6: Contrast (enhanced)(Level AAA) with the red text in the install_github line and the
 access_img line. For WCAG 1.4.6 The contrast ratio should be at least 7:1 for
 normal text and 4.4:1 for large text.
-* correct header hierarchy
-* broken links
-* alt text exceeding a lang specific limit (see readme).
-* search for Rmds within a file structure and copy into a single dir.
-* access_head errors on no lang value attribute set.
 
 ### access_head
 
