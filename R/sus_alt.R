@@ -12,25 +12,20 @@
 #' @export
 sus_alt <- function(rmd_path = NULL){
   message(paste0("Checking ", basename(rmd_path), "..."))
+  # read lines from rmd_path if valid
+  lines <- handle_rmd_path(rmd_path)
   # define placeholder values
   place_val <- c("nbsp", "spacer")
-  # read lines form rmd_path if valid
-  lines <- handle_rmd_path(rmd_path)
-# only want img tags but preserve indexing --------------------------------
-  # set the names of the lines vector as a count
-  names(lines) <- seq_along(lines)
-  # regex matches img tags & ![]() markdown syntax
-  # tested on https://regex101.com/r/CU4g3f/1
-  img_ind <- grep(pattern = "(<img.* *>|\\!\\[.* *]\\(.* *\\))", lines)
-  img_only <- lines[img_ind]
+  # return image lines only
+  images <- find_all_imgs(lines)
   # need to obtain values of src and alt attributes
   # this can be img tag or markdown syntax
   # tested on https://regex101.com/r/2wKGsF/1
   # note: going for base strsplit as stringr::str_split produces "" padding
   # that becomeas a problem when finding duplicates later
-  img_split <- strsplit(img_only, "\"|'|!\\[|]\\(|\\)")
+  img_split <- strsplit(images, "\"|'|!\\[|]\\(|\\)")
   # update indices
-  names(img_split) <- names(img_only)
+  names(img_split) <- names(images)
 # check for placeholder values --------------------------------------------
   plac_list <- list.apply(img_split, .fun = function(x) any(place_val %in% x))
   # filter for placeholder values only
@@ -59,6 +54,8 @@ sus_alt <- function(rmd_path = NULL){
   dupe_ind <- as.numeric(names(dupe_list[dupe_list == TRUE]))
   # store the lines with duplicated attribute values
   dupe_found <- lines[dupe_ind]
+  # update with original indices
+  names(dupe_found) <- dupe_ind
   # at this point, the only false positive cases are like:
   # <img src = "something" alt = "something else" height = "400" width = "400"/>
   # now need to remove these cases as not a problem
