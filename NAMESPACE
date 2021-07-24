@@ -2,6 +2,7 @@
 
 export(access_head)
 export(access_img)
+export(check_alt_len)
 export(sus_alt)
 importFrom(ggplot2,ggsave)
 importFrom(ggplot2,last_plot)

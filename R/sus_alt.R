@@ -10,7 +10,7 @@
 #' @importFrom stringr str_split str_extract str_remove_all
 #' @importFrom rlist list.apply
 #' @export
-sus_alt <- function(rmd_path = NULL){
+sus_alt <- function(rmd_path = NULL) {
   message(paste0("Checking ", basename(rmd_path), "..."))
   # read lines from rmd_path if valid
   lines <- handle_rmd_path(rmd_path)
@@ -26,23 +26,23 @@ sus_alt <- function(rmd_path = NULL){
   img_split <- strsplit(images, "\"|'|!\\[|]\\(|\\)")
   # update indices
   names(img_split) <- names(images)
-# check for placeholder values --------------------------------------------
+  # check for placeholder values --------------------------------------------
   plac_list <- list.apply(img_split, .fun = function(x) any(place_val %in% x))
   # filter for placeholder values only
   plac_ind <- as.numeric(names(plac_list[plac_list == TRUE]))
   # store the lines where placeholders were used
   plac_found <- lines[plac_ind]
   # messages for placeholder text
-  if(length(plac_found) == 0){
+  if (length(plac_found) == 0) {
     message("No images with placeholder text found.")
-  } else{
-    warning(paste(length(plac_found),
-                  "image(s) with placeholder text found.\n Check lines:\n",
-                  paste(names(plac_found), collapse = ", "),
-                  "\nalt text should not be equal to 'spacer' or 'nbsp'."
-                  ))
-
-    }
+  } else {
+    warning(paste(
+      length(plac_found),
+      "image(s) with placeholder text found.\n Check lines:\n",
+      paste(names(plac_found), collapse = ", "),
+      "\nalt text should not be equal to 'spacer' or 'nbsp'."
+    ))
+  }
   # check for any images where src == alt -----------------------------------
   # after some unsuccessful regex testing due to flexibility in valid HTML
   # I've taken the approach to warn where any element resulting from the
@@ -67,8 +67,8 @@ sus_alt <- function(rmd_path = NULL){
   srcs <- str_extract(
     string = spec_dims,
     "src *= *\\\\??\"(.*?)\"|src *= *\\\\??'(.*?)'"
-    )
-  
+  )
+
   alts <- str_extract(
     string = spec_dims,
     "alt *= *\\\\??\"(.*?)\"|alt *= *\\\\??'(.*?)'"
@@ -82,15 +82,14 @@ sus_alt <- function(rmd_path = NULL){
   # remove any problem indices from the found duplicates
   dupe_found <- dupe_found[setdiff(names(dupe_found), prob_ind)]
   # messages for dupe text
-  if(length(dupe_found) == 0){
+  if (length(dupe_found) == 0) {
     message("No images with equal src and alt values found.")
-  } else{
-    warning(paste(length(dupe_found),
-                  "image(s) with equal src & img found.\n Check lines:\n",
-                  paste(names(dupe_found), collapse = ", "),
-                  "\nalt text should not be equal to src."
+  } else {
+    warning(paste(
+      length(dupe_found),
+      "image(s) with equal src & img found.\n Check lines:\n",
+      paste(names(dupe_found), collapse = ", "),
+      "\nalt text should not be equal to src."
     ))
-    
   }
-
 }

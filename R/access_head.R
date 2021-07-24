@@ -1,5 +1,5 @@
 #' Convert YAML to an accessible header
-#' 
+#'
 #' Reads an Rmd file, converting the YAML header to a format that is screen
 #' reader friendly.
 #'
@@ -8,24 +8,24 @@
 #' @param lan Identify the language of text content.
 #' @param inplace When set to FALSE (the default) writes to new file
 #' (accessrmd_<rmd_path>). If TRUE, writes in place.
-#' 
+#'
 #' @return Adjust the Rmd YAML provided to `rmd_path`, improving its
 #' accessibility for screen readers. Only works with html output.
-#' 
+#'
 #' @importFrom stringr str_split str_remove
-#' 
+#'
 #' @export
-access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
+access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE) {
   # check rmd_path
   lines <- handle_rmd_path(rmd_path)
   # check for presence of YAML features
   yaml_bounds <- grep(pattern = "^---$", lines)
   # stop if YAML bounds not standard
-  if(length(yaml_bounds) == 0){
+  if (length(yaml_bounds) == 0) {
     stop("YAML header not found.")
-  } else if(length(yaml_bounds) != 2){
+  } else if (length(yaml_bounds) != 2) {
     stop("Non standard YAML found.")
-  } 
+  }
   # produce yaml sequence
   yaml_seq <- yaml_bounds[1]:yaml_bounds[2]
   # extract yaml
@@ -35,34 +35,33 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   # append the body with element tags
   rmd_body <- tags$body(paste(rmd_body, collapse = "\n"))
 
-# dynamic head logic ------------------------------------------------------
+  # dynamic head logic ------------------------------------------------------
   # Will need to identify YAML elements present and convert to html flexibly
   # remove YAML bounds "---"
   head <- setdiff(yaml_head, "---")
   # check for html output type. Stop if not.
   html_loc <- grepl(pattern = "html_document", head)
 
-  if(any(html_loc)){
+  if (any(html_loc)) {
     # html found. subset out the html tag.
     head <- head[!html_loc]
-  } else{
+  } else {
     stop("access_head() only works with html output.")
   }
   # look for lang in YAML
   lang <- head[grep("^    lang:", head)]
   # above returns length 0 vector if not found
-  if(length(lang) != 0){
+  if (length(lang) != 0) {
     # split on "|' and take the second item
     lan <- unlist(strsplit(lang, '"|\''))[2]
     message(paste("YAML lang found. Setting HTML lang as", lan))
-    
   }
 
   # stop if no lang value found
-  if(is.null(lan) | length(lan) == 0){
+  if (is.null(lan) | length(lan) == 0) {
     stop('No value provided to "lan" or lang value found in YAML.')
   }
-  
+
   # Clean out the escape chars
   # remove all besides the alphabets, numbers, : and /
   # finding a simple implementation to remove single escapes is elusive
@@ -72,7 +71,7 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   title_content <- str_split(head[title_index], pattern = ":")[[1]][2]
   # produce the accessible title
   html_title <- tags$title(title_content)
-  # h1 needs to be the same as title 
+  # h1 needs to be the same as title
   h1_content <- tags$h1(title_content, id = "title toc-ignore")
   # find indices for additional header titles
   hd_indices <- grep("author:|date:", head)
@@ -81,20 +80,20 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
   # produce the accessible headers
   html_h2s <- sapply(h2s, tags$h2, class = "header_h2s", simplify = FALSE)
 
-# reassemble the accessible head ------------------------------------------
+  # reassemble the accessible head ------------------------------------------
   html_head <- tags$header(html_title, h1_content, unname(html_h2s))
-  
+
   # set the html lang & message
   message(paste("Setting html lan to", lan))
   html_out <- tags$html(html_head, rmd_body, lang = lan)
 
-# cleaning of html reserved words -----------------------------------------
+  # cleaning of html reserved words -----------------------------------------
   # <> have been replaced with &lt; and &gt; due to HTML reserved words
   # gsub them back
   html_out <- gsub("&lt;", "<", html_out)
   html_out <- gsub("&gt;", ">", html_out)
-  
-  if(inplace == TRUE){
+
+  if (inplace == TRUE) {
     # outfile will be the same as infile
     outfile <- rmd_path
   } else {
@@ -109,8 +108,6 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE){
     dir.create(dir_loc)
     # outfile saves to accessrmd dir
     outfile <- paste0(dir_loc, rmd_file)
-    
   }
   return(writeLines(paste(html_out), con = outfile))
-
 }
