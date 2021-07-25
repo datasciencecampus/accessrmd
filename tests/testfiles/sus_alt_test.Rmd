@@ -1,0 +1,20 @@
+---
+title: "sus_alt_test"
+author: "Richard Leyshon"
+date: "25/07/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Test imgs
+
+
+![spacer](../www/then-and-now-carole-hersee.jpeg)
+
+<img src="../www/then-and-now-carole-hersee.jpeg" alt="../www/then-and-now-carole-hersee.jpeg">
+
+<img src="../www/then-and-now-carole-hersee.jpeg" alt="BBC test card then and now comparison.">
+
