@@ -19,6 +19,15 @@ plac_img <- tempfile(fileext = ".Rmd")
 file.create(plac_img)
 writeLines("<img src='something' alt='nbsp'/>", con = plac_img)
 
+specdim_imgs <- tempfile(fileext = ".Rmd")
+file.create(specdim_imgs)
+writeLines(
+  "
+  <img src='something' alt='acceptable alt text' height='300' width='300'/> 
+  <img src='something' alt='spacer' height='300' width='400'/>
+  ",
+  con = specdim_imgs)
+
 # tests -------------------------------------------------------------------
 
 test_that("Messages when no suspicious cases are found", {
@@ -63,6 +72,10 @@ test_that("Messages when placeholder alt is found", {
     "alt text should not be equal to 'spacer' or 'nbsp'."
   )
   expect_warning(sus_alt(plac_img), "1")
+})
+
+test_that("imgs with square specified dims do not get flagged as suspicious", {
+  expect_warning(sus_alt(specdim_imgs), "3")
 })
 
 # set the wd to test directory
