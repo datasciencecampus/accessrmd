@@ -125,8 +125,10 @@ test_that("Expected behaviour on inplace = FALSE", {
 
 test_that("Errors on non-standard Rmd", {
   expect_error(access_head(no_yaml_rmd, lan = "en"), "YAML header not found.")
-  expect_error(access_head(err_yaml_rmd, lan = "en"),
-               "Non standard YAML found.")
+  expect_error(
+    access_head(err_yaml_rmd, lan = "en"),
+    "Non standard YAML found."
+  )
   expect_error(
     access_head(non_html_rmd, lan = "en"),
     "only works with html output."

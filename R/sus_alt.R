@@ -61,7 +61,7 @@ sus_alt <- function(rmd_path = NULL) {
   # now need to remove these cases as not a problem
   spec_dims <- dupe_found[grep(dupe_found, pattern = "height|width")]
   # if any dimensions were specified, these will ned to be handled separately
-  if(length(spec_dims) != 0){
+  if (length(spec_dims) != 0) {
     # check if any spec_dims images have differing src & alt values
     # regex texted https://regex101.com/r/UiKqmA/1
     # extract only src and alt attribute values only
@@ -70,12 +70,12 @@ sus_alt <- function(rmd_path = NULL) {
       string = spec_dims,
       "src *= *\\\\??\"(.*?)\"|src *= *\\\\??'(.*?)'"
     )
-    
+
     alts <- str_extract(
       string = spec_dims,
       "alt *= *\\\\??\"(.*?)\"|alt *= *\\\\??'(.*?)'"
     )
-    
+
     # clean up srcs and alts
     srcs <- str_remove_all(srcs, "src| *")
     alts <- str_remove_all(alts, "alt| *")

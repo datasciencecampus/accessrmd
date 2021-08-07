@@ -26,7 +26,8 @@ writeLines(
   <img src='something' alt='acceptable alt text' height='300' width='300'/> 
   <img src='something' alt='spacer' height='300' width='400'/>
   ",
-  con = specdim_imgs)
+  con = specdim_imgs
+)
 
 # tests -------------------------------------------------------------------
 

@@ -28,8 +28,9 @@ access_img <- function(img = last_plot(), alt = NULL, wid = 500,
     warning("Empty alt text should be used for decorative images only.")
   }
 
-  tryCatch({
-    # if the file already exists on disk, do not create tempfile
+  tryCatch(
+    {
+      # if the file already exists on disk, do not create tempfile
       file.exists(img)
       # if img is on disk, return NA
       message("img derived from disk.")
