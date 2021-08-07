@@ -37,10 +37,10 @@ author and date.
 
 ## To do
 
+* search for Rmds within a file structure and copy into a single dir.
 * refactor: funcs for detect html lang, find all alts
 * correct header hierarchy
 * alt text exceeding a lang specific limit (see readme).
-* search for Rmds within a file structure and copy into a single dir.
 * wrapper function that finds all images and replaces with access_img code.
 * wrapper function that packages up broken links, sus alt text, long alt text,
 header hierarchy, correct img HTML in one go.
