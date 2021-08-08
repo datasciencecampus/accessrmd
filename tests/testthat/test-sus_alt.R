@@ -39,6 +39,15 @@ writeLines(
   ", con = mixed_imgs
 )
 
+missing_alt <- tempfile(fileext = ".Rmd")
+file.create(missing_alt)
+writeLines(
+  "<img src='no_alt_included'>
+  <img src='no_alt_included' alt=''>
+  ![](no_alt_included)
+  "
+)
+
 # tests -------------------------------------------------------------------
 
 test_that("Messages when no suspicious cases are found", {
@@ -92,11 +101,16 @@ test_that("imgs with square specified dims do not get flagged as suspicious", {
 
 test_that("Complex case behaves as expected", {
   expect_warning(sus_alt(mixed_imgs),
-  " Check lines:
+  "Check lines:
  3, 5")
   expect_warning(sus_alt(mixed_imgs),
   "Check lines:
  1")
+})
+
+test_that("Blank alt is flagged", {
+  expect_warning(sus_alt(missing_alt), "Check lines:
+                 1, 2, 3")
 })
 
 
