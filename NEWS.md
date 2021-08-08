@@ -41,7 +41,9 @@ author and date.
 
 ## To do
 
-* 'access_head()' to work with inline code
+* 'access_head()' to work with inline code. Inline code issues: backticks,
+spaces, full stops, brackets, all removed from <h2 tag>. Inserting them renders
+as needed.
 * 'access_head()' to work with toc, toc_float...
 * refactor: funcs for detect html lang, find all alts
 * correct header hierarchy

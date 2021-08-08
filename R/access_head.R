@@ -62,10 +62,8 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE) {
     stop('No value provided to "lan" or lang value found in YAML.')
   }
 
-  # Clean out the escape chars
-  # remove all besides the alphabets, numbers, : and /
-  # finding a simple implementation to remove single escapes is elusive
-  head <- gsub("[^A-Za-z0-9:/]", "", head)
+  # Clean out quotations
+  head <- gsub('"|\'', "", head)
   # find title
   title_index <- grep("title:", head)
   title_content <- str_split(head[title_index], pattern = ":")[[1]][2]
