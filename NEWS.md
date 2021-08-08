@@ -13,31 +13,36 @@ author and date.
 * Errors if no lang value attribute set.
 
 
-#### access_img
+#### 'access_img()'
 
 * Compatible with ggplot2 charts and pngs saved to disk.
 * "" alt text warning for decorative images only.
 
-#### handle_rmd_path (Not exported)
+#### 'handle_rmd_path()' (Not exported)
 
 * Handler checks rmd path is valid.
 
-#### find_all_imgs (Not exported)
+#### 'find_all_imgs()' (Not exported)
 
 * Helper func to find all images within an Rmd.
 
-#### sus_alt
+#### 'retrieve_rmds()'
+
+* Search for Rmds within a file structure, return relative paths.
+* Output relative paths to txt file for posterity.
+
+#### 'sus_alt()'
 
 * Searches Rmd files for suspicious alt text.
 * Warns on alt text set to placeholder text.
 * Warns on alt text equal to src attribute value.
 
-
 ***
 
 ## To do
 
-* search for Rmds within a file structure and copy into a single dir.
+* 'access_head()' to work with inline code
+* 'access_head()' to work with toc, toc_float...
 * refactor: funcs for detect html lang, find all alts
 * correct header hierarchy
 * alt text exceeding a lang specific limit (see readme).
@@ -54,12 +59,12 @@ normal text and 4.4:1 for large text.
 inline r code for date.
 * module for find_lang and use as default behaviour for lan argument.
 
-
 ### access_img
 
 * alt text exceeding a limit
 * intermediate plots occasionally appear in dir
 
+***
 
 ## Tests
 
@@ -79,6 +84,7 @@ Results in non standard YAML bounds. Using regex to increase specificity but wou
 
 * More complex test cases including mix of acceptable html format and placeholder text.
 
+***
 
 ## Parked
 
