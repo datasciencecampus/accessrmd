@@ -1,0 +1,15 @@
+---
+title: "missing_alts"
+author: "Richard Leyshon"
+date: "08/08/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<img src='no_alt_included'>
+<img src='no_alt_included' alt=''>
+![](no_alt_included)
+<img src="acceptable_alt" alt="something acceptable">

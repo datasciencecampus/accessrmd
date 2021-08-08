@@ -45,8 +45,9 @@ writeLines(
   "<img src='no_alt_included'>
   <img src='no_alt_included' alt=''>
   ![](no_alt_included)
-  "
+  ", con = missing_alt
 )
+
 
 # tests -------------------------------------------------------------------
 
@@ -89,7 +90,7 @@ test_that("Messages when placeholder alt is found", {
   )
   expect_warning(
     sus_alt(plac_img),
-    "alt text should not be equal to 'spacer' or 'nbsp'."
+    "alt text should not be empty or equal to 'spacer' or 'nbsp'."
   )
   expect_warning(sus_alt(plac_img), "1")
 })
@@ -109,8 +110,9 @@ test_that("Complex case behaves as expected", {
 })
 
 test_that("Blank alt is flagged", {
-  expect_warning(sus_alt(missing_alt), "Check lines:
-                 1, 2, 3")
+  expect_warning(sus_alt(missing_alt),
+                 " Check lines:
+ 1, 2, 3")
 })
 
 
