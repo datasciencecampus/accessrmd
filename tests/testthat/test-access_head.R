@@ -94,7 +94,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown", con = non_html_rmd)
 
-
+# testfile for YAML-specified lang attribute
 lang_rmd <- tempfile(fileext = ".Rmd")
 file.create(lang_rmd)
 writeLines("---
@@ -111,6 +111,24 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## R Markdown", con = lang_rmd)
+
+# inline code testfile
+inline_rmd <- tempfile(fileext = ".Rmd")
+file.create(inline_rmd)
+writeLines("
+---
+title: \"test_inline_code\"
+author: \"Richard Leyshon\"
+date: \"`r Sys.Date()`\"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown", con = inline_rmd)
+
 
 # tests -------------------------------------------------------------------
 
@@ -149,6 +167,8 @@ test_that("YAML lang is set to HTML attr", {
   )
 })
 
+
+# check test outputs ------------------------------------------------------
 # check structure has written
 lang_html <- readLines(lang_rmd)
 lang <- lang_html[grep("lang=", lang_html)]
@@ -164,6 +184,14 @@ test_that("Expected behaviour on inplace = TRUE", {
   )
   # YAML should be replaced from source file with html
   expect_false(all(grepl(pattern = "---", readLines(test_rmd))))
+  # check no warnings
+  expect_message(access_head(inline_rmd, lan = "en", inplace = TRUE),
+                 "Setting html lan to en")
+})
+
+
+test_that("Inline code has been correctly written", {
+  expect_true(grepl("r Sys.Date()", readLines(inline_rmd)[6]))
 })
 
 # set the wd to test directory
