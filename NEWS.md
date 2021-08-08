@@ -35,14 +35,13 @@ author and date.
 #### 'sus_alt()'
 
 * Searches Rmd files for suspicious alt text.
-* Warns on alt text set to placeholder text.
+* Warns on alt text set to placeholder text, including missing alt values.
 * Warns on alt text equal to src attribute value.
 
 ***
 
 ## To do
 
-* 'access_head()' to work with toc, toc_float...
 * refactor: funcs for detect html lang, find all alts
 * correct header hierarchy
 * alt text exceeding a lang specific limit (see readme).
