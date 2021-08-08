@@ -1,3 +1,4 @@
+^tests/testfiles/*
 ^index.html$
 ^accessrmd\.Rproj$
 ^\.Rproj\.user$

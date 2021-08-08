@@ -73,7 +73,6 @@ inline r code for date.
 
 ### access_head:
 
-* Test inline code.
 * grepl yaml bounds. Running on an Rmd containing the following url:
 ![Coloured stripes of chronologically ordered temperatures where they increase in red to show the warming global temperature](../images/_stripes_GLOBE---1850-2020-MO.png)
 Results in non standard YAML bounds. Using regex to increase specificity but would make a good test case.
