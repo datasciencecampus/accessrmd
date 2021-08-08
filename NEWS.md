@@ -52,6 +52,9 @@ header hierarchy, correct img HTML in one go.
 * There are 2 Errors on the accessrmd test.html relating to WCAG 1.4.6: Contrast (enhanced)(Level AAA) with the red text in the install_github line and the
 access_img line. For WCAG 1.4.6 The contrast ratio should be at least 7:1 for
 normal text and 4.4:1 for large text.
+* Microsoft Azure Cognitive Services free API: automate alt text generation for
+images. Appears to only work with web-hosted images. Can local files be
+uploaded?
 
 ### access_head
 
