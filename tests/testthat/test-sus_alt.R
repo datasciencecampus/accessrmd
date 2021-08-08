@@ -25,8 +25,18 @@ writeLines(
   "
   <img src='something' alt='acceptable alt text' height='300' width='300'/> 
   <img src='something' alt='spacer' height='300' width='400'/>
-  ",
-  con = specdim_imgs
+  ", con = specdim_imgs
+)
+
+mixed_imgs <- tempfile(fileext = ".Rmd")
+file.create(mixed_imgs)
+writeLines(
+  "<img src='unacceptable' alt='unacceptable' height='300' width='300'/> 
+  <img src='alt_is' alt='acceptable' height='300' width='300'/> 
+  <img src='unacceptable' alt='spacer' height='300' width='400'/>
+  ![acceptable](alt_is)
+  ![nbsp](unacceptable_alt)
+  ", con = mixed_imgs
 )
 
 # tests -------------------------------------------------------------------
@@ -78,6 +88,17 @@ test_that("Messages when placeholder alt is found", {
 test_that("imgs with square specified dims do not get flagged as suspicious", {
   expect_warning(sus_alt(specdim_imgs), "3")
 })
+
+
+test_that("Complex case behaves as expected", {
+  expect_warning(sus_alt(mixed_imgs),
+  " Check lines:
+ 3, 5")
+  expect_warning(sus_alt(mixed_imgs),
+  "Check lines:
+ 1")
+})
+
 
 # set the wd to test directory
 with(globalenv(), {
