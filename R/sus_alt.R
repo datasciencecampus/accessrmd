@@ -23,7 +23,6 @@ sus_alt <- function(rmd_path = NULL) {
   # tested on https://regex101.com/r/2wKGsF/1
   # note: going for base strsplit as stringr::str_split produces "" padding
   # that becomes a problem when finding duplicates later
-  # img_split <- strsplit(images, "\"|'|!\\[|]\\(|\\)")
   img_split <- strsplit(images, "\"|'|\\[|]\\(|\\)")
   
   # update indices

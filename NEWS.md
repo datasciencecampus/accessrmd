@@ -84,7 +84,6 @@ Results in non standard YAML bounds. Using regex to increase specificity but wou
 
 ### sus_alt
 
-* Does the func flag cases where alt has not been set for md & HTML?
 
 ***
 
