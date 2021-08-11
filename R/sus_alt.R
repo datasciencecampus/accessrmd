@@ -24,16 +24,18 @@ sus_alt <- function(rmd_path = NULL) {
   # note: going for base strsplit as stringr::str_split produces "" padding
   # that becomes a problem when finding duplicates later
   img_split <- strsplit(images, "\"|'|\\[|]\\(|\\)")
-  
+
   # update indices
   names(img_split) <- names(images)
   # check for placeholder values --------------------------------------------
-  plac_list <- list.apply(img_split, .fun = function(x) any(
-    place_val %in% x) |
+  plac_list <- list.apply(img_split, .fun = function(x) {
+    any(
+      place_val %in% x
+    ) |
       # also need any img tags that have no alt attr reference at all
       # find any img that has no alt
       (any(grepl("img", x)) & !any(grepl("alt *= *", x)))
-    )
+  })
   # filter for placeholder values only
   plac_ind <- as.numeric(names(plac_list[plac_list == TRUE]))
   # store the lines where placeholders were used

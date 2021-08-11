@@ -29,11 +29,12 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent",
-           con = toc_file)
+  con = toc_file
+)
 
 # tests -------------------------------------------------------------------
 test_that("Output is of stated class", {
-  expect_true(class(render_toc(toc_file)) == "knit_asis") 
+  expect_true(class(render_toc(toc_file)) == "knit_asis")
 })
 
 test_that("TOC has required id", {
@@ -41,8 +42,10 @@ test_that("TOC has required id", {
 })
 
 test_that("Errors on incorrect base level set", {
-  expect_error(render_toc(toc_file, base_level = 3),
-               "Cannot have negative header levels. Problematic header")
+  expect_error(
+    render_toc(toc_file, base_level = 3),
+    "Cannot have negative header levels. Problematic header"
+  )
 })
 
 

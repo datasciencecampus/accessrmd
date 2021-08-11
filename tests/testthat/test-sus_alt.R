@@ -25,7 +25,8 @@ writeLines(
   "
   <img src='something' alt='acceptable alt text' height='300' width='300'/> 
   <img src='something' alt='spacer' height='300' width='400'/>
-  ", con = specdim_imgs
+  ",
+  con = specdim_imgs
 )
 
 mixed_imgs <- tempfile(fileext = ".Rmd")
@@ -36,7 +37,8 @@ writeLines(
   <img src='unacceptable' alt='spacer' height='300' width='400'/>
   ![acceptable](alt_is)
   ![nbsp](unacceptable_alt)
-  ", con = mixed_imgs
+  ",
+  con = mixed_imgs
 )
 
 missing_alt <- tempfile(fileext = ".Rmd")
@@ -45,7 +47,8 @@ writeLines(
   "<img src='no_alt_included'>
   <img src='no_alt_included' alt=''>
   ![](no_alt_included)
-  ", con = missing_alt
+  ",
+  con = missing_alt
 )
 
 
@@ -101,18 +104,24 @@ test_that("imgs with square specified dims do not get flagged as suspicious", {
 
 
 test_that("Complex case behaves as expected", {
-  expect_warning(sus_alt(mixed_imgs),
-  "Check lines:
- 3, 5")
-  expect_warning(sus_alt(mixed_imgs),
-  "Check lines:
- 1")
+  expect_warning(
+    sus_alt(mixed_imgs),
+    "Check lines:
+ 3, 5"
+  )
+  expect_warning(
+    sus_alt(mixed_imgs),
+    "Check lines:
+ 1"
+  )
 })
 
 test_that("Blank alt is flagged", {
-  expect_warning(sus_alt(missing_alt),
-                 " Check lines:
- 1, 2, 3")
+  expect_warning(
+    sus_alt(missing_alt),
+    " Check lines:
+ 1, 2, 3"
+  )
 })
 
 

@@ -185,8 +185,10 @@ test_that("Expected behaviour on inplace = TRUE", {
   # YAML should be replaced from source file with html
   expect_false(all(grepl(pattern = "---", readLines(test_rmd))))
   # check no warnings
-  expect_message(access_head(inline_rmd, lan = "en", inplace = TRUE),
-                 "Setting html lan to en")
+  expect_message(
+    access_head(inline_rmd, lan = "en", inplace = TRUE),
+    "Setting html lan to en"
+  )
 })
 
 
