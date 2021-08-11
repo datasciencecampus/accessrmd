@@ -17,4 +17,3 @@ knitr::opts_chunk$set(echo = TRUE)
 <img src="../www/then-and-now-carole-hersee.jpeg" alt="../www/then-and-now-carole-hersee.jpeg">
 
 <img src="../www/then-and-now-carole-hersee.jpeg" alt="BBC test card then and now comparison.">
-
