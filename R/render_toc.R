@@ -35,7 +35,7 @@ render_toc <- function(
   base_level = NULL,
   toc_depth = 3
 ) {
-  x <- readLines(filename, warn = FALSE)
+  x <- handle_rmd_path(filename)
   x <- paste(x, collapse = "\n")
   x <- paste0("\n", x, "\n")
   for (i in 5:3) {
