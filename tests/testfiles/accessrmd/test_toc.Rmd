@@ -1,19 +1,17 @@
 <html lang="en">
   <header>
-    <title> test_TOC_float</title>
-    <h1 id="title toc-ignore"> test_TOC_float</h1>
-    <h2 class="header_h2s toc-ignore"> Richard Leyshon</h2>
-    <h2 class="header_h2s toc-ignore"> 09/08/2021</h2>
+    <title> test_TOC</title>
+    <h1 id="title toc-ignore"> test_TOC</h1>
+    <h2 class="header_h2s"> Richard Leyshon</h2>
+    <h2 class="header_h2s"> 09/08/2021</h2>
   </header>
   <body>
-
-
-```{r echo=FALSE}
+  
+```{r, echo=FALSE}
 source("../../../R/render_toc.R")
-render_toc("test_toc_float.Rmd")
+render_toc("test_toc.Rmd")
 ```
-
-
+  
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -35,9 +33,6 @@ You can also embed plots, for example:
 ```{r pressure, echo=FALSE}
 plot(pressure)
 ```
-
-## Test TOC ignore {.toc-ignore}
-
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.</body>
 </html>
