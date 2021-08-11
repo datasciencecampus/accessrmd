@@ -2,10 +2,17 @@ Package: accessrmd
 Title: Intended to Improve the Accessibility of Rmarkdown Documents
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "Rich",
+    c(person(given = "Rich",
            family = "Leyshon",
            role = c("aut", "cre"),
-           email = "richard.leyshon@ons.gov.uk")
+           email = "richard.leyshon@ons.gov.uk"),
+           person(given = "Garrick",
+           family = "Aden-Buie",
+           role = c("aut", "ctb"),
+           email = "g.adenbuie@gmail.com",
+           comment = "Author of 'render_toc()' which was subsequently adapted
+           and used by the author of 'accessrmd'.")
+           )
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
