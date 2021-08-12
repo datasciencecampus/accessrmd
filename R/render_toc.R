@@ -29,6 +29,7 @@
 #'   prior to the first header at the base_level are dropped silently.
 #' @param toc_depth Maximum depth for TOC, relative to base_level. Default is
 #'   `toc_depth = 3`, which results in a TOC of at most 3 levels.
+#' @export
 render_toc <- function(
                        filename,
                        toc_header_name = "Table of Contents",

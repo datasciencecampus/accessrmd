@@ -3,6 +3,7 @@
 export(access_head)
 export(access_img)
 export(check_alt_len)
+export(render_toc)
 export(retrieve_rmds)
 export(sus_alt)
 importFrom(ggplot2,ggsave)

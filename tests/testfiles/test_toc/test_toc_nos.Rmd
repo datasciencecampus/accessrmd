@@ -7,6 +7,9 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(accessrmd)
+render_toc("test_toc_numbered.Rmd")
+
 ```
 
 ## here's a 1
