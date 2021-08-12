@@ -81,11 +81,10 @@ render_toc <- function(
       header_slug <- paste(strsplit(header_text, " ")[[1]], collapse = "-")
       header_slug <- tolower(header_slug)
     }
-    paste0(strrep(" ", level * 4), "- [", header_text, "](#", header_slug, ")")
     n <<- n + 1
+    paste0(strrep(" ", level * 4), "- [", header_text, "](#", header_slug, ")")
   })
   x <- x[x != ""]
-  x <- names(x)
   knitr::asis_output(paste("<nav id=\"TOC\">",
     paste(x, collapse = "\n"),
     "</nav>",
