@@ -5,13 +5,8 @@ date: "12/08/2021"
 output: html_document
 ---
 
-```{r}
+```{r echo=FALSE}
 library(accessrmd)
-# render_toc("test_toc_nos.Rmd")
-```
-
-```{r}
-source("../../../R/render_toc.R")
 render_toc("test_toc_nos.Rmd")
 ```
 

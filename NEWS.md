@@ -68,9 +68,11 @@ inline r code for date.
 
 ### render_toc
 
-* Strips out numbers from any headings. Investigate.
-* Does func work with {.toc-ignore}?
-* toc-float support.
+* Strips out numbers from start of any headings. ## 1st would result in toc link
+"st". Doesn't appear to affect digits appearing within the text body, eg
+"here's a 1".
+* {.toc-ignore} compatability required.
+* toc-float support if possible.
 
 ***
 
