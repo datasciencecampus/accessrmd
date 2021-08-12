@@ -1,0 +1,18 @@
+---
+title: "test_toc_heading_numbers"
+author: "Richard Leyshon"
+date: "12/08/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## here's a 1
+
+## then a 2
+
+## Now a 3
+
+### What about a 3.1?

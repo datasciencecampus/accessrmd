@@ -46,8 +46,9 @@ render_toc <- function(
   if (!is.null(toc_header_name)) {
     x <- x[!grepl(paste0("^#+ ", toc_header_name), x)]
   }
+  header_lvls <- sapply(gsub("(#+).+", "\\1", x), nchar)
   if (is.null(base_level)) {
-    base_level <- min(sapply(gsub("(#+).+", "\\1", x), nchar))
+    base_level <- min(header_lvls)
   }
   start_at_base_level <- FALSE
   x <- sapply(x, function(h) {

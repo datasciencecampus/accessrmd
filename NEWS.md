@@ -66,6 +66,12 @@ inline r code for date.
 * alt text exceeding a limit
 * intermediate plots occasionally appear in dir
 
+### render_toc
+
+* Strips out numbers from any headings. Investigate.
+* Does func work with {.toc-ignore}?
+* toc-float support.
+
 ***
 
 ## Tests
@@ -82,9 +88,7 @@ Results in non standard YAML bounds. Using regex to increase specificity but wou
 
 * rmd knitting behaviour is producing saved intermediate chart images in the wd of the rmd. Once resolved, this would make a good test case.
 
-### render_toc
 
-* Strips out numbers from any headings. Investigate.
 
 ### sus_alt
 
