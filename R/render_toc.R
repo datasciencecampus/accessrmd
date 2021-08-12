@@ -51,8 +51,9 @@ render_toc <- function(
     base_level <- min(header_lvls)
   }
   start_at_base_level <- FALSE
+  n <- 1
   x <- sapply(x, function(h) {
-    level <- nchar(gsub("(#+).+", "\\1", h)) - base_level
+    level <- header_lvls[n] - base_level
     if (level < 0) {
       stop(
         "Cannot have negative header levels. Problematic header \"", h, '" ',
@@ -72,7 +73,7 @@ render_toc <- function(
       header_slug <- gsub(".+\\{\\s?#([-_.a-zA-Z]+).+", "\\1", h)
     } else {
       header_text <- gsub("#+\\s+?", "", h)
-      # strip { .tabset ... }
+      # strip { .tabset ... } This may affect {.toc-ignore}
       header_text <- gsub("\\s+?\\{.+\\}\\s*$", "", header_text)
       # remove up to first alpha char
       header_text <- gsub("^[^[:alpha:]]*\\s*", "", header_text)
@@ -80,8 +81,10 @@ render_toc <- function(
       header_slug <- tolower(header_slug)
     }
     paste0(strrep(" ", level * 4), "- [", header_text, "](#", header_slug, ")")
+    n <<- n + 1
   })
   x <- x[x != ""]
+  x <- names(x)
   knitr::asis_output(paste("<nav id=\"TOC\">",
     paste(x, collapse = "\n"),
     "</nav>",
