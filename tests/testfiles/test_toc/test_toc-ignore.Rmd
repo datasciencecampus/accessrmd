@@ -6,7 +6,9 @@ output: html_document
 ---
 
 ```{r}
-library(accessrmd)
+# library(accessrmd)
+source("../../../R/render_toc.R")
+source("../../../R/handle_rmd_path.R")
 render_toc("test_toc-ignore.Rmd")
 ```
 

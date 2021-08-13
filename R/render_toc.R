@@ -53,6 +53,7 @@ render_toc <- function(
   }
   start_at_base_level <- FALSE
   n <- 1
+  
   x <- sapply(x, function(h) {
     level <- header_lvls[n] - base_level
     if (level < 0) {
@@ -72,9 +73,11 @@ render_toc <- function(
       # has special header slug
       header_text <- gsub("#+ (.+)\\s+?\\{.+$", "\\1", h)
       header_slug <- gsub(".+\\{\\s?#([-_.a-zA-Z]+).+", "\\1", h)
+    } else if(grepl("\\{\\.toc-ignore\\}", h)) {
+      return("")
     } else {
       header_text <- gsub("#+\\s+?", "", h)
-      # strip { .tabset ... } This may affect {.toc-ignore}
+      # previously stripping toc-ignore, now handled above
       header_text <- gsub("\\s+?\\{.+\\}\\s*$", "", header_text)
       # remove up to first alpha char - this was causing digits to be stripped
       # from start of toc links. eg "1st header" would become "st header".

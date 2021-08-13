@@ -172,16 +172,14 @@ pre code {
 </div>
 
 
-<pre class="r"><code>library(accessrmd)</code></pre>
-<pre><code>## Loading required package: ggplot2</code></pre>
-<pre class="r"><code>render_toc(&quot;test_toc-ignore.Rmd&quot;)</code></pre>
+<pre class="r"><code># library(accessrmd)
+source(&quot;../../../R/render_toc.R&quot;)
+source(&quot;../../../R/handle_rmd_path.R&quot;)
+render_toc(&quot;test_toc-ignore.Rmd&quot;)</code></pre>
 <nav id="TOC">
 <ul>
 <li><a href="#r-markdown">R Markdown</a></li>
-<li><a href="#including-plots">Including Plots</a>
-<ul>
-<li><a href="#ignore-me-please">Ignore me please</a></li>
-</ul></li>
+<li><a href="#including-plots">Including Plots</a></li>
 </ul>
 </nav>
 <div id="r-markdown" class="section level2">
