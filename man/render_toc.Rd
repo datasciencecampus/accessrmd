@@ -12,7 +12,7 @@ render_toc(
 )
 }
 \arguments{
-\item{filename}{Name of RMarkdown or Markdown document}
+\item{filename}{Name of RMarkdown document}
 
 \item{toc_header_name}{The table of contents header name. If specified, any
 header with this format will not be included in the TOC. Set to \code{NULL} to
@@ -25,14 +25,13 @@ prior to the first header at the base_level are dropped silently.}
 \code{toc_depth = 3}, which results in a TOC of at most 3 levels.}
 }
 \description{
-A simple function to extract headers from an RMarkdown or Markdown document
-and build a table of contents. Returns a markdown list with links to the
-headers using
-\href{http://pandoc.org/MANUAL.html#header-identifiers}{pandoc header identifiers}.
+A simple function to extract headers from an RMarkdown document and build a
+table of contents. Returns a markdown list with links to the headers using
+\href{http://pandoc.org/MANUAL.html#header-identifiers}{pandoc header identifiers}
+.
+WARNING: This function only works with hash-tag headers.
 }
 \details{
-WARNING: This function only works with hash-tag headers.
-
 Because this function returns only the markdown list, the header for the
 Table of Contents itself must be manually included in the text. Use
 \code{toc_header_name} to exclude the table of contents header from the TOC, or

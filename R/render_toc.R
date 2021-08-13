@@ -1,10 +1,9 @@
 #' Render Table of Contents
 #'
-#' A simple function to extract headers from an RMarkdown or Markdown document
-#' and build a table of contents. Returns a markdown list with links to the
-#' headers using
-#' [pandoc header identifiers](http://pandoc.org/MANUAL.html#header-identifiers).
-#'
+#' A simple function to extract headers from an RMarkdown document and build a
+#' table of contents. Returns a markdown list with links to the headers using
+#' [pandoc header identifiers](http://pandoc.org/MANUAL.html#header-identifiers)
+#' .
 #' WARNING: This function only works with hash-tag headers.
 #'
 #' Because this function returns only the markdown list, the header for the
@@ -21,7 +20,7 @@
 #'     render_toc("/path/to/the/file.Rmd")
 #'     ```
 #'
-#' @param filename Name of RMarkdown or Markdown document
+#' @param filename Name of RMarkdown document
 #' @param toc_header_name The table of contents header name. If specified, any
 #'   header with this format will not be included in the TOC. Set to `NULL` to
 #'   include the TOC itself in the TOC (but why?).
