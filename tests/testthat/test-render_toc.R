@@ -22,6 +22,8 @@ summary(cars)
 
 #### 4th level header
 
+#### ignore me please{.toc-ignore}
+
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
@@ -46,6 +48,8 @@ test_that("toc_depth excludes correctly", {
                      render_toc(toc_file, toc_depth = 2)[1]))
   expect_false(grepl("3rd level header",
                      render_toc(toc_file, toc_depth = 1)[1]))
+  expect_false(grepl("ignore me please",
+                     render_toc(toc_file)[1]))
   # check for inclusion
   expect_true(grepl("3rd level header",
                     render_toc(toc_file, toc_depth = 2)[1]))
