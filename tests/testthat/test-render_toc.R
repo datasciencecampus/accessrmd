@@ -29,8 +29,7 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent",
-  con = toc_file
-)
+  con = toc_file)
 
 # tests -------------------------------------------------------------------
 test_that("Output is of stated class", {
@@ -39,6 +38,19 @@ test_that("Output is of stated class", {
 
 test_that("TOC has required id", {
   expect_true(grepl("<nav id=\"TOC\">", render_toc(toc_file)))
+})
+
+test_that("toc_depth excludes correctly", {
+  # check for exclusions
+  expect_false(grepl("4th level header",
+                     render_toc(toc_file, toc_depth = 2)[1]))
+  expect_false(grepl("3rd level header",
+                     render_toc(toc_file, toc_depth = 1)[1]))
+  # check for inclusion
+  expect_true(grepl("3rd level header",
+                    render_toc(toc_file, toc_depth = 2)[1]))
+  expect_true(grepl("Including Plots",
+                    render_toc(toc_file, toc_depth = 1)[1]))
 })
 
 test_that("Errors on incorrect base level set", {
