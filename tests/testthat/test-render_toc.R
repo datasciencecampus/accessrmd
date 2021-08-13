@@ -33,6 +33,15 @@ plot(pressure)
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent",
   con = toc_file)
 
+test_base <- tempfile(fileext = ".Rmd")
+file.create(test_base)
+writeLines("## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for 
+
+When you click the **Knit** button a document will be generated that includes ",
+           con = test_base)
+
 # tests -------------------------------------------------------------------
 test_that("Output is of stated class", {
   expect_true(class(render_toc(toc_file)) == "knit_asis")
@@ -55,6 +64,11 @@ test_that("toc_depth excludes correctly", {
                     render_toc(toc_file, toc_depth = 2)[1]))
   expect_true(grepl("Including Plots",
                     render_toc(toc_file, toc_depth = 1)[1]))
+})
+
+test_that("func returns empty toc if base level evaluates to 0", {
+  expect_true(grepl("<nav id=\"TOC\">\n\n</nav>",
+                    render_toc(test_base, base_level = 1)))
 })
 
 test_that("Errors on incorrect base level set", {
