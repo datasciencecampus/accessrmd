@@ -97,7 +97,9 @@ Results in non standard YAML bounds. Using regex to increase specificity but wou
 
 ### render_toc
 
-* special header slug "\\{#.+\\}(\\s+)?$"
+* special header slug "\\{#.+\\}(\\s+)?$" - {.classes} and {#IDs} are showing
+up in toc links.
+* preceding hashes on any header with an {#ID} are showing up in toc links
 
 ### sus_alt
 

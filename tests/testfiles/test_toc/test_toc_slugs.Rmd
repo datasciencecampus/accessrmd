@@ -1,0 +1,24 @@
+---
+title: "test toc slugs"
+author: "Richard Leyshon"
+date: "13/08/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE}
+source("../../../R/render_toc.R")
+source("../../../R/handle_rmd_path.R")
+render_toc("test_toc_slugs.Rmd")
+
+```
+
+
+## tabset test{.tabset}
+
+## id test{#someID}
+
+### id test 2{#someOtherID}

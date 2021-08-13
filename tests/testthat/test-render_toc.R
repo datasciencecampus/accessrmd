@@ -24,6 +24,10 @@ summary(cars)
 
 #### ignore me please{.toc-ignore}
 
+#### tabset test{.tabset}
+
+#### id test{#someID}
+
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
@@ -43,6 +47,7 @@ When you click the **Knit** button a document will be generated that includes ",
            con = test_base)
 
 # tests -------------------------------------------------------------------
+
 test_that("Output is of stated class", {
   expect_true(class(render_toc(toc_file)) == "knit_asis")
 })
