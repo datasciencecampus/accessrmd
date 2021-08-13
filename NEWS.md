@@ -97,9 +97,6 @@ Results in non standard YAML bounds. Using regex to increase specificity but wou
 
 ### render_toc
 
-* level > toc_depth return ""
-* level == 0 return ""
-* toc_ignore return ""
 * special header slug "\\{#.+\\}(\\s+)?$"
 
 ### sus_alt
