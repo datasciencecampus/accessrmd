@@ -6,8 +6,14 @@ output: html_document
 ---
 
 ```{r echo=FALSE}
-library(accessrmd)
+source("../../../R/render_toc.R")
+source("../../../R/handle_rmd_path.R")
 render_toc("test_toc_nos.Rmd")
+```
+
+```{r echo=FALSE}
+# library(accessrmd)
+# render_toc("test_toc_nos.Rmd")
 ```
 
 
@@ -25,3 +31,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Now a 3
 
 ### What about a 3.1?
+
+### 1 can be a problem
+
+### 3rd was definitely an issue
+
+### 11 testing
+
+### 123 testing further

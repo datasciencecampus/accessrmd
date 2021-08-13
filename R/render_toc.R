@@ -76,14 +76,17 @@ render_toc <- function(
       header_text <- gsub("#+\\s+?", "", h)
       # strip { .tabset ... } This may affect {.toc-ignore}
       header_text <- gsub("\\s+?\\{.+\\}\\s*$", "", header_text)
-      # remove up to first alpha char
-      header_text <- gsub("^[^[:alpha:]]*\\s*", "", header_text)
+      # remove up to first alpha char - this was causing digits to be stripped
+      # from start of toc links. eg "1st header" would become "st header".
+      # Don't see the immediate benefit so commenting out.
+      # header_text <- gsub("^[^[:alpha:]]*\\s*", "", header_text)
       header_slug <- paste(strsplit(header_text, " ")[[1]], collapse = "-")
       header_slug <- tolower(header_slug)
     }
     n <<- n + 1
     paste0(strrep(" ", level * 4), "- [", header_text, "](#", header_slug, ")")
   })
+  
   x <- x[x != ""]
   knitr::asis_output(paste("<nav id=\"TOC\">",
     paste(x, collapse = "\n"),
