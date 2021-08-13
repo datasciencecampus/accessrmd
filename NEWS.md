@@ -27,6 +27,14 @@ author and date.
 
 * Helper func to find all images within an Rmd.
 
+#### 'render_toc()'
+
+* Finds all headers within an rmd & renders a standard toc
+* Original author credit to Garrick Aiden-Buie
+* [Original author's gist](https://gist.github.com/gadenbuie/c83e078bf8c81b035e32c3fc0cf04ee8)
+* Adapted to avoid stripping digits from start of headers
+* Adapted to include nav tag in toc output
+
 #### 'retrieve_rmds()'
 
 * Search for Rmds within a file structure, return relative paths.
@@ -68,9 +76,6 @@ inline r code for date.
 
 ### render_toc
 
-* Strips out numbers from start of any headings. ## 1st would result in toc link
-"st". Doesn't appear to affect digits appearing within the text body, eg
-"here's a 1".
 * {.toc-ignore} compatability required.
 * toc-float support if possible.
 
