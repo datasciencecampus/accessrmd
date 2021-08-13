@@ -95,7 +95,12 @@ Results in non standard YAML bounds. Using regex to increase specificity but wou
 
 * rmd knitting behaviour is producing saved intermediate chart images in the wd of the rmd. Once resolved, this would make a good test case.
 
+### render_toc
 
+* level > toc_depth return ""
+* level == 0 return ""
+* toc_ignore return ""
+* special header slug "\\{#.+\\}(\\s+)?$"
 
 ### sus_alt
 
