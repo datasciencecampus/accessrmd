@@ -83,6 +83,11 @@ test_that("Errors on incorrect base level set", {
   )
 })
 
+test_that("No # or {content} appear in toc link text", {
+          expect_false(grepl("\\[#", render_toc(toc_file)))
+          expect_false(grepl("\\{\\.|#.+\\}(\\s+)?$", render_toc(toc_file)))
+          })
+
 
 # set the wd to test directory
 with(globalenv(), {
