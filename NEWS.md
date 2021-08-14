@@ -9,9 +9,10 @@
 * Replaces basic YAML with accessible HTML header. Currently supports title, 
 author and date.
 * Error if lan is NULL.
-* if lang found in YAML, use for html lang tag.
+* If lang found in YAML, use for html lang tag.
 * Errors if no lang value attribute set.
 * 'access_head()' works with inline code.
+* Inserts accessible toc chunk if finds `toc: true` or `toc: yes`.
 
 
 #### 'access_img()'
@@ -70,7 +71,7 @@ uploaded?
 
 ### access_head
 
-* additional required functionality: toc, toc_float, subtitle, lang,
+* additional required functionality: toc_float, subtitle, lang,
 inline r code for date.
 * module for find_lang and use as default behaviour for lan argument.
 
