@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, echo=FALSE}
 source("../../../R/render_toc.R")
 source("../../../R/handle_rmd_path.R")
+library(stringr)
 render_toc("test_toc_slugs.Rmd")
 
 ```

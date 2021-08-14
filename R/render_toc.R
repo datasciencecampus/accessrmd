@@ -28,6 +28,9 @@
 #'   prior to the first header at the base_level are dropped silently.
 #' @param toc_depth Maximum depth for TOC, relative to base_level. Default is
 #'   `toc_depth = 3`, which results in a TOC of at most 3 levels.
+#'   
+#' @importFrom stringr str_trim
+#'   
 #' @export
 render_toc <- function(
                        filename,
@@ -53,7 +56,7 @@ render_toc <- function(
   start_at_base_level <- FALSE
   n <- 1
   
-  x <- sapply(x, function(h) {
+  links <- sapply(x, function(h) {
     level <- header_lvls[n] - base_level
     if (level < 0) {
       stop(
@@ -67,17 +70,20 @@ render_toc <- function(
     if (!start_at_base_level && level == 0) start_at_base_level <<- TRUE
     if (!start_at_base_level) {
       return("")
-    }
-    if (grepl("\\{#.+\\}(\\s+)?$", h)) {
-      # has special header slug
-      header_text <- gsub("#+ (.+)\\s+?\\{.+$", "\\1", h)
-      header_slug <- gsub(".+\\{\\s?#([-_.a-zA-Z]+).+", "\\1", h)
+    # }
+    # if (grepl("\\{#.+\\}(\\s+)?$", h)) {
+    #   # has special header slug - this evals to TRUE if {#someID} but FALSE if
+    #   # {.toc-ignore}
+    #   header_text <- gsub("#+ (.+)\\s+?\\{.+$", "\\1", h)
+    #   header_slug <- gsub(".+\\{\\s?#([-_.a-zA-Z]+).+", "\\1", h)
     } else if(grepl("\\{\\.toc-ignore\\}", h)) {
       return("")
     } else {
       header_text <- gsub("#+\\s+?", "", h)
       # previously stripping toc-ignore, now handled above
-      header_text <- gsub("\\s+?\\{.+\\}\\s*$", "", header_text)
+      # header_text <- gsub("\\s+?\\{.+\\}\\s*$", "", header_text)
+      # above line wasn't working if there was no space before curly braces
+      header_text <- str_trim(gsub("\\{.+\\}\\s*$", "", header_text))
       # remove up to first alpha char - this was causing digits to be stripped
       # from start of toc links. eg "1st header" would become "st header".
       # Don't see the immediate benefit so commenting out.
@@ -85,13 +91,25 @@ render_toc <- function(
       header_slug <- paste(strsplit(header_text, " ")[[1]], collapse = "-")
       header_slug <- tolower(header_slug)
     }
+    
+    # commented out above in favour of below, tested on
+    # https://www.regextester.com/97707
+    # header_text <- gsub("\\{([^}]+)\\}", "", h)
+    # header_slug <- header_text
+    # testing regex on https://regex101.com/r/xBTITG/1 adjustment made
+    # below catches brackets with classes or IDs
+    # grepl("\\{\\.|#.+\\}(\\s+)?$", h)
+    
     n <<- n + 1
-    paste0(strrep(" ", level * 4), "- [", header_text, "](#", header_slug, ")")
+    unname(
+      paste0(strrep(" ", level * 4),
+             "- [", header_text, "](#", header_slug, ")")
+      )
   })
   
-  x <- x[x != ""]
+  links <- links[links != ""]
   knitr::asis_output(paste("<nav id=\"TOC\">",
-    paste(x, collapse = "\n"),
+    paste(links, collapse = "\n"),
     "</nav>",
     sep = "\n"
   ))
