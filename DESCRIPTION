@@ -25,10 +25,10 @@ Imports:
     utils,
     htmltools,
     stringr,
-    rlist
+    rlist,
+    knitr
 Suggests:
     testthat,
-    knitr,
     rmarkdown,
     markdown,
     covr

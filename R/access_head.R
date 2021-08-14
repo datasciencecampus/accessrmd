@@ -13,6 +13,7 @@
 #' accessibility for screen readers. Only works with html output.
 #'
 #' @importFrom stringr str_split str_remove
+#' @importFrom knitr current_input
 #'
 #' @export
 access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE) {
@@ -34,11 +35,11 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE) {
   rmd_body <- lines[(max(yaml_seq) + 1):length(lines)]
   # conditional logic if toc:true, insert code chunk that renders toc
   if(any(grepl("toc: true|toc: yes", yaml_head))){
-    rmd_body <- c("", paste(
+    rmd_body <-  c("",
           "```{r, echo=FALSE}",
           "library(accessrmd)",
-          "render_toc(basename(rmd_path))",
-          "```", collapse = "\n"),
+          "render_toc(basename(current_input()))",
+          "```",
           rmd_body)
   }
   # append the body with element tags
