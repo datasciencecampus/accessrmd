@@ -37,8 +37,8 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE) {
   if(any(grepl("toc: true|toc: yes", yaml_head))){
     rmd_body <-  c("",
           "```{r, echo=FALSE}",
-          "library(accessrmd)",
-          "render_toc(basename(current_input()))",
+          "library(accessrmd, quietly = TRUE)",
+          "render_toc(basename(knitr::current_input()))",
           "```",
           rmd_body)
   }

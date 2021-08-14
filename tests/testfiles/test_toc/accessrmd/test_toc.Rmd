@@ -7,10 +7,7 @@
   </header>
   <body>
 ```{r, echo=FALSE}
-# library(accessrmd)
-source("../../../../R/render_toc.R")
-source("../../../../R/handle_rmd_path.R")
-library(stringr)
+library(accessrmd, quietly = TRUE)
 render_toc(basename(knitr::current_input()))
 ```
 
