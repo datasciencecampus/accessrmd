@@ -36,7 +36,9 @@ author and date.
 * Avoid stripping digits from start of headers
 * Include nav tag in toc output
 * Avoid ID hashes showing up in nav links
-* Strip curly braces if no spaces follow header, eg "## 2nd lvl header{.toc-ignore}""
+* Strip curly braces if no spaces follow header, eg "## 2nd lvl header{.toc-ignore}"
+* \{.toc-ignore\} compatibility.
+
 
 #### 'retrieve_rmds()'
 
@@ -79,7 +81,6 @@ inline r code for date.
 
 ### render_toc
 
-* {.toc-ignore} compatability required.
 * toc-float support if possible.
 
 ***

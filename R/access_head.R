@@ -32,6 +32,15 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE) {
   yaml_head <- lines[yaml_seq]
   # extract rmd body
   rmd_body <- lines[(max(yaml_seq) + 1):length(lines)]
+  # conditional logic if toc:true, insert code chunk that renders toc
+  if(any(grepl("toc: true|toc: yes", yaml_head))){
+    rmd_body <- paste("",
+          "```{r, echo=FALSE}",
+          "library(accessrmd)",
+          "render_toc(basename(rmd_path))",
+          "```",
+          rmd_body, collapse = "\n")
+  }
   # append the body with element tags
   rmd_body <- tags$body(paste(rmd_body, collapse = "\n"))
 
