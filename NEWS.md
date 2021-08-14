@@ -32,8 +32,11 @@ author and date.
 * Finds all headers within an rmd & renders a standard toc
 * Original author credit to Garrick Aiden-Buie
 * [Original author's gist](https://gist.github.com/gadenbuie/c83e078bf8c81b035e32c3fc0cf04ee8)
-* Adapted to avoid stripping digits from start of headers
-* Adapted to include nav tag in toc output
+* **Adaptations follow:**
+* Avoid stripping digits from start of headers
+* Include nav tag in toc output
+* Avoid ID hashes showing up in nav links
+* Strip curly braces if no spaces follow header, eg "## 2nd lvl header{.toc-ignore}""
 
 #### 'retrieve_rmds()'
 
