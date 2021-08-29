@@ -76,6 +76,8 @@ uploaded?
 * additional required functionality: toc_float, subtitle, lang,
 inline r code for date.
 * module for find_lang and use as default behaviour for lan argument.
+* subtitle compatibility.
+* code_folding compatibility.
 
 ### access_img
 
