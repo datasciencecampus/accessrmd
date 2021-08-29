@@ -5,10 +5,14 @@ with(globalenv(), {
 # tests -------------------------------------------------------------------
 
 test_file <- tempfile(fileext = ".Rmd")
+test_toc <- tempfile(fileext = ".Rmd")
 
 test_that("Func behaves as expected on minimal parameters", {
   expect_message(access_rmd(test_file, title = "minimal test", lan = "en"),
                  "Setting html lan to en")
+  expect_message(access_rmd(test_toc, title = "minimal test", lan = "en",
+                            toc = TRUE),
+                 "Embedding render_toc code chunk")
   expect_true(file.exists(test_file))
 })
 
@@ -21,6 +25,7 @@ test_that("Func errors as expected", {
 
 # test output
 lines <- readLines(test_file)
+toc_lines <- readLines(test_toc)
 test_that("Output has been written as expected", {
   expect_equal(grep("    <meta charset=\"utf-8\"/>", lines), 3)
   expect_equal(grep("    <title>minimal test</title>", lines), 4)
@@ -30,6 +35,7 @@ test_that("Output has been written as expected", {
   expect_equal(grep(format(Sys.Date(), "%d %b %Y"), lines), 7)
   expect_equal(grep("  </header>", lines), 8)
   expect_equal(grep("  <body>", lines), 9)
+  expect_equal(grep("render_toc", toc_lines), 12)
 })
 
 # set the wd to test directory

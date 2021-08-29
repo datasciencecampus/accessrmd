@@ -92,6 +92,7 @@ plot from the knitted HTML document."
   # Insert render_toc if toc is TRUE
   # conditional logic if toc is TRUE, insert code chunk that renders toc
   if(toc){
+    message("Embedding render_toc code chunk")
     text <-  c("",
                    "```{r, echo=FALSE}",
                    "library(accessrmd, quietly = TRUE)",
