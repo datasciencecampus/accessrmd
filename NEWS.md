@@ -13,6 +13,7 @@ author and date.
 * Errors if no lang value attribute set.
 * 'access_head()' works with inline code.
 * Inserts accessible toc chunk if finds `toc: true` or `toc: yes`.
+* Specifies character encoding as "utf-8" by default.
 
 
 #### 'access_img()'
