@@ -56,8 +56,8 @@ author and date.
 
 ## To do
 
-* refactor: funcs for detect html lang, find all alts
-* correct header hierarchy
+* Func to create new template with WCAG compatible structure.
+* correct header hierarchy.
 * alt text exceeding a lang specific limit (see readme).
 * wrapper function that finds all images and replaces with access_img code.
 * wrapper function that packages up broken links, sus alt text, long alt text,
@@ -68,6 +68,7 @@ normal text and 4.4:1 for large text.
 * Microsoft Azure Cognitive Services free API: automate alt text generation for
 images. Appears to only work with web-hosted images. Can local files be
 uploaded?
+* refactor: funcs for detect html lang, find all alts
 
 ### access_head
 
