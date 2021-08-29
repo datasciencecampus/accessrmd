@@ -8,6 +8,7 @@
 #' @param lan Identify the language of text content.
 #' @param inplace When set to FALSE (the default) writes to new file
 #' (accessrmd_<rmd_path>). If TRUE, writes in place.
+#' @param encoding Defaults to utf-8.
 #'
 #' @return Adjust the Rmd YAML provided to `rmd_path`, improving its
 #' accessibility for screen readers. Only works with html output.
@@ -16,7 +17,11 @@
 #' @importFrom knitr current_input
 #'
 #' @export
-access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE) {
+access_head <- function(
+  rmd_path = NULL,
+  lan = NULL,
+  inplace = FALSE,
+  encoding = "utf-8") {
   # check rmd_path
   lines <- handle_rmd_path(rmd_path)
   # check for presence of YAML features
@@ -89,7 +94,10 @@ access_head <- function(rmd_path = NULL, lan = NULL, inplace = FALSE) {
   html_h2s <- sapply(h2s, tags$h2, class = "header_h2s", simplify = FALSE)
 
   # reassemble the accessible head ------------------------------------------
-  html_head <- tags$header(html_title, h1_content, unname(html_h2s))
+  html_head <- tags$header(tags$meta(charset = encoding),
+                           html_title,
+                           h1_content,
+                           unname(html_h2s))
 
   # set the html lang & message
   message(paste("Setting html lan to", lan))

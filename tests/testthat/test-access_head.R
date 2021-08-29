@@ -193,7 +193,7 @@ test_that("Expected behaviour on inplace = TRUE", {
 
 
 test_that("Inline code has been correctly written", {
-  expect_true(grepl("r Sys.Date()", readLines(inline_rmd)[6]))
+  expect_true(grepl("r Sys.Date()", readLines(inline_rmd)[7]))
 })
 
 # set the wd to test directory

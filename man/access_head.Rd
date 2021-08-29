@@ -4,7 +4,7 @@
 \alias{access_head}
 \title{Convert YAML to an accessible header}
 \usage{
-access_head(rmd_path = NULL, lan = NULL, inplace = FALSE)
+access_head(rmd_path = NULL, lan = NULL, inplace = FALSE, encoding = "utf-8")
 }
 \arguments{
 \item{rmd_path}{Path to the Rmd that requires accessible header metadata. Rmd
@@ -14,6 +14,8 @@ must be output type html.}
 
 \item{inplace}{When set to FALSE (the default) writes to new file
 (accessrmd_<rmd_path>). If TRUE, writes in place.}
+
+\item{encoding}{Defaults to utf-8.}
 }
 \value{
 Adjust the Rmd YAML provided to \code{rmd_path}, improving its
