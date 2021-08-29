@@ -14,6 +14,8 @@
 #' @param toc Optional, defaults to FALSE. Should a table of contents be
 #' included.
 #' @param encoding Defaults to "utf-8".
+#' @param force Defaults to FALSE. If TRUE, overwrites a pre-existing file with
+#' the same filenm with warning.
 #'
 #' @return An Rmarkdown file with an HTML head, populated with metadata
 #' specified within the function parameters.
@@ -29,7 +31,8 @@ access_rmd <- function(
   lan = NULL,
   subtitle = NULL,
   toc = FALSE,
-  encoding = "utf-8"
+  encoding = "utf-8",
+  force = FALSE
   ){
   # Stop if lan  = NULL
   if(is.null(lan)){
@@ -44,6 +47,12 @@ access_rmd <- function(
   # feat: logic to add ".Rmd" if forgotten
   if(!grepl(".Rmd$", filenm, ignore.case = TRUE)){
     filenm <- paste0(filenm, ".Rmd")
+  }
+  # force parameter that warns if file found
+  if(all(file.exists(filenm) & force)){
+    warning("'force' is TRUE. Overwriting filenm.")
+  } else if(all(file.exists(filenm) & !force)){
+    stop("filenm found on disk. 'force' is FALSE.")
   }
   # obtain any metadata needed for h2 headers
   h2s <- c(author, date, subtitle)
@@ -105,7 +114,6 @@ plot from the knitted HTML document."
   # set the html lang & message
   message(paste("Setting html lan to", lan))
   html_out <- tags$html(head, body, lang = lan)
-  # feat: overwrite parameter that warns if file found
   # write to file
   file.create(filenm)
   writeLines(paste(html_out), con = filenm)
