@@ -10,6 +10,8 @@
 #' @param lan Required - The HTML language to set as the value for the lang
 #' attribute.
 #' @param subtitle Optional - The document subtitle
+#' @param toc Optional, defaults to FALSE. Should a table of contents be
+#' included.
 #'
 #' @return An Rmarkdown file with an HTML head, populated with metadata
 #' specified within the function parameters. 
@@ -21,7 +23,8 @@ access_rmd <- function(
   author = NULL,
   date = NULL,
   lan = NULL,
-  subtitle = NULL){
+  subtitle = NULL,
+  toc = FALSE){
   
   
 }

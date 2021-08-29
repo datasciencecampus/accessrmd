@@ -10,7 +10,8 @@ access_rmd(
   author = NULL,
   date = NULL,
   lan = NULL,
-  subtitle = NULL
+  subtitle = NULL,
+  toc = FALSE
 )
 }
 \arguments{
@@ -26,6 +27,9 @@ access_rmd(
 attribute.}
 
 \item{subtitle}{Optional - The document subtitle}
+
+\item{toc}{Optional, defaults to FALSE. Should a table of contents be
+included.}
 }
 \value{
 An Rmarkdown file with an HTML head, populated with metadata
