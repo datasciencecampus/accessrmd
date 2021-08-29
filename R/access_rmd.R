@@ -33,11 +33,17 @@ access_rmd <- function(
   if(is.null(lan)){
     stop("No value provided to 'lan'.")
   }
-  # feat: stop if title is NULL
+  # stop if title is NULL
   if(is.null(title)){
     stop("No title is provided.")
   }
+  # remove any spaces from filenm
+  filenm <- stringr::str_remove_all(filenm, " ")
   # feat: logic to add ".Rmd" if forgotten
+  if(!grepl(".Rmd$", filenm, ignore.case = TRUE)){
+    filenm <- paste0(filenm, ".Rmd")
+  }
+  # feat: relative file path handling, dirs dont exist
   # feat: Insert render_toc if toc is TRUE
   # obtain any metadata needed for h2 headers
   h2s <- c(author, date, subtitle)
