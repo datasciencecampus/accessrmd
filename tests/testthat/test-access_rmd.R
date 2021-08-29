@@ -21,6 +21,8 @@ test_that("Func errors as expected", {
                "No value provided to 'lan'.")
   expect_error(access_rmd(filenm = "another_error", lan = "en"),
                "No title is provided.")
+  expect_error(access_rmd(test_file, title = "Already Exists", lan = "en"),
+               "filenm found on disk. 'force' is FALSE.")
 })
 
 # test output
@@ -37,6 +39,13 @@ test_that("Output has been written as expected", {
   expect_equal(grep("  <body>", lines), 9)
   expect_equal(grep("render_toc", toc_lines), 12)
 })
+
+test_that("Func warns as expected",
+          expect_warning(access_rmd(test_file,
+                                    title = "Already Exists", lan = "en",
+                                    force = TRUE),
+                         "'force' is TRUE. Overwriting filenm.")
+)
 
 # set the wd to test directory
 with(globalenv(), {
