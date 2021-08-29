@@ -18,11 +18,16 @@ author and date.
 
 #### 'access_img()'
 
+* Used to insert images into Rmarkdown documents that predictably renders alt
+text (as opposed to markdown syntax which can be unreliable).
 * Compatible with ggplot2 charts and pngs saved to disk.
+* Currently does not support base R plots.
 * "" alt text warning for decorative images only.
 
 #### 'access_rmd()'
 
+* Produce an accessible R markdown template with the specified metadata.
+* TOC compatible.
 
 
 #### 'handle_rmd_path()' (Not exported)
@@ -90,7 +95,7 @@ inline r code for date.
 
 #### 'access_rmd()'
 
-* Include more extesive accessibility guidance within the template text.
+* Include more extensive accessibility guidance within the template text.
 
 ### render_toc
 

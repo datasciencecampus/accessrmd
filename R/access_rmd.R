@@ -10,7 +10,7 @@
 #' @param author Required - The document author. Defaults to the effective user
 #' identified by `Sys.info()`.
 #' @param date Required - The author date. Defaults to today's date.
-#' @param subtitle Optional - The document subtitle
+#' @param subtitle Optional - The document subtitle.
 #' @param toc Optional, defaults to FALSE. Should a table of contents be
 #' included.
 #' @param encoding Defaults to "utf-8".
