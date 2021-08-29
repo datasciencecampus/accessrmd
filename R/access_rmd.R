@@ -45,8 +45,6 @@ access_rmd <- function(
   if(!grepl(".Rmd$", filenm, ignore.case = TRUE)){
     filenm <- paste0(filenm, ".Rmd")
   }
-  # feat: relative file path handling, dirs dont exist
-  # feat: Insert render_toc if toc is TRUE
   # obtain any metadata needed for h2 headers
   h2s <- c(author, date, subtitle)
   # produce the accessible headers
@@ -91,9 +89,18 @@ plot(pressure)
 In the above chunk, `echo = FALSE` was used to hide the R code that produced the
 plot from the knitted HTML document."
 # end of template ---------------------------------------------------------
-
+  # Insert render_toc if toc is TRUE
+  # conditional logic if toc is TRUE, insert code chunk that renders toc
+  if(toc){
+    text <-  c("",
+                   "```{r, echo=FALSE}",
+                   "library(accessrmd, quietly = TRUE)",
+                   "render_toc(basename(knitr::current_input()))",
+                   "```",
+                   text)
+  }
   # wrap text in body tags
-  body <- tags$body(text)
+  body <- tags$body(paste(text, collapse = "\n"))
   # set the html lang & message
   message(paste("Setting html lan to", lan))
   html_out <- tags$html(head, body, lang = lan)
