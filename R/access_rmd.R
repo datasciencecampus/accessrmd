@@ -29,6 +29,10 @@ access_rmd <- function(
   toc = FALSE,
   encoding = "utf-8"
   ){
+  # feat: Stop if lan  = NULL
+  # feat: logic to add ".Rmd" if forgotten
+  # feat: stop if title is NULL
+  # feat: Insert render_toc if toc is TRUE
   # obtain any metadata needed for h2 headers
   h2s <- c(author, date, subtitle)
   # produce the accessible headers
@@ -57,8 +61,8 @@ screen readers.
 
 For more help in using R Markdown see <http://rmarkdown.rstudio.com>.
 
-Clicking the **Knit** button will generate a document including typed contentand
-the output of any R code chunks. For example:
+Clicking the **Knit** button will generate a document including typed content
+and the output of any R code chunks. For example:
     
 ```{r cars}
 summary(cars)
@@ -79,6 +83,7 @@ plot from the knitted HTML document."
   # set the html lang & message
   message(paste("Setting html lan to", lan))
   html_out <- tags$html(head, body, lang = lan)
+  # feat: overwrite parameter that warns if file found
   # write to file
   file.create(filenm)
   writeLines(paste(html_out), con = filenm)
