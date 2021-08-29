@@ -5,11 +5,11 @@
 #'
 #' @param filenm Required - The name of the file.
 #' @param title Required - The document title.
+#' @param lan Required - The HTML language to set as the value for the lang
+#' attribute.
 #' @param author Required - The document author. Defaults to the effective user
 #' identified by `Sys.info()`.
 #' @param date Required - The author date. Defaults to today's date.
-#' @param lan Required - The HTML language to set as the value for the lang
-#' attribute.
 #' @param subtitle Optional - The document subtitle
 #' @param toc Optional, defaults to FALSE. Should a table of contents be
 #' included.
@@ -26,9 +26,9 @@
 access_rmd <- function(
   filenm = NULL,
   title = NULL,
+  lan = NULL,
   author = Sys.info()[8],
   date = format(Sys.Date(), "%d %b %Y"),
-  lan = NULL,
   subtitle = NULL,
   toc = FALSE,
   encoding = "utf-8",
