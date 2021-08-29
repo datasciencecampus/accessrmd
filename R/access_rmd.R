@@ -29,9 +29,15 @@ access_rmd <- function(
   toc = FALSE,
   encoding = "utf-8"
   ){
-  # feat: Stop if lan  = NULL
-  # feat: logic to add ".Rmd" if forgotten
+  # Stop if lan  = NULL
+  if(is.null(lan)){
+    stop("No value provided to 'lan'.")
+  }
   # feat: stop if title is NULL
+  if(is.null(title)){
+    stop("No title is provided.")
+  }
+  # feat: logic to add ".Rmd" if forgotten
   # feat: Insert render_toc if toc is TRUE
   # obtain any metadata needed for h2 headers
   h2s <- c(author, date, subtitle)
