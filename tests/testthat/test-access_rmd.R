@@ -9,6 +9,13 @@ test_that("Func behaves as expected on minimal parameters", {
                  "Setting html lan to en")
 })
 
+test_that("Func errors as expected", {
+  expect_error(access_rmd("error_file", title = "error testing"),
+               "No value provided to 'lan'.")
+  expect_error(access_rmd(filenm = "another_error", lan = "en"),
+               "No title is provided.")
+})
+
 # test output
 lines <- readLines("minimal")
 test_that("Output has been written as expected", {
