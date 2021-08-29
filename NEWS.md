@@ -21,6 +21,10 @@ author and date.
 * Compatible with ggplot2 charts and pngs saved to disk.
 * "" alt text warning for decorative images only.
 
+#### 'access_rmd()'
+
+
+
 #### 'handle_rmd_path()' (Not exported)
 
 * Handler checks rmd path is valid.
@@ -83,6 +87,10 @@ inline r code for date.
 
 * alt text exceeding a limit
 * intermediate plots occasionally appear in dir
+
+#### 'access_rmd()'
+
+* Include more extesive accessibility guidance within the template text.
 
 ### render_toc
 
