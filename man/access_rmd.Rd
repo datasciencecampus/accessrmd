@@ -7,11 +7,12 @@
 access_rmd(
   filenm = NULL,
   title = NULL,
-  author = NULL,
-  date = NULL,
+  author = Sys.info()[8],
+  date = format(Sys.Date(), "\%d \%b \%Y"),
   lan = NULL,
   subtitle = NULL,
-  toc = FALSE
+  toc = FALSE,
+  encoding = "utf-8"
 )
 }
 \arguments{
@@ -19,9 +20,10 @@ access_rmd(
 
 \item{title}{Required - The document title.}
 
-\item{author}{Required - The document author.}
+\item{author}{Required - The document author. Defaults to the effective user
+identified by \code{Sys.info()}.}
 
-\item{date}{Required - The author date.}
+\item{date}{Required - The author date. Defaults to today's date.}
 
 \item{lan}{Required - The HTML language to set as the value for the lang
 attribute.}
@@ -30,6 +32,8 @@ attribute.}
 
 \item{toc}{Optional, defaults to FALSE. Should a table of contents be
 included.}
+
+\item{encoding}{Defaults to "utf-8".}
 }
 \value{
 An Rmarkdown file with an HTML head, populated with metadata
