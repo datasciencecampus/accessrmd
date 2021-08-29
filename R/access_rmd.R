@@ -16,7 +16,9 @@
 #' @param encoding Defaults to "utf-8".
 #'
 #' @return An Rmarkdown file with an HTML head, populated with metadata
-#' specified within the function parameters. 
+#' specified within the function parameters.
+#' 
+#' @importFrom stringr str_remove_all
 #'
 #' @export
 access_rmd <- function(
@@ -38,7 +40,7 @@ access_rmd <- function(
     stop("No title is provided.")
   }
   # remove any spaces from filenm
-  filenm <- stringr::str_remove_all(filenm, " ")
+  filenm <- str_remove_all(filenm, " ")
   # feat: logic to add ".Rmd" if forgotten
   if(!grepl(".Rmd$", filenm, ignore.case = TRUE)){
     filenm <- paste0(filenm, ".Rmd")
