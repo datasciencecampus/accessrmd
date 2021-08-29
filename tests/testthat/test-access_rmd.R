@@ -5,8 +5,9 @@ with(globalenv(), {
 # tests -------------------------------------------------------------------
 
 test_that("Func behaves as expected on minimal parameters", {
-  expect_message(access_rmd("minimal", title = "minimal test", lan = "en"),
+  expect_message(access_rmd("min imal", title = "minimal test", lan = "en"),
                  "Setting html lan to en")
+  expect_true(file.exists("minimal.Rmd"))
 })
 
 test_that("Func errors as expected", {
@@ -17,7 +18,7 @@ test_that("Func errors as expected", {
 })
 
 # test output
-lines <- readLines("minimal")
+lines <- readLines("minimal.Rmd")
 test_that("Output has been written as expected", {
   expect_equal(grep("    <meta charset=\"utf-8\"/>", lines), 3)
   expect_equal(grep("    <title>minimal test</title>", lines), 4)
