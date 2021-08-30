@@ -66,6 +66,8 @@ text (as opposed to markdown syntax which can be unreliable).
 
 ## To do
 
+* func to detect html lang, set as value on any func that handles pre-existing
+docs.
 * alt text exceeding a lang specific limit (see readme).
 * correct header hierarchy.
 * wrapper function that finds all images and replaces with access_img code.
