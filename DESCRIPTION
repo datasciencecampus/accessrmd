@@ -11,7 +11,13 @@ Authors@R:
            role = c("aut", "ctb"),
            email = "g.adenbuie@gmail.com",
            comment = "Author of 'render_toc()' which was subsequently adapted
-           and used by the author of 'accessrmd'.")
+           and used by the author of 'accessrmd'."),
+           person(given = "Carson",
+           family = "Sievert",
+           role = c("aut", "ctb"),
+           email = "carson@rstudio.com",
+           comment = "Author and maintainer of the htmltools package, of which
+           'accessrmd/R/tags.R' is attributed.")
            )
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
