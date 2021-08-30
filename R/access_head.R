@@ -61,7 +61,7 @@ access_head <- function(
     # html found. subset out the html tag.
     head <- head[!html_loc]
   } else {
-    stop("access_head() only works with html output.")
+    stop("'access_head()' only works with html output.")
   }
   # look for lang in YAML
   lang <- head[grep("^    lang:", head)]
