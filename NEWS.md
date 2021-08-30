@@ -71,6 +71,10 @@ text (as opposed to markdown syntax which can be unreliable).
 * wrapper function that finds all images and replaces with access_img code.
 * wrapper function that packages up broken links, sus alt text, long alt text,
 header hierarchy, correct img HTML in one go.
+* urlchecker - broken or permanent redirects.
+
+**MVP**
+
 * There are 2 Errors on the accessrmd test.html relating to WCAG 1.4.6: Contrast (enhanced)(Level AAA) with the red text in the install_github line and the
 access_img line. For WCAG 1.4.6 The contrast ratio should be at least 7:1 for
 normal text and 4.4:1 for large text.

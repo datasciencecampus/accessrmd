@@ -1,7 +1,8 @@
-#' Check an image for suspicious alt text.
+#' Check an R markdown document for suspicious alt text.
 #'
-#' Checks if an image's alt text is equal to alt attribute placeholder values,
-#' including: 'nbsp', 'spacer' and src attribute value (filename).
+#' Checks if an R markdown contains images alt text is equal to alt attribute
+#' placeholder values, including: 'nbsp', 'spacer' and src attribute value
+#' (filename).
 #'
 #' @param rmd_path Path to the Rmd that contains image tags to check.
 #'
@@ -24,7 +25,6 @@ sus_alt <- function(rmd_path = NULL) {
   # note: going for base strsplit as stringr::str_split produces "" padding
   # that becomes a problem when finding duplicates later
   img_split <- strsplit(images, "\"|'|\\[|]\\(|\\)")
-
   # update indices
   names(img_split) <- names(images)
   # check for placeholder values --------------------------------------------
@@ -68,7 +68,7 @@ sus_alt <- function(rmd_path = NULL) {
   # <img src = "something" alt = "something else" height = "400" width = "400"/>
   # now need to remove these cases as not a problem
   spec_dims <- dupe_found[grep(dupe_found, pattern = "height|width")]
-  # if any dimensions were specified, these will ned to be handled separately
+  # if any dimensions were specified, these will need to be handled separately
   if (length(spec_dims) != 0) {
     # check if any spec_dims images have differing src & alt values
     # regex texted https://regex101.com/r/UiKqmA/1
@@ -78,7 +78,7 @@ sus_alt <- function(rmd_path = NULL) {
       string = spec_dims,
       "src *= *\\\\??\"(.*?)\"|src *= *\\\\??'(.*?)'"
     )
-
+    
     alts <- str_extract(
       string = spec_dims,
       "alt *= *\\\\??\"(.*?)\"|alt *= *\\\\??'(.*?)'"

@@ -2,7 +2,7 @@
 % Please edit documentation in R/sus_alt.R
 \name{sus_alt}
 \alias{sus_alt}
-\title{Check an image for suspicious alt text.}
+\title{Check an R markdown document for suspicious alt text.}
 \usage{
 sus_alt(rmd_path = NULL)
 }
@@ -13,6 +13,7 @@ sus_alt(rmd_path = NULL)
 Line numbers of images that has alt text equal to placeholder values.
 }
 \description{
-Checks if an image's alt text is equal to alt attribute placeholder values,
-including: 'nbsp', 'spacer' and src attribute value (filename).
+Checks if an R markdown contains images alt text is equal to alt attribute
+placeholder values, including: 'nbsp', 'spacer' and src attribute value
+(filename).
 }
