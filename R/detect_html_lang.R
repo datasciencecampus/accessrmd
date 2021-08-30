@@ -9,6 +9,7 @@
 #' @return The lang attribute value if found. Stops if no value found.
 #' 
 detect_html_lang <- function(lines = NULL){
+# searching ---------------------------------------------------------------
   # search for HTML lang values
   found_ind <- grep("html lang ?= ?", lines)
   # search for YAML lang separately, ensuring html_doc first
@@ -27,10 +28,14 @@ detect_html_lang <- function(lines = NULL){
   }
   # extract the lang line
   lang_line <- lines[found_ind]
+
+# cleaning ----------------------------------------------------------------
   # split on either = or :, dep on method used
   lang <- unlist(strsplit(lang_line, "=|:"))[2]
   # tidy up string
   lang <- str_remove_all(lang, " |'|\"|>")
+
+# is valid? ---------------------------------------------------------------
   return(lang)
 
 }
