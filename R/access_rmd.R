@@ -115,6 +115,11 @@ plot from the knitted HTML document."
   message(paste("Setting html lan to", lan))
   html_out <- paste("<!DOCTYPE html>", tags$html(head, body, lang = lan),
                     collapse = "\n")
+  # cleaning of html reserved words -----------------------------------------
+  # <> have been replaced with &lt; and &gt; due to HTML reserved words
+  # gsub them back
+  html_out <- gsub("&lt;", "<", html_out)
+  html_out <- gsub("&gt;", ">", html_out)
   # write to file
   file.create(filenm)
   writeLines(paste(html_out), con = filenm)

@@ -101,7 +101,9 @@ access_head <- function(
 
   # set the html lang & message
   message(paste("Setting html lan to", lan))
-  html_out <- tags$html(html_head, rmd_body, lang = lan)
+  html_out <- paste("<!DOCTYPE html>",
+                    tags$html(html_head, rmd_body, lang = lan),
+                    sep = "\n")
 
   # cleaning of html reserved words -----------------------------------------
   # <> have been replaced with &lt; and &gt; due to HTML reserved words
