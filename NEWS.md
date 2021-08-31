@@ -32,6 +32,7 @@ text (as opposed to markdown syntax which can be unreliable).
 #### 'detect_html_lang()' (Not exported)
 
 * Searches lines for lang values.
+* Compare lang value to langs subtag registry.
 
 #### 'handle_rmd_path()' (Not exported)
 
@@ -69,7 +70,6 @@ text (as opposed to markdown syntax which can be unreliable).
 
 ## To do
 
-* Compare lang value to langs subtag registry
 * Set 'detect_html_lang()' as value on any func that handles pre-existing docs.
 * alt text exceeding a lang specific limit (see readme).
 * correct header hierarchy.
