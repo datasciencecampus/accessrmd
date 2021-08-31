@@ -71,6 +71,7 @@ text (as opposed to markdown syntax which can be unreliable).
 ## To do
 
 * Set 'detect_html_lang()' as value on any func that handles pre-existing docs.
+* <!DOCTYPE html> showing up in renderred docs.
 * alt text exceeding a lang specific limit (see readme).
 * correct header hierarchy.
 * wrapper function that finds all images and replaces with access_img code.
