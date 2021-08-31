@@ -188,7 +188,6 @@ test_that("Behaves as expected with toc: true", {
   
 })
 
-
 # check test outputs ------------------------------------------------------
 # check structure has written
 lang_html <- readLines(lang_rmd)

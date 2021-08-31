@@ -4,13 +4,20 @@
 \alias{access_head}
 \title{Convert YAML to an accessible header}
 \usage{
-access_head(rmd_path = NULL, lan = NULL, inplace = FALSE, encoding = "utf-8")
+access_head(
+  rmd_path = NULL,
+  lan = detect_html_lang(lines),
+  inplace = FALSE,
+  encoding = "utf-8"
+)
 }
 \arguments{
 \item{rmd_path}{Path to the Rmd that requires accessible header metadata. Rmd
 must be output type html.}
 
-\item{lan}{Identify the language of text content.}
+\item{lan}{Identify the language of text content. Attempts to find a lang
+attribute value from the rmd document. Alternatively, use a character string
+such as "en".}
 
 \item{inplace}{When set to FALSE (the default) writes to new file
 (accessrmd_<rmd_path>). If TRUE, writes in place.}
