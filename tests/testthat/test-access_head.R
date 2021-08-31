@@ -174,21 +174,15 @@ test_that("Errors on non-standard Rmd", {
   )
 })
 
-test_that("Errors if no html lang attribute set", {
-  expect_error(
-    access_head(test_rmd),
-    'No value provided to "lan" or lang value found in YAML.'
-  )
-})
 
 test_that("YAML lang is set to HTML attr", {
   expect_message(
     access_head(lang_rmd, inplace = TRUE),
-    "YAML lang found. Setting HTML lang as en"
+    "Setting html lan to en"
   )
 })
 
-test_that("Beheves as expected with toc: true", {
+test_that("Behaves as expected with toc: true", {
   expect_message(access_head(toc_file, lan = "cy", inplace = TRUE),
                  "Setting html lan to cy")
   

@@ -19,7 +19,7 @@
 #' @export
 access_head <- function(
   rmd_path = NULL,
-  lan = NULL,
+  lan = detect_html_lang(lines),
   inplace = FALSE,
   encoding = "utf-8") {
   # check rmd_path
@@ -62,19 +62,6 @@ access_head <- function(
     head <- head[!html_loc]
   } else {
     stop("'access_head()' only works with html output.")
-  }
-  # look for lang in YAML
-  lang <- head[grep("^    lang:", head)]
-  # above returns length 0 vector if not found
-  if (length(lang) != 0) {
-    # split on "|' and take the second item
-    lan <- unlist(strsplit(lang, '"|\''))[2]
-    message(paste("YAML lang found. Setting HTML lang as", lan))
-  }
-
-  # stop if no lang value found
-  if (is.null(lan) | length(lan) == 0) {
-    stop('No value provided to "lan" or lang value found in YAML.')
   }
 
   # Clean out quotations
