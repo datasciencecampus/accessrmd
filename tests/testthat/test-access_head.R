@@ -129,6 +129,27 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown", con = inline_rmd)
 
+# toc: true testfile
+toc_file <- tempfile(fileext = ".Rmd")
+file.create(toc_file)
+writeLines(
+  '---
+title: "test_TOC"
+author: "Richard Leyshon"
+date: "09/08/2021"
+output:
+  html_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## R Markdown
+
+## Including Plots
+', con = toc_file
+)
 
 # tests -------------------------------------------------------------------
 
@@ -167,12 +188,18 @@ test_that("YAML lang is set to HTML attr", {
   )
 })
 
+test_that("Beheves as expected with toc: true", {
+  expect_message(access_head(toc_file, lan = "cy", inplace = TRUE),
+                 "Setting html lan to cy")
+  
+})
+
 
 # check test outputs ------------------------------------------------------
 # check structure has written
 lang_html <- readLines(lang_rmd)
 lang <- lang_html[grep("lang=", lang_html)]
-
+toc_lines <- readLines(toc_file)
 test_that("YAML lang has been written as HTML", {
   expect_equal(lang, "<html lang=\"en\">")
 })
@@ -191,9 +218,13 @@ test_that("Expected behaviour on inplace = TRUE", {
   )
 })
 
-
 test_that("Inline code has been correctly written", {
   expect_true(grepl("r Sys.Date()", readLines(inline_rmd)[8]))
+})
+
+test_that("Toc code chunk has been inserted", {
+  expect_true(grep("render_toc\\(basename\\(knitr::current_input\\(\\)\\)\\)",
+                   toc_lines) > 0)
 })
 
 # set the wd to test directory
