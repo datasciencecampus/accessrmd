@@ -34,11 +34,32 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R Markdown', con = yaml_file
 )
 
+no_lang <- tempfile()
+file.create(no_lang)
+writeLines(
+  '---
+title: "Untitled"
+author: "Richard Leyshon"
+date: "12/07/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown', con = no_lang
+)
+
 # tests -------------------------------------------------------------------
 
 test_that("Func returns found lang", {
   expect_identical(detect_html_lang(readLines(html_file)), "en")
   expect_identical(detect_html_lang(readLines(yaml_file)), "en")
+})
+
+test_that("Func errors as expected", {
+  expect_error(detect_html_lang(readLines(no_lang)), "No lang value found.")
 })
 
 with(.GlobalEnv, {
