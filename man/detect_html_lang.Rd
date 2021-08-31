@@ -4,10 +4,14 @@
 \alias{detect_html_lang}
 \title{Searches a file for valid methods of setting HTML lang attribute.}
 \usage{
-detect_html_lang(lines = NULL)
+detect_html_lang(lines = NULL, lang_tags = langs)
 }
 \arguments{
 \item{lines}{The output of 'readLines()' or 'handle_rmd_path()'.}
+
+\item{lang_tags}{A vector of valid lang subtag values, taken from
+https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry.
+Used to confirm whether the lang value is valid.}
 }
 \value{
 The lang attribute value if found. Stops if no value found.

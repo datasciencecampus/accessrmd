@@ -5,10 +5,13 @@
 #' 'handle_rmd_path()'.
 #'
 #' @param lines The output of 'readLines()' or 'handle_rmd_path()'.
+#' @param lang_tags A vector of valid lang subtag values, taken from
+#' https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry.
+#' Used to confirm whether the lang value is valid.
 #'
 #' @return The lang attribute value if found. Stops if no value found.
 #' 
-detect_html_lang <- function(lines = NULL){
+detect_html_lang <- function(lines = NULL, lang_tags = langs){
 # searching ---------------------------------------------------------------
   # search for HTML lang values
   found_ind <- grep("html lang ?= ?", lines)
@@ -30,12 +33,22 @@ detect_html_lang <- function(lines = NULL){
   lang_line <- lines[found_ind]
 
 # cleaning ----------------------------------------------------------------
+  
   # split on either = or :, dep on method used
   lang <- unlist(strsplit(lang_line, "=|:"))[2]
+  # If lang contains prefix, take only prefix
+  lang <- strsplit(lang, "-")[1]
   # tidy up string
   lang <- str_remove_all(lang, " |'|\"|>")
-
-# is valid? ---------------------------------------------------------------
+  # compare against subtag registry, avoiding partial matches
+  match <- grep(paste0("^", lang, "$"), lang_tags)
+  
+  # is valid? ---------------------------------------------------------------
+  
+  # error if no match found
+  if(length(match) == 0){
+    stop("lang value is invalid. Please specify a valid lang value.")
+  }
   return(lang)
 
 }
