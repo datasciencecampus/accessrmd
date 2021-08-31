@@ -113,7 +113,8 @@ plot from the knitted HTML document."
   body <- tags$body(paste(text, collapse = "\n"))
   # set the html lang & message
   message(paste("Setting html lan to", lan))
-  html_out <- tags$html(head, body, lang = lan)
+  html_out <- paste("<!DOCTYPE html>", tags$html(head, body, lang = lan),
+                    collapse = "\n")
   # write to file
   file.create(filenm)
   writeLines(paste(html_out), con = filenm)
