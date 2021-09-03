@@ -2,7 +2,9 @@
 title: "test_alt_text"
 author: "Richard Leyshon"
 date: "08/07/2021"
-output: html_document
+output:
+  html_document:
+    lang: en
 ---
 
 ```{r setup, include=FALSE}

@@ -5,13 +5,17 @@
 #' (filename).
 #'
 #' @param rmd_path Path to the Rmd that contains image tags to check.
+#' 
+#' @param lan Identify the language of text content. Attempts to find a lang
+#' attribute value from the rmd document. Alternatively, use a character string
+#' such as "en".
 #'
 #' @return Line numbers of images that has alt text equal to placeholder values.
 #'
 #' @importFrom stringr str_split str_extract str_remove_all
 #' @importFrom rlist list.apply
 #' @export
-sus_alt <- function(rmd_path = NULL) {
+sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   message(paste0("Checking ", basename(rmd_path), "..."))
   # read lines from rmd_path if valid
   lines <- handle_rmd_path(rmd_path)
@@ -27,6 +31,8 @@ sus_alt <- function(rmd_path = NULL) {
   img_split <- strsplit(images, "\"|'|\\[|]\\(|\\)")
   # update indices
   names(img_split) <- names(images)
+  # does the lang value have an associated alt length limit?
+  lim <- find_alt_lim(lines)
   # check for placeholder values --------------------------------------------
   plac_list <- list.apply(img_split, .fun = function(x) {
     any(
@@ -105,4 +111,10 @@ sus_alt <- function(rmd_path = NULL) {
       "\nalt text should not be equal to src."
     ))
   }
+
+# find any alts that exceed lang alt length limit ------------------------
+
+  
+
+  
 }
