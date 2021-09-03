@@ -4,11 +4,11 @@
 \alias{find_alt_len}
 \title{Find alt length limits for specific lang values.}
 \usage{
-find_alt_len(rmd_path = NULL, lan = detect_html_lang(lines))
+find_alt_len(lines = NULL, lan = detect_html_lang(lines))
 }
 \arguments{
-\item{rmd_path}{Path to the Rmd that requires accessible header metadata. Rmd
-must be output type html.}
+\item{lines}{Any Rmarkdown or HTML file lines. Typically the output of
+'handle_rmd_path()'.}
 
 \item{lan}{Identify the language of text content. Attempts to find a lang
 attribute value from the rmd document. Alternatively, use a character string
