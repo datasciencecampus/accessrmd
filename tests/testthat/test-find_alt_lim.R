@@ -102,15 +102,15 @@ knitr::opts_chunk$set(echo = TRUE)
 # tests -------------------------------------------------------------------
 
 test_that("Func returns correct limits", {
-  expect_identical(find_alt_len(handle_rmd_path(en_file)), 100)
-  expect_identical(find_alt_len(handle_rmd_path(de_file)), 115)
-  expect_identical(find_alt_len(handle_rmd_path(ko_file)), 90)
-  expect_identical(find_alt_len(handle_rmd_path(us_file)), 100)
+  expect_identical(find_alt_lim(handle_rmd_path(en_file)), 100)
+  expect_identical(find_alt_lim(handle_rmd_path(de_file)), 115)
+  expect_identical(find_alt_lim(handle_rmd_path(ko_file)), 90)
+  expect_identical(find_alt_lim(handle_rmd_path(us_file)), 100)
   
 })
 
 test_that("Func returns NULL if no limit found", {
-  expect_null(find_alt_len(handle_rmd_path(cymru_file)))
+  expect_null(find_alt_lim(handle_rmd_path(cymru_file)))
 })
 
 with(globalenv(), {

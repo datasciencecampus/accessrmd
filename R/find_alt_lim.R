@@ -1,4 +1,4 @@
-#' Find alt length limits for specific lang values.
+#' Find alt length limit for specific lang values.
 #'
 #' Return language specific alt text length limits. Limits are: eng	100,
 #' ger	115, kor	90.
@@ -11,7 +11,7 @@
 #'
 #' @return A line limit for alt text.
 #'
-find_alt_len <- function(lines = NULL, lan = detect_html_lang(lines)) {
+find_alt_lim <- function(lines = NULL, lan = detect_html_lang(lines)) {
   lims <- c(100, 115, 90)
   names(lims) <- c("en", "de", "ko")
   # compare against lims
