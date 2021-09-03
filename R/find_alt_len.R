@@ -1,4 +1,4 @@
-#' Check Rmd files for alt length.
+#' Find alt length limits for specific lang values.
 #'
 #' Return language specific alt text length limits. Limits are: eng	100,
 #' ger	115, kor	90.
@@ -11,7 +11,7 @@
 #'
 #' @return A line limit for alt text.
 #'
-check_alt_len <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
+find_alt_len <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   lims <- c(100, 115, 90)
   names(lims) <- c("en", "de", "ko")
   lines <- handle_rmd_path(rmd_path)

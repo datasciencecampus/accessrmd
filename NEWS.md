@@ -29,7 +29,7 @@ text (as opposed to markdown syntax which can be unreliable).
 * Produce an accessible R markdown template with the specified metadata.
 * TOC compatible.
 
-#### 'check_alt_len()' (Not exported)
+#### 'find_alt_len()' (Not exported)
 
 * Finds html lang value with 'detect_html_lang()'.
 * Checks if found lang value has an associated alt text length limit.
