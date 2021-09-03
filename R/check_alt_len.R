@@ -1,18 +1,25 @@
 #' Check Rmd files for alt length.
 #'
-#' Check any Rmd images for language specific alt text length limits. Limits
-#' used are: eng	100, ger	115, kor	90.
+#' Return language specific alt text length limits. Limits are: eng	100,
+#' ger	115, kor	90.
 #'
 #' @param rmd_path Path to the Rmd that requires accessible header metadata. Rmd
 #' must be output type html.
-#' @param lan Identify the language of text content.
+#' @param lan Identify the language of text content. Attempts to find a lang
+#' attribute value from the rmd document. Alternatively, use a character string
+#' such as "en".
 #'
-#' @return Adjust the Rmd YAML provided to `rmd_path`, improving its
-#' accessibility for screen readers. Only works with html output.
+#' @return A line limit for alt text.
 #'
-#' @importFrom stringr str_split str_remove
-#'
-#' @export
-check_alt_len <- function(rmd_path = NULL, lan = NULL) {
-  return(rmd_path)
+check_alt_len <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
+  lims <- c(100, 115, 90)
+  names(lims) <- c("en", "de", "ko")
+  lines <- handle_rmd_path(rmd_path)
+  # compare aginst lims
+  lim_ind <- grep(lan, names(lims))
+  if(!is.null(lim_ind)){
+    return(unname(lims[lim_ind]))
+  } else
+    return(NULL)
+  
 }
