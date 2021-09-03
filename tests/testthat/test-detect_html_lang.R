@@ -1,4 +1,4 @@
-with(.GlobalEnv, {
+with(globalenv(), {
   .old_wd <- setwd(tempdir())
 })
 # deps --------------------------------------------------------------------
@@ -85,6 +85,6 @@ test_that("Func errors as expected", {
                "lang value is invalid. Please specify a valid lang value.")
 })
 
-with(.GlobalEnv, {
+with(globalenv(), {
   setwd(.old_wd)
 })

@@ -37,7 +37,7 @@ detect_html_lang <- function(lines = NULL, lang_tags = langs){
   # split on either = or :, dep on method used
   lang <- unlist(strsplit(lang_line, "=|:"))[2]
   # If lang contains prefix, take only prefix
-  lang <- strsplit(lang, "-")[1]
+  lang <- unlist(strsplit(lang, "-"))[1]
   # tidy up string
   lang <- str_remove_all(lang, " |'|\"|>")
   # compare against subtag registry, avoiding partial matches
