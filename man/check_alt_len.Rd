@@ -4,19 +4,20 @@
 \alias{check_alt_len}
 \title{Check Rmd files for alt length.}
 \usage{
-check_alt_len(rmd_path = NULL, lan = NULL)
+check_alt_len(rmd_path = NULL, lan = detect_html_lang(lines))
 }
 \arguments{
 \item{rmd_path}{Path to the Rmd that requires accessible header metadata. Rmd
 must be output type html.}
 
-\item{lan}{Identify the language of text content.}
+\item{lan}{Identify the language of text content. Attempts to find a lang
+attribute value from the rmd document. Alternatively, use a character string
+such as "en".}
 }
 \value{
-Adjust the Rmd YAML provided to \code{rmd_path}, improving its
-accessibility for screen readers. Only works with html output.
+A line limit for alt text.
 }
 \description{
-Check any Rmd images for language specific alt text length limits. Limits
-used are: eng	100, ger	115, kor	90.
+Return language specific alt text length limits. Limits are: eng	100,
+ger	115, kor	90.
 }
