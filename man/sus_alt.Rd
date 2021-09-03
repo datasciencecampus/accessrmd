@@ -4,10 +4,14 @@
 \alias{sus_alt}
 \title{Check an R markdown document for suspicious alt text.}
 \usage{
-sus_alt(rmd_path = NULL)
+sus_alt(rmd_path = NULL, lan = detect_html_lang(lines))
 }
 \arguments{
 \item{rmd_path}{Path to the Rmd that contains image tags to check.}
+
+\item{lan}{Identify the language of text content. Attempts to find a lang
+attribute value from the rmd document. Alternatively, use a character string
+such as "en".}
 }
 \value{
 Line numbers of images that has alt text equal to placeholder values.
