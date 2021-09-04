@@ -20,7 +20,7 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   # read lines from rmd_path if valid
   lines <- handle_rmd_path(rmd_path)
   # define placeholder values
-  place_val <- c("nbsp", "spacer", "")
+  place_val <- c("nbsp", "spacer", "\"\"", "\'\'")
   # return image lines only
   images <- find_all_imgs(lines)
 # get alt & src -----------------------------------------------------------
@@ -53,29 +53,24 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   # 
   #   
   # }
-  
-  
-  
-  
-
-  # tested on https://regex101.com/r/2wKGsF/1
-  # note: going for base strsplit as stringr::str_split produces "" padding
-  # that becomes a problem when finding duplicates later
-  img_split <- strsplit(images, "\"|'|\\[|]\\(|\\)")
-  # update indices
-  names(img_split) <- names(images)
 
   # check for placeholder values --------------------------------------------
-  plac_list <- list.apply(img_split, .fun = function(x) {
-    any(
-      place_val %in% x
-    ) |
-      # also need any img tags that have no alt attr reference at all
-      # find any img that has no alt
-      (any(grepl("img", x)) & !any(grepl("alt *= *", x)))
-  })
-  # filter for placeholder values only
-  plac_ind <- as.numeric(names(plac_list[plac_list == TRUE]))
+  plac_ind <- as.numeric(
+    names(images[grep(paste(place_val, collapse = "|"), alts)])
+    )
+
+  # plac_list <- list.apply(img_split, .fun = function(x) {
+  #   any(
+  #     place_val %in% x
+  #   ) |
+  #     # also need any img tags that have no alt attr reference at all
+  #     # find any img that has no alt
+  #     (any(grepl("img", x)) & !any(grepl("alt *= *", x)))
+  # })
+  # # filter for placeholder values only
+  # plac_ind <- as.numeric(names(plac_list[plac_list == TRUE]))
+  
+  
   # store the lines where placeholders were used
   plac_found <- lines[plac_ind]
   # messages for placeholder text
@@ -90,6 +85,14 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
     ))
   }
   # check for any images where src == alt -----------------------------------
+  
+  # tested on https://regex101.com/r/2wKGsF/1
+  # note: going for base strsplit as stringr::str_split produces "" padding
+  # that becomes a problem when finding duplicates later
+  img_split <- strsplit(images, "\"|'|\\[|]\\(|\\)")
+  # update indices
+  names(img_split) <- names(images)
+  
   
   # after some unsuccessful regex testing due to flexibility in valid HTML
   # I've taken the approach to warn where any element resulting from the
