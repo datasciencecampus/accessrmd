@@ -3,8 +3,6 @@ with(globalenv(), {
   .old_wd <- setwd(tempdir())
 })
 
-
-
 # dependencies ------------------------------------------------------------
 
 good_img <- tempfile(fileext = ".Rmd")
@@ -69,6 +67,19 @@ lang: en
 ![](no_alt_included)
   ",
   con = missing_alt
+)
+
+long_alt <- tempfile(fileext = ".Rmd")
+file.create(long_alt)
+writeLines(
+  "---
+lang: en
+---
+![Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.](lorem_ipsum)
+
+<img src=\"lorem_ipsum\" alt=\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\">
+  ",
+  con = long_alt
 )
 
 
@@ -148,6 +159,12 @@ test_that("Blank alt is flagged", {
     " Check lines:
  4, 5, 6"
   )
+})
+
+test_that("Long alt text is flagged", {
+  expect_warning(sus_alt(long_alt),
+                 "Check lines:
+ 4, 6 ")
 })
 
 
