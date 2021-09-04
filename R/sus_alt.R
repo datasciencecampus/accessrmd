@@ -47,11 +47,6 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   # lang specific alt length limits -----------------------------------------
   lim <- find_alt_lim(lines)
   
-  
-  
-  
-  
-  # clean out all the alts to compare against lim, if a lim is found
   # if(!is.null(lim)){
   # 
   #   
@@ -61,19 +56,6 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   plac_ind <- as.numeric(names(
     images[grepl(paste(place_val, collapse = "|"), alts) | alts == ""]
     ))
-
-  # plac_list <- list.apply(img_split, .fun = function(x) {
-  #   any(
-  #     place_val %in% x
-  #   ) |
-  #     # also need any img tags that have no alt attr reference at all
-  #     # find any img that has no alt
-  #     (any(grepl("img", x)) & !any(grepl("alt *= *", x)))
-  # })
-  # # filter for placeholder values only
-  # plac_ind <- as.numeric(names(plac_list[plac_list == TRUE]))
-  
-  
   # store the lines where placeholders were used
   plac_found <- lines[plac_ind]
   # messages for placeholder text
@@ -89,56 +71,11 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   }
   # check for any images where src == alt -----------------------------------
   
-  # tested on https://regex101.com/r/2wKGsF/1
-  # note: going for base strsplit as stringr::str_split produces "" padding
-  # that becomes a problem when finding duplicates later
-  img_split <- strsplit(images, "\"|'|\\[|]\\(|\\)")
-  # update indices
-  names(img_split) <- names(images)
-  
-  
-  # after some unsuccessful regex testing due to flexibility in valid HTML
-  # I've taken the approach to warn where any element resulting from the
-  # str_split above is potentially src == alt. This could fall down if
-  # another valid attribute value is equivalent to any other, such as
-  # height and width being the same value.
-  dupe_list <- list.apply(img_split, .fun = function(x) any(duplicated(x)))
-  # filter for true cases only
-  dupe_ind <- as.numeric(names(dupe_list[dupe_list == TRUE]))
+  dupe_ind <- as.numeric(names(images[srcs == alts]))
   # store the lines with duplicated attribute values
   dupe_found <- lines[dupe_ind]
   # update with original indices
   names(dupe_found) <- dupe_ind
-  # at this point, the only false positive cases are like:
-  # <img src = "something" alt = "something else" height = "400" width = "400"/>
-  # now need to remove these cases as not a problem
-  spec_dims <- dupe_found[grep(dupe_found, pattern = "height|width")]
-  # if any dimensions were specified, these will need to be handled separately
-  if (length(spec_dims) != 0) {
-    # check if any spec_dims images have differing src & alt values
-    # regex texted https://regex101.com/r/UiKqmA/1
-    # extract only src and alt attribute values only
-    # flexible to use of " and '
-    srcs <- str_extract(
-      string = spec_dims,
-      "src *= *\\\\??\"(.*?)\"|src *= *\\\\??'(.*?)'"
-    )
-    # these are only the alts that have met conditions for spec_dims
-    alts <- str_extract(
-      string = spec_dims,
-      "alt *= *\\\\??\"(.*?)\"|alt *= *\\\\??'(.*?)'"
-    )
-
-    # clean up srcs and alts
-    srcs <- str_remove_all(srcs, "src| *")
-    alts <- str_remove_all(alts, "alt| *")
-    # compare the src with alt attributes and find the things to be ignored
-    # these should be where src and alt are not matches
-    prob_ind <- names(spec_dims[srcs != alts])
-    # remove any problem indices from the found duplicates
-    dupe_found <- dupe_found[setdiff(names(dupe_found), prob_ind)]
-  }
-
   # messages for dupe text
   if (length(dupe_found) == 0) {
     message("No images with equal src and alt values found.")
@@ -150,10 +87,4 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
       "\nalt text should not be equal to src."
     ))
   }
-
-# find any alts that exceed lang alt length limit ------------------------
-
-  
-
-  
 }
