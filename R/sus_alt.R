@@ -20,7 +20,7 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   # read lines from rmd_path if valid
   lines <- handle_rmd_path(rmd_path)
   # define placeholder values
-  place_val <- c("nbsp", "spacer", "\"\"", "\'\'")
+  place_val <- c("nbsp", "spacer")
   # return image lines only
   images <- find_all_imgs(lines)
 # get alt & src -----------------------------------------------------------
@@ -40,6 +40,9 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   # clean up srcs and alts
   srcs <- str_squish(str_remove_all(srcs, "src| *=|\\]\\(|\\)|'|\""))
   alts <- str_squish(str_remove_all(alts, "alt| *=|!\\[|\\]|\"|'"))
+  # NA values for cases like <img src='no_alt_included'>
+  # convert to "" for consistent handling
+  alts[is.na(alts)] <- ""
   
   # lang specific alt length limits -----------------------------------------
   lim <- find_alt_lim(lines)
@@ -55,9 +58,9 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   # }
 
   # check for placeholder values --------------------------------------------
-  plac_ind <- as.numeric(
-    names(images[grep(paste(place_val, collapse = "|"), alts)])
-    )
+  plac_ind <- as.numeric(names(
+    images[grepl(paste(place_val, collapse = "|"), alts) | alts == ""]
+    ))
 
   # plac_list <- list.apply(img_split, .fun = function(x) {
   #   any(
