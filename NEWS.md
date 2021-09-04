@@ -71,14 +71,14 @@ text (as opposed to markdown syntax which can be unreliable).
 * Searches Rmd files for suspicious alt text.
 * Warns on alt text set to placeholder text, including missing alt values.
 * Warns on alt text equal to src attribute value.
+* Warns on alt text exceeding a lang specific limit (see readme).
+
 
 ***
 
 ## To do
 
-* Set 'detect_html_lang()' as value on any func that handles pre-existing docs.
 * <!DOCTYPE html> showing up in renderred docs.
-* alt text exceeding a lang specific limit (see readme).
 * correct header hierarchy.
 * wrapper function that finds all images and replaces with access_img code.
 * wrapper function that packages up broken links, sus alt text, long alt text,
