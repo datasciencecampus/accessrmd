@@ -178,3 +178,11 @@ Also talk about an img tag should be ignored.
 <img src = 'something' alt = 'nbsp' />
 <br>
 <img src = "something" alt = "something" height = "400" width = "400"/>
+
+## Missing alt text
+
+<img src='no_alt_included'>
+<img src="no_alt_included">
+<img src='no_alt_included' alt=''>
+<img src="no_alt_included" alt="">
+![](no_alt_included)
