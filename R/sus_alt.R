@@ -74,8 +74,6 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   dupe_ind <- as.numeric(names(images[srcs == alts]))
   # store the lines with duplicated attribute values
   dupe_found <- lines[dupe_ind]
-  # update with original indices
-  names(dupe_found) <- dupe_ind
   # messages for dupe text
   if (length(dupe_found) == 0) {
     message("No images with equal src and alt values found.")
@@ -83,8 +81,10 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
     warning(paste(
       length(dupe_found),
       "image(s) with equal src & img found.\n Check lines:\n",
-      paste(names(dupe_found), collapse = ", "),
+      paste(dupe_ind, collapse = ", "),
       "\nalt text should not be equal to src."
     ))
   }
+  prob_inds <- sort(unique(c(plac_ind, dupe_ind)))
+  return(prob_inds)
 }
