@@ -12,7 +12,7 @@
 #'
 #' @return Line numbers of images that has alt text equal to placeholder values.
 #'
-#' @importFrom stringr str_split str_extract str_remove_all
+#' @importFrom stringr str_split str_extract str_remove_all str_squish
 #' @importFrom rlist list.apply
 #' @export
 sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
@@ -23,16 +23,48 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   place_val <- c("nbsp", "spacer", "")
   # return image lines only
   images <- find_all_imgs(lines)
-  # need to obtain values of src and alt attributes
+# get alt & src -----------------------------------------------------------
+  
   # this can be img tag or markdown syntax
+  alts <- str_extract(
+    string = images,
+    # regex tested https://regex101.com/r/FAEyCa/2
+    "alt *= *\\\\??\"(.*?)\"|alt *= *\\\\??'(.*?)'|!\\[(.*?)\\]"
+  )
+  srcs <- str_extract(
+    string = images,
+    # regex tested https://regex101.com/r/Ox2SqC/1
+    "src *= *\\\\??\"(.*?)\"|src *= *\\\\??'(.*?)'|\\]\\((.*?)\\)"
+  )
+  
+  # clean up srcs and alts
+  srcs <- str_squish(str_remove_all(srcs, "src| *=|\\]\\(|\\)|'|\""))
+  alts <- str_squish(str_remove_all(alts, "alt| *=|!\\[|\\]|\"|'"))
+  
+  # lang specific alt length limits -----------------------------------------
+  lim <- find_alt_lim(lines)
+  
+  
+  
+  
+  
+  # clean out all the alts to compare against lim, if a lim is found
+  # if(!is.null(lim)){
+  # 
+  #   
+  # }
+  
+  
+  
+  
+
   # tested on https://regex101.com/r/2wKGsF/1
   # note: going for base strsplit as stringr::str_split produces "" padding
   # that becomes a problem when finding duplicates later
   img_split <- strsplit(images, "\"|'|\\[|]\\(|\\)")
   # update indices
   names(img_split) <- names(images)
-  # does the lang value have an associated alt length limit?
-  lim <- find_alt_lim(lines)
+
   # check for placeholder values --------------------------------------------
   plac_list <- list.apply(img_split, .fun = function(x) {
     any(
@@ -58,6 +90,7 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
     ))
   }
   # check for any images where src == alt -----------------------------------
+  
   # after some unsuccessful regex testing due to flexibility in valid HTML
   # I've taken the approach to warn where any element resulting from the
   # str_split above is potentially src == alt. This could fall down if
@@ -84,7 +117,7 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
       string = spec_dims,
       "src *= *\\\\??\"(.*?)\"|src *= *\\\\??'(.*?)'"
     )
-    
+    # these are only the alts that have met conditions for spec_dims
     alts <- str_extract(
       string = spec_dims,
       "alt *= *\\\\??\"(.*?)\"|alt *= *\\\\??'(.*?)'"
