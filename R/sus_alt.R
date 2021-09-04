@@ -12,7 +12,7 @@
 #'
 #' @return Line numbers of images that has alt text equal to placeholder values.
 #'
-#' @importFrom stringr str_split str_extract str_remove_all str_squish
+#' @importFrom stringr str_split str_extract str_remove_all str_squish str_count
 #' @importFrom rlist list.apply
 #' @export
 sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
@@ -47,10 +47,21 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   # lang specific alt length limits -----------------------------------------
   lim <- find_alt_lim(lines)
   
-  # if(!is.null(lim)){
-  # 
-  #   
-  # }
+  if(!is.null(lim)){
+    long_ind <- as.numeric(names(images[stringr::str_count(alts) > lim]))
+    long_found <- lines[long_ind]
+  }
+  
+  if(length(long_found) == 0){
+    message("No images with alt text exceeding a limit were found.")
+  } else {
+    warning(paste(
+      length(long_found),
+      "image(s) with alt text exceeding a limit were found.\n Check lines:\n",
+      paste(long_ind, collapse = ", "),
+      "\nalt text should not exceed", lim, "characters."
+    ))
+  }
 
   # check for placeholder values --------------------------------------------
   plac_ind <- as.numeric(names(
@@ -85,6 +96,6 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
       "\nalt text should not be equal to src."
     ))
   }
-  prob_inds <- sort(unique(c(plac_ind, dupe_ind)))
+  prob_inds <- sort(unique(c(long_ind, plac_ind, dupe_ind)))
   return(prob_inds)
 }
