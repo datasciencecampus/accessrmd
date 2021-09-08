@@ -94,6 +94,8 @@ normal text and 4.4:1 for large text.
 images. Appears to only work with web-hosted images. Can local files be
 uploaded?
 * refactor: funcs for detect html lang, find all alts
+* .Rmds modified with 'access_head()' render with a warning about title
+metadata. May wish to consider the alternative format [.rhtml](https://bookdown.org/yihui/rmarkdown-cookbook/html-hardcore.html).
 
 ### access_head
 
