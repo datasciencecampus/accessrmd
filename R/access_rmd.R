@@ -113,8 +113,7 @@ plot from the knitted HTML document."
   body <- tags$body(paste(text, collapse = "\n"))
   # set the html lang & message
   message(paste("Setting html lan to", lan))
-  html_out <- paste("<!DOCTYPE html>", tags$html(head, body, lang = lan),
-                    collapse = "\n")
+  html_out <- tags$html(head, body, lang = lan)
   # cleaning of html reserved words -----------------------------------------
   # <> have been replaced with &lt; and &gt; due to HTML reserved words
   # gsub them back

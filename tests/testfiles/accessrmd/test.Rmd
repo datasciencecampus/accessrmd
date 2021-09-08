@@ -1,9 +1,10 @@
 <html lang="en">
   <header>
-    <title>test</title>
-    <h1 id="title toc-ignore">test</h1>
-    <h2 class="header_h2s">RichardLeyshon</h2>
-    <h2 class="header_h2s">02/07/2021</h2>
+    <meta charset="utf-8"/>
+    <title> test</title>
+    <h1 id="title toc-ignore"> test</h1>
+    <h2 class="header_h2s"> Richard Leyshon</h2>
+    <h2 class="header_h2s"> 02/07/2021</h2>
   </header>
   <body>
 ```{r setup, include=FALSE}

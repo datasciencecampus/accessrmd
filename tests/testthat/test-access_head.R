@@ -212,7 +212,7 @@ test_that("Expected behaviour on inplace = TRUE", {
 })
 
 test_that("Inline code has been correctly written", {
-  expect_true(grepl("r Sys.Date()", readLines(inline_rmd)[8]))
+  expect_true(grepl("r Sys.Date()", readLines(inline_rmd)[7]))
 })
 
 test_that("Toc code chunk has been inserted", {
