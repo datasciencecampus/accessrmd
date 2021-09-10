@@ -45,6 +45,14 @@ render_toc <- function(
     x <- gsub(regex_code_fence, "", x)
   }
   x <- strsplit(x, "\n")[[1]]
+
+# test for toc_float in head only -----------------------------------------
+  # get the yaml bound indices
+  yaml_ind <- grep("---", x)
+  # subset out the lines
+  yaml_lin <- x[seq.int(yaml_ind[1], yaml_ind[2])]
+  # test for toc_float & set tocify status
+  tocify <- any(grepl("toc_float: true|toc_float: yes", yaml_lin))
   x <- x[grepl("^#+", x)]
   if (!is.null(toc_header_name)) {
     x <- x[!grepl(paste0("^#+ ", toc_header_name), x)]
