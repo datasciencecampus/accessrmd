@@ -224,3 +224,4 @@ test_that("Toc code chunk has been inserted", {
 with(globalenv(), {
   setwd(.old_wd)
 })
+

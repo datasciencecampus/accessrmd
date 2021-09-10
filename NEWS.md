@@ -98,8 +98,7 @@ metadata. May wish to consider the alternative format [.rhtml](https://bookdown.
 
 ### access_head
 
-* additional required functionality: toc_float, subtitle, lang,
-inline r code for date.
+* additional required functionality: toc_float, subtitle,
 * module for find_lang and use as default behaviour for lan argument.
 * code_folding compatibility.
 
