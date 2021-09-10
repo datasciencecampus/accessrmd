@@ -98,18 +98,18 @@ metadata. May wish to consider the alternative format [.rhtml](https://bookdown.
 
 ### access_head
 
-* additional required functionality: toc_float, subtitle,
-* module for find_lang and use as default behaviour for lan argument.
+* additional required functionality: toc_float
 * code_folding compatibility.
+
+### access_rmd
+
+* code folding compatibility
+* toc_float functionality
+* Include more extensive accessibility guidance within the template text.
 
 ### access_img
 
-* alt text exceeding a limit
 * intermediate plots occasionally appear in dir
-
-#### 'access_rmd()'
-
-* Include more extensive accessibility guidance within the template text.
 
 ### render_toc
 
