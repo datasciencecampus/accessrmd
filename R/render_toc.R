@@ -53,6 +53,10 @@ render_toc <- function(
   yaml_lin <- x[seq.int(yaml_ind[1], yaml_ind[2])]
   # test for toc_float & set tocify status
   tocify <- any(grepl("toc_float: true|toc_float: yes", yaml_lin))
+  
+  
+  
+  
   x <- x[grepl("^#+", x)]
   if (!is.null(toc_header_name)) {
     x <- x[!grepl(paste0("^#+ ", toc_header_name), x)]
