@@ -6,7 +6,14 @@ with(globalenv(), {
 # dependencies ------------------------------------------------------------
 toc_file <- tempfile(fileext = ".Rmd")
 file.create(toc_file)
-writeLines("## R Markdown
+writeLines('---
+title: "tocfile"
+author: "Richard Leyshon"
+date: "19/09/2021"
+output: html_document
+---
+
+## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax for 
 
@@ -34,16 +41,23 @@ You can also embed plots, for example:
 plot(pressure)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent",
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent',
   con = toc_file)
 
 test_base <- tempfile(fileext = ".Rmd")
 file.create(test_base)
-writeLines("## R Markdown
+writeLines('---
+title: "testbase"
+author: "Richard Leyshon"
+date: "19/09/2021"
+output: html_document
+---
+
+## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax for 
 
-When you click the **Knit** button a document will be generated that includes ",
+When you click the **Knit** button a document will be generated that includes',
            con = test_base)
 
 # tests -------------------------------------------------------------------
