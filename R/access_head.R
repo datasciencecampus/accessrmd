@@ -82,12 +82,22 @@ access_head <- function(
   # produce the accessible headers
   html_h2s <- sapply(h2s, tags$h2, class = "header_h2s", simplify = FALSE)
 
+  # toc_float ---------------------------------------------------------------
+  tocify <- any(grepl("toc: true|toc: yes", head))
+  
   # reassemble the accessible head ------------------------------------------
-  html_head <- tags$header(tags$meta(charset = encoding),
-                           html_title,
-                           h1_content,
-                           unname(html_h2s))
-
+  if(tocify){
+    html_head <- tags$header(tags$meta(charset = encoding),
+                             tags$meta("toc_float"),
+                             html_title,
+                             h1_content,
+                             unname(html_h2s))
+  }else{
+    html_head <- tags$header(tags$meta(charset = encoding),
+                             html_title,
+                             h1_content,
+                             unname(html_h2s))
+  }
   # set the html lang & message
   message(paste("Setting html lan to", lan))
   html_out <- tags$html(html_head, rmd_body, lang = lan)
