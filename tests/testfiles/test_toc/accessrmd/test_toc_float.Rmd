@@ -1,6 +1,7 @@
 <html lang="en">
   <header>
     <meta charset="utf-8"/>
+    <meta>toc_float</meta>
     <title> test_TOC_float</title>
     <h1 id="title toc-ignore"> test_TOC_float</h1>
     <h2 class="header_h2s"> Richard Leyshon</h2>

@@ -47,12 +47,13 @@ render_toc <- function(
   x <- strsplit(x, "\n")[[1]]
 
 # test for toc_float in head only -----------------------------------------
-  # get the yaml bound indices
-  yaml_ind <- grep("---", x)
+  # for YAML rmarkdown, get the yaml bound indices
+  yaml_ind <- grep("---|<header>|</header>", x)
   # subset out the lines
   yaml_lin <- x[seq.int(yaml_ind[1], yaml_ind[2])]
   # test for toc_float & set tocify status
-  tocify <- any(grepl("toc_float: true|toc_float: yes", yaml_lin))
+  tocify <- any(grepl("toc_float: true|toc_float: yes|<meta>toc_float</meta>",
+                      yaml_lin))
 # get headers -------------------------------------------------------------
   x <- x[grepl("^#+", x)]
   if (!is.null(toc_header_name)) {
