@@ -78,7 +78,9 @@ text (as opposed to markdown syntax which can be unreliable).
 
 ## To do
 
+* Double check diversity in all metadata header IDs & Classes.
 * correct header hierarchy.
+* access_data, including all workbook accessibility requirements.
 * wrapper function that finds all images and replaces with access_img code.
 * wrapper function that packages up broken links, sus alt text, long alt text,
 header hierarchy, correct img HTML in one go.
