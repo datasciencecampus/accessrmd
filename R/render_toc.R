@@ -53,10 +53,7 @@ render_toc <- function(
   yaml_lin <- x[seq.int(yaml_ind[1], yaml_ind[2])]
   # test for toc_float & set tocify status
   tocify <- any(grepl("toc_float: true|toc_float: yes", yaml_lin))
-  
-  
-  
-  
+# get headers -------------------------------------------------------------
   x <- x[grepl("^#+", x)]
   if (!is.null(toc_header_name)) {
     x <- x[!grepl(paste0("^#+ ", toc_header_name), x)]
@@ -118,11 +115,43 @@ render_toc <- function(
              "- [", header_text, "](#", header_slug, ")")
       )
   })
-  
   links <- links[links != ""]
-  knitr::asis_output(paste("<nav id=\"TOC\">",
-    paste(links, collapse = "\n"),
-    "</nav>",
-    sep = "\n"
-  ))
+  
+  
+
+# make toc ----------------------------------------------------------------
+  if(tocify){
+    toc_out <- knitr::asis_output(paste(
+      "<!-- setup 3col/9col grid for toc_float and main content  -->",
+      "<div class=\"row\">",
+          "<div class=\"col-xs-12 col-sm-4 col-md-3\">",
+              "<nav id=\"TOC\" class=\"tocify\">",
+                  "<ul id=\"tocify-header0\" class=\"tocify-header list-group\">",
+                      "<li class=\"tocify-item list-group-item active\" data-unique=\"R_Markdown\" style=\"cursor: pointer;\">R Markdown</li>",
+                  "</ul>",
+                  "<ul id=\"tocify-header1\" class=\"tocify-header list-group\">",
+                      "<li class=\"tocify-item list-group-item\" data-unique=\"Including_Plots\" style=\"cursor: pointer;\">Including Plots</li>",
+                  "</ul>",
+               "</nav>",
+           "</div>",
+      "</div>",
+
+
+      #     "<nav id=\"TOC\">",
+      #         paste(links, collapse = "\n"),
+      #     "</nav>",
+      # "</div>",
+                             sep = "\n"
+    )
+    )
+  }else{
+    toc_out <- knitr::asis_output(paste("<nav id=\"TOC\">",
+                             paste(links, collapse = "\n"),
+                             "</nav>",
+                             sep = "\n"
+    ))
+  }
+  
+  return(toc_out)
+
 }
