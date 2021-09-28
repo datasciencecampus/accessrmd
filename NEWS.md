@@ -78,6 +78,8 @@ text (as opposed to markdown syntax which can be unreliable).
 
 ## To do
 
+* toc newline or br tags not working. create test and resolve.
+* figure alignment for 'access_img()'.
 * correct header hierarchy.
 * wrapper function that finds all images and replaces with access_img code.
 * wrapper function that packages up broken links, sus alt text, long alt text,

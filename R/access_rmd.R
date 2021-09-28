@@ -103,7 +103,7 @@ plot from the knitted HTML document."
   if(toc){
     message("Embedding render_toc code chunk")
     text <-  c("",
-                   "```{r, echo=FALSE}",
+                   "```{r, echo=FALSE, warning=FALSE}",
                    "library(accessrmd, quietly = TRUE)",
                    "render_toc(basename(knitr::current_input()))",
                    "```",
