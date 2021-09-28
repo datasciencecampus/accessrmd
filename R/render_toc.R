@@ -109,7 +109,7 @@ render_toc <- function(
   
   links <- links[links != ""]
   knitr::asis_output(paste("<nav id=\"TOC\">",
-    paste(links, collapse = "\n"),
+    paste(links, collapse = "<br>"),
     "</nav>",
     sep = "\n"
   ))
