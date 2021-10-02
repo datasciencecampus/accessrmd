@@ -18,8 +18,8 @@
 #' @importFrom ggplot2 last_plot ggsave
 #' @importFrom grDevices png
 #' @export
-access_img <- function(img = last_plot(), alt = NULL, wid = 500,
-                       ht = 500, dpi = 300) {
+access_img <- function(img = last_plot(), alt = NULL, wid = NULL,
+                       ht = NULL, dpi = 300, css_class = NULL, css_id = NULL) {
   if (is.null(img)) {
     stop("No img found.")
   } else if (is.null(alt)) {
@@ -34,7 +34,8 @@ access_img <- function(img = last_plot(), alt = NULL, wid = 500,
       file.exists(img)
       # if img is on disk, return NA
       message("img derived from disk.")
-      return(tags$img(src = img, alt = alt, width = wid, height = ht))
+      return(tags$img(src = img, alt = alt, width = wid, height = ht,
+                      class = css_class, id = css_id))
     },
     error = function(cond) {
       message("img derived from inline R code.")
@@ -42,7 +43,8 @@ access_img <- function(img = last_plot(), alt = NULL, wid = 500,
       tmp <- tempfile(fileext = ".png")
       # save the img to tempfile
       ggsave(filename = tmp, plot = img, device = png(), dpi = dpi)
-      return(tags$img(src = tmp, alt = alt, width = wid, height = ht))
+      return(tags$img(src = tmp, alt = alt, width = wid, height = ht,
+                      class = css_class, id = css_id))
     }
   )
 }
