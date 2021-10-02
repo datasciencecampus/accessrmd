@@ -40,10 +40,10 @@ render_toc <- function(
   x <- handle_rmd_path(filename)
   x <- paste(x, collapse = "\n")
   x <- paste0("\n", x, "\n")
-  for (i in 5:3) {
-    regex_code_fence <- paste0("\n[`]{", i, "}.+?[`]{", i, "}\n")
-    x <- gsub(regex_code_fence, "", x)
-  }
+  # for (i in 5:3) {
+  #   regex_code_fence <- paste0("\n[`]{", i, "}.+?[`]{", i, "}\n")
+  #   x <- gsub(regex_code_fence, "", x)
+  # }
   x <- strsplit(x, "\n")[[1]]
   x <- x[grepl("^#+", x)]
   if (!is.null(toc_header_name)) {
