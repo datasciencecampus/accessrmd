@@ -9,9 +9,9 @@
 #' @param alt A character string describing the image for screen reader
 #' accessibility.
 #' @param wid Width of the image in pixels.
+#' @param ht Height of the image in pixels.
 #' @param css_class Specify a css class selector for the image.
 #' @param css_id Specify a css ID selector for the image.
-#' @param ht Height of the image in pixels.
 #' @param dpi Resolution. Please see `?ggplot2::ggsave()` for details.
 #'
 #' @return Inline HTML with the necessary structure for screen reader
