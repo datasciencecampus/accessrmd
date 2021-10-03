@@ -24,6 +24,8 @@ text (as opposed to markdown syntax which can be unreliable).
 * Compatible with ggplot2 charts and pngs saved to disk.
 * Currently does not support base R plots.
 * "" alt text warning for decorative images only.
+* Dimension parameter defaults set to 'NULL'.
+* Includes 'css_class' & 'css_id' paramaters.
 
 #### 'access_rmd()'
 
