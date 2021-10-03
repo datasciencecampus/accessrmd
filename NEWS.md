@@ -25,7 +25,7 @@ text (as opposed to markdown syntax which can be unreliable).
 * Currently does not support base R plots.
 * "" alt text warning for decorative images only.
 * Dimension parameter defaults set to 'NULL'.
-* Includes 'css_class' & 'css_id' paramaters.
+* Includes 'css_class' & 'css_id' parameters.
 
 #### 'access_rmd()'
 
@@ -82,7 +82,7 @@ text (as opposed to markdown syntax which can be unreliable).
 
 ## To do
 
-* figure alignment for 'access_img()'.
+* 'access_data()' checks data for accessibility requirements.
 * correct header hierarchy.
 * wrapper function that finds all images and replaces with access_img code.
 * wrapper function that packages up broken links, sus alt text, long alt text,
