@@ -12,7 +12,7 @@
 #' @param date Required - The author date. Defaults to today's date.
 #' @param subtitle Optional - The document subtitle.
 #' @param toc Optional, defaults to FALSE. Should a table of contents be
-#' included.
+#' included. Valid entries are FALSE, TRUE or "float".
 #' @param encoding Defaults to "utf-8".
 #' @param force Defaults to FALSE. If TRUE, overwrites a pre-existing file with
 #' the same filenm with warning.
@@ -34,6 +34,7 @@ access_rmd <- function(
   encoding = "utf-8",
   force = FALSE
   ){
+  
   # Stop if lan  = NULL
   if(is.null(lan)){
     stop("No value provided to 'lan'.")
@@ -57,13 +58,13 @@ access_rmd <- function(
   # obtain any metadata needed for h2 headers
   h2s <- c(author, date, subtitle)
   # produce the accessible headers
-  html_h2s <- sapply(h2s, tags$h2, class = "header_h2s", simplify = FALSE)
+  html_h2s <- sapply(h2s, tags$h2, class = "header_h2s toc-ignore", simplify = FALSE)
   # assemble head
-  head <- tags$header(
+  header <- tags$header(
     tags$meta(charset = encoding),
     tags$title(title),
     # h1 needs to be the same as title
-    tags$h1(title, id = "title toc-ignore"),
+    tags$h1(title, id = "title toc-ignore", class = "toc-ignore"),
     unname(html_h2s)
   )
 
@@ -98,22 +99,44 @@ plot(pressure)
 In the above chunk, `echo = FALSE` was used to hide the R code that produced the
 plot from the knitted HTML document."
 # end of template ---------------------------------------------------------
-  # Insert render_toc if toc is TRUE
+  # if toc is TRUE or float, embed toc YAML
+  if(toc == "float"){
+    yaml <- c(
+      "---",
+      "output:",
+      "    html_document:",
+      "      toc: true",
+      "      toc_float: true",
+      "---"
+    )
+  }
   # conditional logic if toc is TRUE, insert code chunk that renders toc
   if(toc){
     message("Embedding render_toc code chunk")
     text <-  c("",
-                   "```{r, echo=FALSE}",
-                   "library(accessrmd, quietly = TRUE)",
-                   "render_toc(basename(knitr::current_input()))",
-                   "```",
-                   text)
+               "```{r, echo=FALSE, warning=FALSE}",
+               "library(accessrmd, quietly = TRUE)",
+               "render_toc(basename(knitr::current_input()))",
+               "```",
+               text)
   }
+  
   # wrap text in body tags
   body <- tags$body(paste(text, collapse = "\n"))
   # set the html lang & message
   message(paste("Setting html lan to", lan))
-  html_out <- tags$html(head, body, lang = lan)
+  # Combine webpage
+  html_out <- paste(
+    if("yaml" %in% ls()){
+      paste(yaml, collapse = "\n")
+      
+    },
+        paste0("<html lang=\"", lan, "\">"),
+        paste(header),
+        paste(body),
+        "</html>",
+        sep = "\n"
+        )
   # cleaning of html reserved words -----------------------------------------
   # <> have been replaced with &lt; and &gt; due to HTML reserved words
   # gsub them back
