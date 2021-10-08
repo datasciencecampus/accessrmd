@@ -28,6 +28,7 @@ text (as opposed to markdown syntax which can be unreliable).
 
 * Produce an accessible R markdown template with the specified metadata.
 * TOC compatible.
+* Floating TOC compatible.
 
 #### 'find_alt_lim()' (Not exported)
 
