@@ -28,15 +28,15 @@
 #'   prior to the first header at the base_level are dropped silently.
 #' @param toc_depth Maximum depth for TOC, relative to base_level. Default is
 #'   `toc_depth = 3`, which results in a TOC of at most 3 levels.
-#'   
+#'
 #' @importFrom stringr str_trim
-#'   
+#'
 #' @export
 render_toc <- function(
-  filename,
-  toc_header_name = "Table of Contents",
-  base_level = NULL,
-  toc_depth = 3) {
+                       filename,
+                       toc_header_name = "Table of Contents",
+                       base_level = NULL,
+                       toc_depth = 3) {
   x <- handle_rmd_path(filename)
   x <- paste(x, collapse = "\n")
   x <- paste0("\n", x, "\n")
@@ -59,7 +59,7 @@ render_toc <- function(
   }
   start_at_base_level <- FALSE
   n <- 1
-  
+
   links <- sapply(x, function(h) {
     level <- header_lvls[n] - base_level
     if (level < 0) {
@@ -80,7 +80,7 @@ render_toc <- function(
       #   # {.toc-ignore}
       #   header_text <- gsub("#+ (.+)\\s+?\\{.+$", "\\1", h)
       #   header_slug <- gsub(".+\\{\\s?#([-_.a-zA-Z]+).+", "\\1", h)
-    } else if(grepl("\\{\\.toc-ignore\\}", h)) {
+    } else if (grepl("\\{\\.toc-ignore\\}", h)) {
       return("")
     } else {
       header_text <- gsub("#+\\s+?", "", h)
@@ -95,7 +95,7 @@ render_toc <- function(
       header_slug <- paste(strsplit(header_text, " ")[[1]], collapse = "-")
       header_slug <- tolower(header_slug)
     }
-    
+
     # commented out above in favour of below, tested on
     # https://www.regextester.com/97707
     # header_text <- gsub("\\{([^}]+)\\}", "", h)
@@ -103,19 +103,20 @@ render_toc <- function(
     # testing regex on https://regex101.com/r/xBTITG/1 adjustment made
     # below catches brackets with classes or IDs
     # grepl("\\{\\.|#.+\\}(\\s+)?$", h)
-    
+
     n <<- n + 1
     unname(
-      paste0(strrep(" ", level * 4),
-             "- [", header_text, "](#", header_slug, ")")
+      paste0(
+        strrep(" ", level * 4),
+        "- [", header_text, "](#", header_slug, ")"
+      )
     )
   })
-  
+
   links <- links[links != ""]
   knitr::asis_output(paste("<nav id=\"TOC\">",
-                           paste(links, collapse = "<br>"),
-                           "</nav>",
-                           sep = "\n"
-                           )
-                     )
+    paste(links, collapse = "<br>"),
+    "</nav>",
+    sep = "\n"
+  ))
 }

@@ -42,7 +42,8 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent',
-  con = toc_file)
+  con = toc_file
+)
 
 test_base <- tempfile(fileext = ".Rmd")
 file.create(test_base)
@@ -58,7 +59,8 @@ output: html_document
 This is an R Markdown document. Markdown is a simple formatting syntax for 
 
 When you click the **Knit** button a document will be generated that includes',
-           con = test_base)
+  con = test_base
+)
 
 multiple_chunks <- tempfile(fileext = ".Rmd")
 file.create(multiple_chunks)
@@ -95,22 +97,34 @@ test_that("TOC has required id", {
 
 test_that("toc_depth excludes correctly", {
   # check for exclusions
-  expect_false(grepl("4th level header",
-                     render_toc(toc_file, toc_depth = 2)[1]))
-  expect_false(grepl("3rd level header",
-                     render_toc(toc_file, toc_depth = 1)[1]))
-  expect_false(grepl("ignore me please",
-                     render_toc(toc_file)[1]))
+  expect_false(grepl(
+    "4th level header",
+    render_toc(toc_file, toc_depth = 2)[1]
+  ))
+  expect_false(grepl(
+    "3rd level header",
+    render_toc(toc_file, toc_depth = 1)[1]
+  ))
+  expect_false(grepl(
+    "ignore me please",
+    render_toc(toc_file)[1]
+  ))
   # check for inclusion
-  expect_true(grepl("3rd level header",
-                    render_toc(toc_file, toc_depth = 2)[1]))
-  expect_true(grepl("Including Plots",
-                    render_toc(toc_file, toc_depth = 1)[1]))
+  expect_true(grepl(
+    "3rd level header",
+    render_toc(toc_file, toc_depth = 2)[1]
+  ))
+  expect_true(grepl(
+    "Including Plots",
+    render_toc(toc_file, toc_depth = 1)[1]
+  ))
 })
 
 test_that("func returns empty toc if base level evaluates to 0", {
-  expect_true(grepl("<nav id=\"TOC\">\n\n</nav>",
-                    render_toc(test_base, base_level = 1)))
+  expect_true(grepl(
+    "<nav id=\"TOC\">\n\n</nav>",
+    render_toc(test_base, base_level = 1)
+  ))
 })
 
 test_that("Errors on incorrect base level set", {
@@ -121,19 +135,24 @@ test_that("Errors on incorrect base level set", {
 })
 
 test_that("No # or {content} appear in toc link text", {
-          expect_false(grepl("\\[#", render_toc(toc_file)))
-          expect_false(grepl("\\{\\.|#.+\\}(\\s+)?$", render_toc(toc_file)))
-          })
+  expect_false(grepl("\\[#", render_toc(toc_file)))
+  expect_false(grepl("\\{\\.|#.+\\}(\\s+)?$", render_toc(toc_file)))
+})
 
 test_that("Commented code in code chunks are excluded from toc", {
-          expect_false(grepl("Some commented code should not appear in toc",
-                            "commented code", ignore.case = TRUE, useBytes = TRUE)
-                       )
-          expect_false(grepl("Neither should this",
-                             render_toc(multiple_chunks)))
-          expect_false(grepl("Lets check this too",
-                             render_toc(multiple_chunks)))
-          })
+  expect_false(grepl("Some commented code should not appear in toc",
+    "commented code",
+    ignore.case = TRUE, useBytes = TRUE
+  ))
+  expect_false(grepl(
+    "Neither should this",
+    render_toc(multiple_chunks)
+  ))
+  expect_false(grepl(
+    "Lets check this too",
+    render_toc(multiple_chunks)
+  ))
+})
 
 # set the wd to test directory
 with(globalenv(), {

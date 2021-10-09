@@ -5,7 +5,7 @@
 #' (filename).
 #'
 #' @param rmd_path Path to the Rmd that contains image tags to check.
-#' 
+#'
 #' @param lan Identify the language of text content. Attempts to find a lang
 #' attribute value from the rmd document. Alternatively, use a character string
 #' such as "en".
@@ -23,8 +23,8 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   place_val <- c("nbsp", "spacer")
   # return image lines only
   images <- find_all_imgs(lines)
-# get alt & src -----------------------------------------------------------
-  
+  # get alt & src -----------------------------------------------------------
+
   # this can be img tag or markdown syntax
   alts <- str_extract(
     string = images,
@@ -36,23 +36,23 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
     # regex tested https://regex101.com/r/Ox2SqC/1
     "src *= *\\\\??\"(.*?)\"|src *= *\\\\??'(.*?)'|\\]\\((.*?)\\)"
   )
-  
+
   # clean up srcs and alts
   srcs <- str_squish(str_remove_all(srcs, "src| *=|\\]\\(|\\)|'|\""))
   alts <- str_squish(str_remove_all(alts, "alt| *=|!\\[|\\]|\"|'"))
   # NA values for cases like <img src='no_alt_included'>
   # convert to "" for consistent handling
   alts[is.na(alts)] <- ""
-  
+
   # lang specific alt length limits -----------------------------------------
   lim <- find_alt_lim(lines)
-  
-  if(!is.null(lim)){
+
+  if (!is.null(lim)) {
     long_ind <- as.numeric(names(images[stringr::str_count(alts) > lim]))
     long_found <- lines[long_ind]
   }
-  
-  if(length(long_found) == 0){
+
+  if (length(long_found) == 0) {
     message("No images with alt text exceeding a limit were found.")
   } else {
     warning(paste(
@@ -66,7 +66,7 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   # check for placeholder values --------------------------------------------
   plac_ind <- as.numeric(names(
     images[grepl(paste(place_val, collapse = "|"), alts) | alts == ""]
-    ))
+  ))
   # store the lines where placeholders were used
   plac_found <- lines[plac_ind]
   # messages for placeholder text
@@ -81,7 +81,7 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
     ))
   }
   # check for any images where src == alt -----------------------------------
-  
+
   dupe_ind <- as.numeric(names(images[srcs == alts]))
   # store the lines with duplicated attribute values
   dupe_found <- lines[dupe_ind]

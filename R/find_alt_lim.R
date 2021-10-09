@@ -16,9 +16,9 @@ find_alt_lim <- function(lines = NULL, lan = detect_html_lang(lines)) {
   names(lims) <- c("en", "de", "ko")
   # compare against lims
   lim_ind <- grep(lan, names(lims))
-  if(length(lim_ind) > 0){
+  if (length(lim_ind) > 0) {
     return(unname(lims[lim_ind]))
-  } else
+  } else {
     return(NULL)
-  
+  }
 }

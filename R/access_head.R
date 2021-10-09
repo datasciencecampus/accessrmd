@@ -20,10 +20,10 @@
 #'
 #' @export
 access_head <- function(
-  rmd_path = NULL,
-  lan = detect_html_lang(lines),
-  inplace = FALSE,
-  encoding = "utf-8") {
+                        rmd_path = NULL,
+                        lan = detect_html_lang(lines),
+                        inplace = FALSE,
+                        encoding = "utf-8") {
   # check rmd_path
   lines <- handle_rmd_path(rmd_path)
   # check for presence of YAML features
@@ -41,13 +41,15 @@ access_head <- function(
   # extract rmd body
   rmd_body <- lines[(max(yaml_seq) + 1):length(lines)]
   # conditional logic if toc:true, insert code chunk that renders toc
-  if(any(grepl("toc: true|toc: yes", yaml_head))){
-    rmd_body <-  c("",
-                   "```{r, echo=FALSE, warning=FALSE}",
-                   "library(accessrmd, quietly = TRUE)",
-                   "render_toc(basename(knitr::current_input()))",
-                   "```",
-                   rmd_body)
+  if (any(grepl("toc: true|toc: yes", yaml_head))) {
+    rmd_body <- c(
+      "",
+      "```{r, echo=FALSE, warning=FALSE}",
+      "library(accessrmd, quietly = TRUE)",
+      "render_toc(basename(knitr::current_input()))",
+      "```",
+      rmd_body
+    )
   }
   # append the body with element tags
   rmd_body <- tags$body(paste(rmd_body, collapse = "\n"))
@@ -84,19 +86,23 @@ access_head <- function(
 
   # toc_float ---------------------------------------------------------------
   tocify <- any(grepl("toc: true|toc: yes", head))
-  
+
   # reassemble the accessible head ------------------------------------------
-  if(tocify){
-    html_head <- tags$header(tags$meta(charset = encoding),
-                             tags$meta("toc_float"),
-                             html_title,
-                             h1_content,
-                             unname(html_h2s))
-  }else{
-    html_head <- tags$header(tags$meta(charset = encoding),
-                             html_title,
-                             h1_content,
-                             unname(html_h2s))
+  if (tocify) {
+    html_head <- tags$header(
+      tags$meta(charset = encoding),
+      tags$meta("toc_float"),
+      html_title,
+      h1_content,
+      unname(html_h2s)
+    )
+  } else {
+    html_head <- tags$header(
+      tags$meta(charset = encoding),
+      html_title,
+      h1_content,
+      unname(html_h2s)
+    )
   }
   # set the html lang & message
   message(paste("Setting html lan to", lan))

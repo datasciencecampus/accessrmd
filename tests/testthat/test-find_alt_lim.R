@@ -1,5 +1,6 @@
 with(globalenv(), {
-     .old_wd <- setwd(tempdir())})
+  .old_wd <- setwd(tempdir())
+})
 
 
 # deps --------------------------------------------------------------------
@@ -20,7 +21,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown', con = en_file
+## R Markdown',
+  con = en_file
 )
 
 de_file <- tempfile(fileext = ".Rmd")
@@ -39,7 +41,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown', con = de_file
+## R Markdown',
+  con = de_file
 )
 
 ko_file <- tempfile(fileext = ".Rmd")
@@ -58,7 +61,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown', con = ko_file
+## R Markdown',
+  con = ko_file
 )
 
 us_file <- tempfile(fileext = ".Rmd")
@@ -77,7 +81,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown', con = us_file
+## R Markdown',
+  con = us_file
 )
 
 cymru_file <- tempfile(fileext = ".Rmd")
@@ -96,7 +101,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown', con = cymru_file
+## R Markdown',
+  con = cymru_file
 )
 
 # tests -------------------------------------------------------------------
@@ -106,7 +112,6 @@ test_that("Func returns correct limits", {
   expect_identical(find_alt_lim(handle_rmd_path(de_file)), 115)
   expect_identical(find_alt_lim(handle_rmd_path(ko_file)), 90)
   expect_identical(find_alt_lim(handle_rmd_path(us_file)), 100)
-  
 })
 
 test_that("Func returns NULL if no limit found", {
@@ -114,4 +119,5 @@ test_that("Func returns NULL if no limit found", {
 })
 
 with(globalenv(), {
-     setwd(.old_wd)})
+  setwd(.old_wd)
+})

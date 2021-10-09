@@ -12,7 +12,8 @@ writeLines(
     </header>
     <body>
     </body>
-  </html>', con = html_file
+  </html>',
+  con = html_file
 )
 
 yaml_file <- tempfile()
@@ -31,7 +32,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown', con = yaml_file
+## R Markdown',
+  con = yaml_file
 )
 
 no_lang <- tempfile()
@@ -48,7 +50,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown', con = no_lang
+## R Markdown',
+  con = no_lang
 )
 
 # invalid lang value
@@ -68,7 +71,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown', con = invalid_lang
+## R Markdown',
+  con = invalid_lang
 )
 
 
@@ -81,8 +85,10 @@ test_that("Func returns found lang", {
 
 test_that("Func errors as expected", {
   expect_error(detect_html_lang(readLines(no_lang)), "No lang value found.")
-  expect_error(detect_html_lang(readLines(invalid_lang)),
-               "lang value is invalid. Please specify a valid lang value.")
+  expect_error(
+    detect_html_lang(readLines(invalid_lang)),
+    "lang value is invalid. Please specify a valid lang value."
+  )
 })
 
 with(globalenv(), {

@@ -148,7 +148,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R Markdown
 
 ## Including Plots
-', con = toc_file
+',
+  con = toc_file
 )
 
 # tests -------------------------------------------------------------------
@@ -183,9 +184,10 @@ test_that("YAML lang is set to HTML attr", {
 })
 
 test_that("Behaves as expected with toc: true", {
-  expect_message(access_head(toc_file, lan = "cy", inplace = TRUE),
-                 "Setting html lan to cy")
-  
+  expect_message(
+    access_head(toc_file, lan = "cy", inplace = TRUE),
+    "Setting html lan to cy"
+  )
 })
 
 # check test outputs ------------------------------------------------------
@@ -216,12 +218,13 @@ test_that("Inline code has been correctly written", {
 })
 
 test_that("Toc code chunk has been inserted", {
-  expect_true(grep("render_toc\\(basename\\(knitr::current_input\\(\\)\\)\\)",
-                   toc_lines) > 0)
+  expect_true(grep(
+    "render_toc\\(basename\\(knitr::current_input\\(\\)\\)\\)",
+    toc_lines
+  ) > 0)
 })
 
 # set the wd to test directory
 with(globalenv(), {
   setwd(.old_wd)
 })
-

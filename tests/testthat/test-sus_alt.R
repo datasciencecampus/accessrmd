@@ -11,7 +11,9 @@ writeLines(
   "---
 lang: en
 ---
-<img src='something' alt='something else'/>", con = good_img)
+<img src='something' alt='something else'/>",
+  con = good_img
+)
 
 bad_img <- tempfile(fileext = ".Rmd")
 file.create(bad_img)
@@ -19,7 +21,9 @@ writeLines(
   "---
 lang: en
 ---
-<img src='something' alt='something'/>", con = bad_img)
+<img src='something' alt='something'/>",
+  con = bad_img
+)
 
 plac_img <- tempfile(fileext = ".Rmd")
 file.create(plac_img)
@@ -27,7 +31,9 @@ writeLines(
   "---
 lang: en
 ---
-<img src='something' alt='nbsp'/>", con = plac_img)
+<img src='something' alt='nbsp'/>",
+  con = plac_img
+)
 
 specdim_imgs <- tempfile(fileext = ".Rmd")
 file.create(specdim_imgs)
@@ -110,9 +116,11 @@ test_that("Messages when dupe alt is found", {
     "No images with placeholder text found."
   )
   expect_warning(sus_alt(bad_img), "alt text should not be equal to src.")
-  expect_warning(sus_alt(bad_img),
-                 "Check lines:
- 4")
+  expect_warning(
+    sus_alt(bad_img),
+    "Check lines:
+ 4"
+  )
 })
 
 test_that("Messages when placeholder alt is found", {
@@ -128,15 +136,19 @@ test_that("Messages when placeholder alt is found", {
     sus_alt(plac_img),
     "alt text should not be empty or equal to 'spacer' or 'nbsp'."
   )
-  expect_warning(sus_alt(plac_img),
-                 "Check lines:
- 4")
+  expect_warning(
+    sus_alt(plac_img),
+    "Check lines:
+ 4"
+  )
 })
 
 test_that("imgs with square specified dims do not get flagged as suspicious", {
-  expect_warning(sus_alt(specdim_imgs),
-                 " Check lines:
- 5")
+  expect_warning(
+    sus_alt(specdim_imgs),
+    " Check lines:
+ 5"
+  )
 })
 
 
@@ -162,9 +174,11 @@ test_that("Blank alt is flagged", {
 })
 
 test_that("Long alt text is flagged", {
-  expect_warning(sus_alt(long_alt),
-                 "Check lines:
- 4, 6 ")
+  expect_warning(
+    sus_alt(long_alt),
+    "Check lines:
+ 4, 6 "
+  )
 })
 
 

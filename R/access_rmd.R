@@ -19,40 +19,39 @@
 #'
 #' @return An Rmarkdown file with an HTML head, populated with metadata
 #' specified within the function parameters.
-#' 
+#'
 #' @importFrom stringr str_remove_all
 #'
 #' @export
 access_rmd <- function(
-  filenm = NULL,
-  title = NULL,
-  lan = NULL,
-  author = Sys.info()[8],
-  date = format(Sys.Date(), "%d %b %Y"),
-  subtitle = NULL,
-  toc = FALSE,
-  encoding = "utf-8",
-  force = FALSE
-  ){
-  
+                       filenm = NULL,
+                       title = NULL,
+                       lan = NULL,
+                       author = Sys.info()[8],
+                       date = format(Sys.Date(), "%d %b %Y"),
+                       subtitle = NULL,
+                       toc = FALSE,
+                       encoding = "utf-8",
+                       force = FALSE) {
+
   # Stop if lan  = NULL
-  if(is.null(lan)){
+  if (is.null(lan)) {
     stop("No value provided to 'lan'.")
   }
   # stop if title is NULL
-  if(is.null(title)){
+  if (is.null(title)) {
     stop("No title is provided.")
   }
   # remove any spaces from filenm
   filenm <- str_remove_all(filenm, " ")
   # feat: logic to add ".Rmd" if forgotten
-  if(!grepl(".Rmd$", filenm, ignore.case = TRUE)){
+  if (!grepl(".Rmd$", filenm, ignore.case = TRUE)) {
     filenm <- paste0(filenm, ".Rmd")
   }
   # force parameter that warns if file found
-  if(all(file.exists(filenm) & force)){
+  if (all(file.exists(filenm) & force)) {
     warning("'force' is TRUE. Overwriting filenm.")
-  } else if(all(file.exists(filenm) & !force)){
+  } else if (all(file.exists(filenm) & !force)) {
     stop("filenm found on disk. 'force' is FALSE.")
   }
   # obtain any metadata needed for h2 headers
@@ -68,7 +67,7 @@ access_rmd <- function(
     unname(html_h2s)
   )
 
-# template ----------------------------------------------------------------
+  # template ----------------------------------------------------------------
   text <- "
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -98,9 +97,9 @@ plot(pressure)
 
 In the above chunk, `echo = FALSE` was used to hide the R code that produced the
 plot from the knitted HTML document."
-# end of template ---------------------------------------------------------
+  # end of template ---------------------------------------------------------
   # if toc is TRUE or float, embed toc YAML
-  if(toc == "float"){
+  if (toc == "float") {
     yaml <- c(
       "---",
       "output:",
@@ -111,33 +110,34 @@ plot from the knitted HTML document."
     )
   }
   # conditional logic if toc is TRUE, insert code chunk that renders toc
-  if(toc){
+  if (toc) {
     message("Embedding render_toc code chunk")
-    text <-  c("",
-               "```{r, echo=FALSE, warning=FALSE}",
-               "library(accessrmd, quietly = TRUE)",
-               "render_toc(basename(knitr::current_input()))",
-               "```",
-               text)
+    text <- c(
+      "",
+      "```{r, echo=FALSE, warning=FALSE}",
+      "library(accessrmd, quietly = TRUE)",
+      "render_toc(basename(knitr::current_input()))",
+      "```",
+      text
+    )
   }
 
-  
+
   # wrap text in body tags
   body <- tags$body(paste(text, collapse = "\n"))
   # set the html lang & message
   message(paste("Setting html lan to", lan))
   # Combine webpage
   html_out <- paste(
-    if("yaml" %in% ls()){
+    if ("yaml" %in% ls()) {
       paste(yaml, collapse = "\n")
-      
     },
-        paste0("<html lang=\"", lan, "\">"),
-        paste(header),
-        paste(body),
-        "</html>",
-        sep = "\n"
-        )
+    paste0("<html lang=\"", lan, "\">"),
+    paste(header),
+    paste(body),
+    "</html>",
+    sep = "\n"
+  )
   # cleaning of html reserved words -----------------------------------------
   # <> have been replaced with &lt; and &gt; due to HTML reserved words
   # gsub them back
@@ -146,5 +146,4 @@ plot from the knitted HTML document."
   # write to file
   file.create(filenm)
   writeLines(paste(html_out), con = filenm)
-  }
-  
+}

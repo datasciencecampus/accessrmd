@@ -36,8 +36,10 @@ access_img <- function(img = last_plot(), alt = NULL, wid = NULL,
       file.exists(img)
       # if img is on disk, return NA
       message("img derived from disk.")
-      return(tags$img(src = img, alt = alt, width = wid, height = ht,
-                      class = css_class, id = css_id))
+      return(tags$img(
+        src = img, alt = alt, width = wid, height = ht,
+        class = css_class, id = css_id
+      ))
     },
     error = function(cond) {
       message("img derived from inline R code.")
@@ -45,8 +47,10 @@ access_img <- function(img = last_plot(), alt = NULL, wid = NULL,
       tmp <- tempfile(fileext = ".png")
       # save the img to tempfile
       ggsave(filename = tmp, plot = img, device = png(), dpi = dpi)
-      return(tags$img(src = tmp, alt = alt, width = wid, height = ht,
-                      class = css_class, id = css_id))
+      return(tags$img(
+        src = tmp, alt = alt, width = wid, height = ht,
+        class = css_class, id = css_id
+      ))
     }
   )
 }
