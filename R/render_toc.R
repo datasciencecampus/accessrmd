@@ -116,5 +116,6 @@ render_toc <- function(
                            paste(links, collapse = "<br>"),
                            "</nav>",
                            sep = "\n"
-  ))
+                           )
+                     )
 }

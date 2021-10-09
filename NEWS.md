@@ -14,6 +14,7 @@ author and date.
 * 'access_head()' works with inline code.
 * Inserts accessible toc chunk if finds `toc: true` or `toc: yes`.
 * Specifies character encoding as "utf-8" by default.
+* load warnings suppressed on inserting 'render_toc()' chunk.
 
 
 #### 'access_img()'
@@ -23,6 +24,8 @@ text (as opposed to markdown syntax which can be unreliable).
 * Compatible with ggplot2 charts and pngs saved to disk.
 * Currently does not support base R plots.
 * "" alt text warning for decorative images only.
+* Dimension parameter defaults set to 'NULL'.
+* Includes 'css_class' & 'css_id' parameters.
 
 #### 'access_rmd()'
 
@@ -60,6 +63,7 @@ text (as opposed to markdown syntax which can be unreliable).
 * Avoid ID hashes showing up in nav links
 * Strip curly braces if no spaces follow header, eg "## 2nd lvl header{.toc-ignore}"
 * \{.toc-ignore\} compatibility.
+* Code fence regex adapted to avoid incorrect toc render when code chunk included prior to first h2 header.
 
 
 #### 'retrieve_rmds()'

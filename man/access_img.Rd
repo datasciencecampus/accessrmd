@@ -4,7 +4,15 @@
 \alias{access_img}
 \title{Produce an accessible image or chart.}
 \usage{
-access_img(img = last_plot(), alt = NULL, wid = 500, ht = 500, dpi = 300)
+access_img(
+  img = last_plot(),
+  alt = NULL,
+  wid = NULL,
+  ht = NULL,
+  dpi = 300,
+  css_class = NULL,
+  css_id = NULL
+)
 }
 \arguments{
 \item{img}{The image to include as accessible HTML. Defaults to
@@ -13,11 +21,15 @@ access_img(img = last_plot(), alt = NULL, wid = 500, ht = 500, dpi = 300)
 \item{alt}{A character string describing the image for screen reader
 accessibility.}
 
-\item{wid}{Width of the image in pixels. Defaults to 500.}
+\item{wid}{Width of the image in pixels.}
 
-\item{ht}{Height of the image in pixels. Defaults to 500.}
+\item{ht}{Height of the image in pixels.}
 
 \item{dpi}{Resolution. Please see \code{?ggplot2::ggsave()} for details.}
+
+\item{css_class}{Specify a css class selector for the image.}
+
+\item{css_id}{Specify a css ID selector for the image.}
 }
 \value{
 Inline HTML with the necessary structure for screen reader

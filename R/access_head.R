@@ -43,11 +43,11 @@ access_head <- function(
   # conditional logic if toc:true, insert code chunk that renders toc
   if(any(grepl("toc: true|toc: yes", yaml_head))){
     rmd_body <-  c("",
-          "```{r, echo=FALSE}",
-          "library(accessrmd, quietly = TRUE)",
-          "render_toc(basename(knitr::current_input()))",
-          "```",
-          rmd_body)
+                   "```{r, echo=FALSE, warning=FALSE}",
+                   "library(accessrmd, quietly = TRUE)",
+                   "render_toc(basename(knitr::current_input()))",
+                   "```",
+                   rmd_body)
   }
   # append the body with element tags
   rmd_body <- tags$body(paste(rmd_body, collapse = "\n"))

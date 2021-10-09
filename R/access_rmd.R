@@ -120,6 +120,7 @@ plot from the knitted HTML document."
                "```",
                text)
   }
+
   
   # wrap text in body tags
   body <- tags$body(paste(text, collapse = "\n"))
@@ -145,4 +146,5 @@ plot from the knitted HTML document."
   # write to file
   file.create(filenm)
   writeLines(paste(html_out), con = filenm)
-}
+  }
+  
