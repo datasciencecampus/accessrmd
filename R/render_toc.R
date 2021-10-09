@@ -33,28 +33,22 @@
 #'   
 #' @export
 render_toc <- function(
-                       filename,
-                       toc_header_name = "Table of Contents",
-                       base_level = NULL,
-                       toc_depth = 3) {
+  filename,
+  toc_header_name = "Table of Contents",
+  base_level = NULL,
+  toc_depth = 3) {
   x <- handle_rmd_path(filename)
   x <- paste(x, collapse = "\n")
   x <- paste0("\n", x, "\n")
-  for (i in 5:3) {
-    regex_code_fence <- paste0("\n[`]{", i, "}.+?[`]{", i, "}\n")
-    x <- gsub(regex_code_fence, "", x)
-  }
+  # Below is used to ignore any commented code within code chunks
+  # tested on https://regex101.com/r/OYaaJd/2
+  regex_code_fence <- "```[\\s\\S]*?```"
+  # for (i in 5:3) {
+  #   regex_code_fence <- paste0("\n[`]{", i, "}.+?[`]{", i, "}\n")
+  #   x <- gsub(regex_code_fence, "", x)
+  # }
+  x <- gsub(regex_code_fence, "", x)
   x <- strsplit(x, "\n")[[1]]
-
-# test for toc_float in head only -----------------------------------------
-  # for YAML rmarkdown, get the yaml bound indices
-  yaml_ind <- grep("---|<header>|</header>", x)
-  # subset out the lines
-  yaml_lin <- x[seq.int(yaml_ind[1], yaml_ind[2])]
-  # test for toc_float & set tocify status
-  tocify <- any(grepl("toc_float: true|toc_float: yes|<meta>toc_float</meta>",
-                      yaml_lin))
-# get headers -------------------------------------------------------------
   x <- x[grepl("^#+", x)]
   if (!is.null(toc_header_name)) {
     x <- x[!grepl(paste0("^#+ ", toc_header_name), x)]
@@ -80,12 +74,12 @@ render_toc <- function(
     if (!start_at_base_level && level == 0) start_at_base_level <<- TRUE
     if (!start_at_base_level) {
       return("")
-    # }
-    # if (grepl("\\{#.+\\}(\\s+)?$", h)) {
-    #   # has special header slug - this evals to TRUE if {#someID} but FALSE if
-    #   # {.toc-ignore}
-    #   header_text <- gsub("#+ (.+)\\s+?\\{.+$", "\\1", h)
-    #   header_slug <- gsub(".+\\{\\s?#([-_.a-zA-Z]+).+", "\\1", h)
+      # }
+      # if (grepl("\\{#.+\\}(\\s+)?$", h)) {
+      #   # has special header slug - this evals to TRUE if {#someID} but FALSE if
+      #   # {.toc-ignore}
+      #   header_text <- gsub("#+ (.+)\\s+?\\{.+$", "\\1", h)
+      #   header_slug <- gsub(".+\\{\\s?#([-_.a-zA-Z]+).+", "\\1", h)
     } else if(grepl("\\{\\.toc-ignore\\}", h)) {
       return("")
     } else {
@@ -114,45 +108,13 @@ render_toc <- function(
     unname(
       paste0(strrep(" ", level * 4),
              "- [", header_text, "](#", header_slug, ")")
-      )
+    )
   })
+  
   links <- links[links != ""]
-  
-  
-
-# make toc ----------------------------------------------------------------
-  if(tocify){
-    toc_out <- knitr::asis_output(paste(
-      "<!-- setup 3col/9col grid for toc_float and main content  -->",
-      "<div class=\"row\">",
-          "<div class=\"col-xs-12 col-sm-4 col-md-3\">",
-              "<nav id=\"TOC\" class=\"tocify\">",
-                  "<ul id=\"tocify-header0\" class=\"tocify-header list-group\">",
-                      "<li class=\"tocify-item list-group-item active\" data-unique=\"R_Markdown\" style=\"cursor: pointer;\">R Markdown</li>",
-                  "</ul>",
-                  "<ul id=\"tocify-header1\" class=\"tocify-header list-group\">",
-                      "<li class=\"tocify-item list-group-item\" data-unique=\"Including_Plots\" style=\"cursor: pointer;\">Including Plots</li>",
-                  "</ul>",
-               "</nav>",
-           "</div>",
-      "</div>",
-
-
-      #     "<nav id=\"TOC\">",
-      #         paste(links, collapse = "\n"),
-      #     "</nav>",
-      # "</div>",
-                             sep = "\n"
-    )
-    )
-  }else{
-    toc_out <- knitr::asis_output(paste("<nav id=\"TOC\">",
-                             paste(links, collapse = "\n"),
-                             "</nav>",
-                             sep = "\n"
-    ))
-  }
-  
-  return(toc_out)
-
+  knitr::asis_output(paste("<nav id=\"TOC\">",
+                           paste(links, collapse = "<br>"),
+                           "</nav>",
+                           sep = "\n"
+  ))
 }
