@@ -29,15 +29,18 @@ test_that("Func errors as expected", {
 lines <- readLines(test_file)
 toc_lines <- readLines(test_toc)
 test_that("Output has been written as expected", {
-  expect_equal(grep("    <meta charset=\"utf-8\"/>", lines), 3)
-  expect_equal(grep("    <title>minimal test</title>", lines), 4)
-  expect_equal(grep("    <h1 id=\"title toc-ignore\">minimal test</h1>" ,
-                    lines), 5)
-  expect_equal(grep(Sys.info()[8], lines), 6)
-  expect_equal(grep(format(Sys.Date(), "%d %b %Y"), lines), 7)
-  expect_equal(grep("  </header>", lines), 8)
-  expect_equal(grep("  <body>", lines), 9)
-  expect_equal(grep("render_toc", toc_lines), 12)
+  expect_true(any(grepl("  <meta charset=\"utf-8\"/>", lines)))
+  expect_true(any(grepl("  <title>minimal test</title>", lines)))
+  expect_true(
+    any(
+      grepl(
+        "  <h1 id=\"title toc-ignore\" class=\"toc-ignore\">minimal test</h1>" ,
+        lines)))
+  expect_true(any(grepl(Sys.info()[8], lines)))
+  expect_true(any(grepl(format(Sys.Date(), "%d %b %Y"), lines)))
+  expect_true(any(grepl("</header>", lines)))
+  expect_true(any(grepl("<body>", lines)))
+  expect_true(any(grepl("render_toc", toc_lines)))
 })
 
 test_that("Func warns as expected",
