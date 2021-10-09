@@ -83,6 +83,7 @@ text (as opposed to markdown syntax which can be unreliable).
 
 ## To do
 
+* Floating toc compatability in 'access_head()' required.
 * Double check diversity in all metadata header IDs & Classes.
 * correct header hierarchy.
 * access_data, including all workbook accessibility requirements.
