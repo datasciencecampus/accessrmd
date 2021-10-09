@@ -32,7 +32,7 @@ identified by \code{Sys.info()}.}
 \item{subtitle}{Optional - The document subtitle.}
 
 \item{toc}{Optional, defaults to FALSE. Should a table of contents be
-included.}
+included. Valid entries are FALSE, TRUE or "float".}
 
 \item{encoding}{Defaults to "utf-8".}
 
