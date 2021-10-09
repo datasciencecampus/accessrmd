@@ -60,6 +60,29 @@ This is an R Markdown document. Markdown is a simple formatting syntax for
 When you click the **Knit** button a document will be generated that includes',
            con = test_base)
 
+multiple_chunks <- tempfile(fileext = ".Rmd")
+file.create(multiple_chunks)
+writeLines('---
+title: "multichunks"
+author: "Richard Leyshon"
+date: "09/10/2021"
+output: html_document
+---
+
+## R Markdown
+
+```{r, setup}
+# Some commented code should not appear in toc
+## Neither should this
+
+```
+## Reticulate
+
+```{python, reticulate}
+# Lets check this too
+
+```', con = multiple_chunks)
+
 # tests -------------------------------------------------------------------
 
 test_that("Output is of stated class", {
@@ -102,6 +125,15 @@ test_that("No # or {content} appear in toc link text", {
           expect_false(grepl("\\{\\.|#.+\\}(\\s+)?$", render_toc(toc_file)))
           })
 
+test_that("Commented code in code chunks are excluded from toc", {
+          expect_false(grepl("Some commented code should not appear in toc",
+                            "commented code", ignore.case = TRUE, useBytes = TRUE)
+                       )
+          expect_false(grepl("Neither should this",
+                             render_toc(multiple_chunks)))
+          expect_false(grepl("Lets check this too",
+                             render_toc(multiple_chunks)))
+          })
 
 # set the wd to test directory
 with(globalenv(), {
