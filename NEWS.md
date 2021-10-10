@@ -15,6 +15,7 @@ author and date.
 * Inserts accessible toc chunk if finds `toc: true` or `toc: yes`.
 * Specifies character encoding as "utf-8" by default.
 * load warnings suppressed on inserting 'render_toc()' chunk.
+* Floating toc compatability.
 
 
 #### 'access_img()'
@@ -47,6 +48,10 @@ text (as opposed to markdown syntax which can be unreliable).
 #### 'handle_rmd_path()' (Not exported)
 
 * Handler checks rmd path is valid.
+
+#### 'insert_toc()' (Not exported)
+
+* Handler assembles html document with inserted toc code.
 
 #### 'find_all_imgs()' (Not exported)
 
@@ -83,9 +88,10 @@ text (as opposed to markdown syntax which can be unreliable).
 
 ## To do
 
-* Floating toc compatability in 'access_head()' required.
+* unit tests for 'insert_toc()'
 * Double check diversity in all metadata header IDs & Classes.
 * correct header hierarchy.
+* refactor: find all alts
 * access_data, including all workbook accessibility requirements.
 * wrapper function that finds all images and replaces with access_img code.
 * wrapper function that packages up broken links, sus alt text, long alt text,
@@ -94,13 +100,9 @@ header hierarchy, correct img HTML in one go.
 
 **MVP**
 
-* There are 2 Errors on the accessrmd test.html relating to WCAG 1.4.6: Contrast (enhanced)(Level AAA) with the red text in the install_github line and the
-access_img line. For WCAG 1.4.6 The contrast ratio should be at least 7:1 for
-normal text and 4.4:1 for large text.
 * Microsoft Azure Cognitive Services free API: automate alt text generation for
 images. Appears to only work with web-hosted images. Can local files be
 uploaded?
-* refactor: funcs for detect html lang, find all alts
 * .Rmds modified with 'access_head()' render with a warning about title
 metadata. May wish to consider the alternative format [.rhtml](https://bookdown.org/yihui/rmarkdown-cookbook/html-hardcore.html).
 
