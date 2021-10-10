@@ -98,17 +98,6 @@ plot(pressure)
 In the above chunk, `echo = FALSE` was used to hide the R code that produced the
 plot from the knitted HTML document."
   # end of template ---------------------------------------------------------
-  # if toc is TRUE or float, embed toc YAML
-  if (toc == "float") {
-    yaml <- c(
-      "---",
-      "output:",
-      "    html_document:",
-      "      toc: true",
-      "      toc_float: true",
-      "---"
-    )
-  }
   
   # Assemble output
   html_out <- insert_toc(toc = toc, header = header, text = text, lan = lan)

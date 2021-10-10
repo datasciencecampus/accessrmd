@@ -27,7 +27,7 @@ insert_toc <- function(toc,
     )
   }
   # conditional logic if toc is TRUE, insert code chunk that renders toc
-  if (toc) {
+  if (toc == TRUE) {
     message("Embedding render_toc code chunk")
     text <- c(
       "",
