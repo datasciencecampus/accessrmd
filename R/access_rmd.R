@@ -109,40 +109,10 @@ plot from the knitted HTML document."
       "---"
     )
   }
-  # conditional logic if toc is TRUE, insert code chunk that renders toc
-  if (toc) {
-    message("Embedding render_toc code chunk")
-    text <- c(
-      "",
-      "```{r, echo=FALSE, warning=FALSE}",
-      "library(accessrmd, quietly = TRUE)",
-      "render_toc(basename(knitr::current_input()))",
-      "```",
-      text
-    )
-  }
+  
+  # Assemble output
+  html_out <- insert_toc(toc = toc, header = header, text = text, lan = lan)
 
-
-  # wrap text in body tags
-  body <- tags$body(paste(text, collapse = "\n"))
-  # set the html lang & message
-  message(paste("Setting html lan to", lan))
-  # Combine webpage
-  html_out <- paste(
-    if ("yaml" %in% ls()) {
-      paste(yaml, collapse = "\n")
-    },
-    paste0("<html lang=\"", lan, "\">"),
-    paste(header),
-    paste(body),
-    "</html>",
-    sep = "\n"
-  )
-  # cleaning of html reserved words -----------------------------------------
-  # <> have been replaced with &lt; and &gt; due to HTML reserved words
-  # gsub them back
-  html_out <- gsub("&lt;", "<", html_out)
-  html_out <- gsub("&gt;", ">", html_out)
   # write to file
   file.create(filenm)
   writeLines(paste(html_out), con = filenm)
