@@ -183,6 +183,7 @@ test_that("YAML lang is set to HTML attr", {
   )
 })
 
+# move to insert_toc tests
 test_that("Behaves as expected with toc: true", {
   expect_message(
     access_head(toc_file, lan = "cy", inplace = TRUE),
@@ -194,7 +195,6 @@ test_that("Behaves as expected with toc: true", {
 # check structure has written
 lang_html <- readLines(lang_rmd)
 lang <- lang_html[grep("lang=", lang_html)]
-toc_lines <- readLines(toc_file)
 test_that("YAML lang has been written as HTML", {
   expect_equal(lang, "<html lang=\"en\">")
 })
@@ -214,13 +214,13 @@ test_that("Expected behaviour on inplace = TRUE", {
 })
 
 test_that("Inline code has been correctly written", {
-  expect_true(grepl("r Sys.Date()", readLines(inline_rmd)[7]))
+  expect_true(any(grepl("r Sys.Date()", readLines(inline_rmd))))
 })
 
 test_that("Toc code chunk has been inserted", {
   expect_true(grep(
     "render_toc\\(basename\\(knitr::current_input\\(\\)\\)\\)",
-    toc_lines
+    readLines(toc_file)
   ) > 0)
 })
 

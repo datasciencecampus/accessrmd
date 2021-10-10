@@ -40,27 +40,12 @@ access_head <- function(
   yaml_head <- lines[yaml_seq]
   # extract rmd body
   rmd_body <- lines[(max(yaml_seq) + 1):length(lines)]
-  # conditional logic if toc:true, insert code chunk that renders toc
-  if (any(grepl("toc: true|toc: yes", yaml_head))) {
-    rmd_body <- c(
-      "",
-      "```{r, echo=FALSE, warning=FALSE}",
-      "library(accessrmd, quietly = TRUE)",
-      "render_toc(basename(knitr::current_input()))",
-      "```",
-      rmd_body
-    )
-  }
-  # append the body with element tags
-  rmd_body <- tags$body(paste(rmd_body, collapse = "\n"))
-
   # dynamic head logic ------------------------------------------------------
   # Will need to identify YAML elements present and convert to html flexibly
   # remove YAML bounds "---"
   head <- setdiff(yaml_head, "---")
   # check for html output type. Stop if not.
   html_loc <- grepl(pattern = "html_document", head)
-
   if (any(html_loc)) {
     # html found. subset out the html tag.
     head <- head[!html_loc]
@@ -83,36 +68,32 @@ access_head <- function(
   h2s <- sapply(str_split(head[hd_indices], pattern = ":"), "[[", 2)
   # produce the accessible headers
   html_h2s <- sapply(h2s, tags$h2, class = "header_h2s", simplify = FALSE)
-
-  # toc_float ---------------------------------------------------------------
+  
+  html_head <- tags$header(
+    tags$meta(charset = encoding),
+    html_title,
+    h1_content,
+    unname(html_h2s)
+  )
+# toc status --------------------------------------------------------------
+  
+  tocify <- FALSE
   tocify <- any(grepl("toc: true|toc: yes", head))
-
-  # reassemble the accessible head ------------------------------------------
-  if (tocify) {
-    html_head <- tags$header(
-      tags$meta(charset = encoding),
-      tags$meta("toc_float"),
-      html_title,
-      h1_content,
-      unname(html_h2s)
-    )
-  } else {
-    html_head <- tags$header(
-      tags$meta(charset = encoding),
-      html_title,
-      h1_content,
-      unname(html_h2s)
-    )
+  if(tocify){
+    float <- any(grepl("toc_float: true|toc_float: yes", head))
   }
-  # set the html lang & message
-  message(paste("Setting html lan to", lan))
-  html_out <- tags$html(html_head, rmd_body, lang = lan)
-  # cleaning of html reserved words -----------------------------------------
-  # <> have been replaced with &lt; and &gt; due to HTML reserved words
-  # gsub them back
-  html_out <- gsub("&lt;", "<", html_out)
-  html_out <- gsub("&gt;", ">", html_out)
-
+  if("float" %in% ls()){
+    if(float){
+      tocify <- "float"
+    }
+  }
+  # reassemble the accessible head ------------------------------------------
+  
+  html_out <- insert_toc(toc = tocify,
+                         header = html_head,
+                         text = rmd_body,
+                         lan = lan)
+  
   if (inplace == TRUE) {
     # outfile will be the same as infile
     outfile <- rmd_path
