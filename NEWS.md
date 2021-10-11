@@ -88,7 +88,6 @@ text (as opposed to markdown syntax which can be unreliable).
 
 ## To do
 
-* unit tests for 'insert_toc()'
 * Double check diversity in all metadata header IDs & Classes.
 * correct header hierarchy.
 * refactor: find all alts
