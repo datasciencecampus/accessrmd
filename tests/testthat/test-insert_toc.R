@@ -31,25 +31,29 @@ test_that("Lan messages behave", {
   expect_message(
     insert_toc(toc = FALSE, header = html_head, text = rmd_text, lan = lan),
     "Setting html lan to en"
-    )
+  )
   expect_message(
     insert_toc(toc = FALSE, header = html_head, text = rmd_text, lan = lan1),
     "Setting html lan to cy"
   )
-  expect_error(insert_toc(toc = FALSE, header = html_head, text = rmd_text),
-               '"lan" is missing')
+  expect_error(
+    insert_toc(toc = FALSE, header = html_head, text = rmd_text),
+    '"lan" is missing'
+  )
 })
 
-test_that("Output toc is correct",{
+test_that("Output toc is correct", {
   expect_true(
-    grepl("render_toc\\(basename\\(knitr::current_input\\(\\)\\)\\)",
-          insert_toc(
-            toc = TRUE, 
-                     header = html_head, 
-                     text = rmd_text, 
-                     lan = lan)
-                  )
-            )
+    grepl(
+      "render_toc\\(basename\\(knitr::current_input\\(\\)\\)\\)",
+      insert_toc(
+        toc = TRUE,
+        header = html_head,
+        text = rmd_text,
+        lan = lan
+      )
+    )
+  )
   expect_true(
     grepl(
       "output:\n    html_document:\n      toc: true\n      toc_float: true\n",
@@ -57,10 +61,8 @@ test_that("Output toc is correct",{
         toc = "float",
         header = html_head,
         text = rmd_text,
-        lan = lan)
+        lan = lan
       )
     )
-  })
-
-
-
+  )
+})
