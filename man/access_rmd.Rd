@@ -7,10 +7,10 @@
 access_rmd(
   filenm = NULL,
   title = NULL,
+  subtitle = NULL,
   lan = NULL,
   author = Sys.info()[8],
   date = format(Sys.Date(), "\%d \%b \%Y"),
-  subtitle = NULL,
   toc = FALSE,
   encoding = "utf-8",
   force = FALSE
@@ -21,6 +21,8 @@ access_rmd(
 
 \item{title}{Required - The document title.}
 
+\item{subtitle}{Optional - The document subtitle.}
+
 \item{lan}{Required - The HTML language to set as the value for the lang
 attribute.}
 
@@ -28,8 +30,6 @@ attribute.}
 identified by \code{Sys.info()}.}
 
 \item{date}{Required - The author date. Defaults to today's date.}
-
-\item{subtitle}{Optional - The document subtitle.}
 
 \item{toc}{Optional, defaults to FALSE. Should a table of contents be
 included. Valid entries are FALSE, TRUE or "float".}
