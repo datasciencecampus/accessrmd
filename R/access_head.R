@@ -58,15 +58,20 @@ access_head <- function(
   # find title
   title_index <- grep("title:", head)
   title_content <- str_split(head[title_index], pattern = ":")[[1]][2]
+  
+  # find indices for additional header titles
+  hd_indices <- grep("author:|date:|subtitle:", head)
+  # extract the h2 text
+  h2s <- sapply(str_split(head[hd_indices], pattern = ":"), "[[", 2)
+  
+# assemble_header ---------------------------------------------------------
+
   # produce the accessible title
   html_title <- tags$title(title_content)
   # h1 needs to be the same as title
   h1_content <- tags$h1(title_content, id = "title toc-ignore",
                         class = "toc-ignore")
-  # find indices for additional header titles
-  hd_indices <- grep("author:|date:|subtitle:", head)
-  # extract the h2 text
-  h2s <- sapply(str_split(head[hd_indices], pattern = ":"), "[[", 2)
+  
   # produce the accessible headers
   html_h2s <- sapply(h2s, tags$h2, class = "header_h2s toc-ignore",
                      simplify = FALSE)

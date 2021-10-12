@@ -54,10 +54,18 @@ access_rmd <- function(
   } else if (all(file.exists(filenm) & !force)) {
     stop("filenm found on disk. 'force' is FALSE.")
   }
+  
+  
+
+# assemble_header ---------------------------------------------------------
+  
   # obtain any metadata needed for h2 headers
   h2s <- c(author, date, subtitle)
   # produce the accessible headers
-  html_h2s <- sapply(h2s, tags$h2, class = "header_h2s toc-ignore", simplify = FALSE)
+  html_h2s <- sapply(
+    h2s, tags$h2,
+    class = "header_h2s toc-ignore", simplify = FALSE
+  )
   # assemble head
   header <- tags$header(
     tags$meta(charset = encoding),
@@ -98,7 +106,7 @@ plot(pressure)
 In the above chunk, `echo = FALSE` was used to hide the R code that produced the
 plot from the knitted HTML document."
   # end of template ---------------------------------------------------------
-  
+
   # Assemble output
   html_out <- insert_toc(toc = toc, header = header, text = text, lan = lan)
 
