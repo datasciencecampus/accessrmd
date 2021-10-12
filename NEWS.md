@@ -16,6 +16,8 @@ author and date.
 * Specifies character encoding as "utf-8" by default.
 * load warnings suppressed on inserting 'render_toc()' chunk.
 * Floating toc compatability.
+* Uses 'assemble_header()'.
+
 
 
 #### 'access_img()'
@@ -33,6 +35,7 @@ text (as opposed to markdown syntax which can be unreliable).
 * Produce an accessible R markdown template with the specified metadata.
 * TOC compatible.
 * Floating TOC compatible.
+* Uses 'assemble_header()'.
 
 #### 'assemble_header()' (Not exported)
 
@@ -92,8 +95,6 @@ text (as opposed to markdown syntax which can be unreliable).
 
 ## To do
 
-* 'assemble_header()' html tag wrapping should happen inside this func for
-'access_head()' and 'access_rmd()'. Approach should be text in, HTML out. 
 * correct header hierarchy.
 * refactor: find all alts
 * wrapper function that finds all images and replaces with access_img code.
