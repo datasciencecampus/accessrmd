@@ -89,7 +89,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Adapted R Markdown
 
 This R Markdown templated has been adapted using the 'accessrmd' package. This
-template has a different head and HTMl structure to the standard R markdown
+template has a different head and HTML structure to the standard R markdown
 template. This is to improve the accessibility of the knitted HTML documents for
 screen readers.
 
