@@ -55,8 +55,6 @@ access_rmd <- function(
     stop("filenm found on disk. 'force' is FALSE.")
   }
   
-  
-
 # assemble_header ---------------------------------------------------------
   header <- assemble_header(title = title,
                             subtitle = subtitle,
@@ -64,22 +62,6 @@ access_rmd <- function(
                             doc_date = date,
                             enc = encoding)
   
-  # # obtain any metadata needed for h2 headers
-  # h2s <- c(author, date, subtitle)
-  # # produce the accessible headers
-  # html_h2s <- sapply(
-  #   h2s, tags$h2,
-  #   class = "header_h2s toc-ignore", simplify = FALSE
-  # )
-  # # assemble head
-  # header <- tags$header(
-  #   tags$meta(charset = encoding),
-  #   tags$title(title),
-  #   # h1 needs to be the same as title
-  #   tags$h1(title, id = "title toc-ignore", class = "toc-ignore"),
-  #   unname(html_h2s)
-  # )
-
   # template ----------------------------------------------------------------
   text <- "
 ```{r setup, include=FALSE}
