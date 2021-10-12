@@ -34,6 +34,10 @@ text (as opposed to markdown syntax which can be unreliable).
 * TOC compatible.
 * Floating TOC compatible.
 
+#### 'assemble_header()' (Not exported)
+
+* Takes document metadata as text and assembles html header.
+
 #### 'find_alt_lim()' (Not exported)
 
 * Finds html lang value with 'detect_html_lang()'.
@@ -88,10 +92,10 @@ text (as opposed to markdown syntax which can be unreliable).
 
 ## To do
 
-* Double check diversity in all metadata header IDs & Classes.
+* 'assemble_header()' html tag wrapping should happen inside this func for
+'access_head()' and 'access_rmd()'. Approach should be text in, HTML out. 
 * correct header hierarchy.
 * refactor: find all alts
-* access_data, including all workbook accessibility requirements.
 * wrapper function that finds all images and replaces with access_img code.
 * wrapper function that packages up broken links, sus alt text, long alt text,
 header hierarchy, correct img HTML in one go.
