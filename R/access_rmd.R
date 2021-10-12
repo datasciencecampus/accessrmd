@@ -5,12 +5,12 @@
 #'
 #' @param filenm Required - The name of the file.
 #' @param title Required - The document title.
+#' @param subtitle Optional - The document subtitle.
 #' @param lan Required - The HTML language to set as the value for the lang
 #' attribute.
 #' @param author Required - The document author. Defaults to the effective user
 #' identified by `Sys.info()`.
 #' @param date Required - The author date. Defaults to today's date.
-#' @param subtitle Optional - The document subtitle.
 #' @param toc Optional, defaults to FALSE. Should a table of contents be
 #' included. Valid entries are FALSE, TRUE or "float".
 #' @param encoding Defaults to "utf-8".
@@ -26,10 +26,10 @@
 access_rmd <- function(
                        filenm = NULL,
                        title = NULL,
+                       subtitle = NULL,
                        lan = NULL,
                        author = Sys.info()[8],
                        date = format(Sys.Date(), "%d %b %Y"),
-                       subtitle = NULL,
                        toc = FALSE,
                        encoding = "utf-8",
                        force = FALSE) {
@@ -58,22 +58,27 @@ access_rmd <- function(
   
 
 # assemble_header ---------------------------------------------------------
+  header <- assemble_header(title = title,
+                            subtitle = subtitle,
+                            auth = author,
+                            doc_date = date,
+                            enc = encoding)
   
-  # obtain any metadata needed for h2 headers
-  h2s <- c(author, date, subtitle)
-  # produce the accessible headers
-  html_h2s <- sapply(
-    h2s, tags$h2,
-    class = "header_h2s toc-ignore", simplify = FALSE
-  )
-  # assemble head
-  header <- tags$header(
-    tags$meta(charset = encoding),
-    tags$title(title),
-    # h1 needs to be the same as title
-    tags$h1(title, id = "title toc-ignore", class = "toc-ignore"),
-    unname(html_h2s)
-  )
+  # # obtain any metadata needed for h2 headers
+  # h2s <- c(author, date, subtitle)
+  # # produce the accessible headers
+  # html_h2s <- sapply(
+  #   h2s, tags$h2,
+  #   class = "header_h2s toc-ignore", simplify = FALSE
+  # )
+  # # assemble head
+  # header <- tags$header(
+  #   tags$meta(charset = encoding),
+  #   tags$title(title),
+  #   # h1 needs to be the same as title
+  #   tags$h1(title, id = "title toc-ignore", class = "toc-ignore"),
+  #   unname(html_h2s)
+  # )
 
   # template ----------------------------------------------------------------
   text <- "
