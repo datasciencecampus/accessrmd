@@ -69,30 +69,14 @@ access_head <- function(
     )
   # find date
   date <- str_squish(unlist(str_split(head[grep("date: ", head)], ":"))[2])
-  
-  # find indices for additional header titles
-  hd_indices <- grep("author:|date:|subtitle:", head)
-  # extract the h2 text
-  h2s <- sapply(str_split(head[hd_indices], pattern = ":"), "[[", 2)
-  
 # assemble_header ---------------------------------------------------------
+  
+  html_head <- assemble_header(title = title_content,
+                               subtitle = subtitle,
+                               auth = author,
+                               doc_date = date,
+                               enc = encoding)
 
-  # produce the accessible title
-  html_title <- tags$title(title_content)
-  # h1 needs to be the same as title
-  h1_content <- tags$h1(title_content, id = "title toc-ignore",
-                        class = "toc-ignore")
-  
-  # produce the accessible headers
-  html_h2s <- sapply(h2s, tags$h2, class = "header_h2s toc-ignore",
-                     simplify = FALSE)
-  
-  html_head <- tags$header(
-    tags$meta(charset = encoding),
-    html_title,
-    h1_content,
-    unname(html_h2s)
-  )
 # toc status --------------------------------------------------------------
   
   tocify <- FALSE
