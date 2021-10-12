@@ -46,7 +46,7 @@ test_that("Output has been written as expected", {
   expect_true(
     any(
       grepl(
-        "  <h1 id=\"title toc-ignore\" class=\"toc-ignore\">minimal test</h1>",
+        "  <h1 class=\"title toc-ignore\">minimal test</h1>",
         lines
       )
     )
