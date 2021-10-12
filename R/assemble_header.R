@@ -19,7 +19,7 @@ assemble_header <- function(title, subtitle, auth, doc_date, enc){
   if(length(subtitle) == 0){
     h2_auth <- tags$h2(auth, class = "author toc-ignore")
     h2_date <- tags$h2(doc_date, class = "date toc-ignore")
-    metas <- c(h2_auth, h2_date)
+    metas <- list(h2_auth, h2_date)
   } else {
     h2_sub <- tags$h2(subtitle, class = "subtitle toc-ignore")
     h3_auth <- tags$h3(auth, class = "author toc-ignore")
