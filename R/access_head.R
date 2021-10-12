@@ -15,7 +15,7 @@
 #' @return Adjust the Rmd YAML provided to `rmd_path`, improving its
 #' accessibility for screen readers. Only works with html output.
 #'
-#' @importFrom stringr str_split str_remove
+#' @importFrom stringr str_split str_remove str_squish
 #' @importFrom knitr current_input
 #'
 #' @export
@@ -56,8 +56,19 @@ access_head <- function(
   # Clean out quotations
   head <- gsub('"|\'', "", head)
   # find title
-  title_index <- grep("title:", head)
-  title_content <- str_split(head[title_index], pattern = ":")[[1]][2]
+  title_content <- str_squish(
+    str_split(head[grep("title:", head)], pattern = ":")[[1]][2]
+    )
+  # find subtitle
+  subtitle <- str_squish(
+    unlist(str_split(head[grep("subtitle: ", head)], ":"))[2]
+    )
+  # find author
+  author <- str_squish(
+    unlist(str_split(head[grep("author: ", head)], ":"))[2]
+    )
+  # find date
+  date <- str_squish(unlist(str_split(head[grep("date: ", head)], ":"))[2])
   
   # find indices for additional header titles
   hd_indices <- grep("author:|date:|subtitle:", head)
