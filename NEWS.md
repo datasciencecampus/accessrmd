@@ -18,8 +18,6 @@ author and date.
 * Floating toc compatability.
 * Uses 'assemble_header()'.
 
-
-
 #### 'access_img()'
 
 * Used to insert images into Rmarkdown documents that predictably renders alt
@@ -77,7 +75,6 @@ text (as opposed to markdown syntax which can be unreliable).
 * \{.toc-ignore\} compatibility.
 * Code fence regex adapted to avoid incorrect toc render when code chunk included prior to first h2 header.
 
-
 #### 'retrieve_rmds()'
 
 * Search for Rmds within a file structure, return relative paths.
@@ -90,7 +87,6 @@ text (as opposed to markdown syntax which can be unreliable).
 * Warns on alt text equal to src attribute value.
 * Warns on alt text exceeding a lang specific limit (see readme).
 
-
 ***
 
 ## To do
@@ -101,6 +97,7 @@ text (as opposed to markdown syntax which can be unreliable).
 * wrapper function that packages up broken links, sus alt text, long alt text,
 header hierarchy, correct img HTML in one go.
 * urlchecker - broken or permanent redirects.
+* 'access_img()' leading to intermediate plots being saved on Windows. Investigate tmpfile behaviour.
 
 **MVP**
 
