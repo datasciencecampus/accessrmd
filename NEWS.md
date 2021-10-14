@@ -91,15 +91,16 @@ text (as opposed to markdown syntax which can be unreliable).
 
 ## To do
 
+* urlchecker - broken or permanent redirects.
+* wrapper function that finds all images and replaces with 'access_img()' code.
 * correct header hierarchy.
 * refactor: find all alts
-* wrapper function that finds all images and replaces with access_img code.
 * wrapper function that packages up broken links, sus alt text, long alt text,
 header hierarchy, correct img HTML in one go.
-* urlchecker - broken or permanent redirects.
-* 'access_img()' leading to intermediate plots being saved on Windows. Investigate tmpfile behaviour.
+* 'access_img()' leading to intermediate plots being saved on Windows.
+Investigate tmpfile behaviour.
 
-**MVP**
+## Parked
 
 * Microsoft Azure Cognitive Services free API: automate alt text generation for
 images. Appears to only work with web-hosted images. Can local files be
