@@ -93,6 +93,9 @@ text (as opposed to markdown syntax which can be unreliable).
 
 * urlchecker - broken or permanent redirects.
 * wrapper function that finds all images and replaces with 'access_img()' code.
+* Refactor 'insert_toc()', inserted code chunk should contain a call to 
+'render_toc()' only. Dev another func that checks setup code chunk for
+'library(accessmrd' and insert with warning if needed.
 * correct header hierarchy.
 * refactor: find all alts
 * wrapper function that packages up broken links, sus alt text, long alt text,

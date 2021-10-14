@@ -6,15 +6,16 @@
     <h2 class="header_h2s"> 09/08/2021</h2>
   </header>
   <body>
-```{r, echo=FALSE}
-library(accessrmd, quietly = TRUE)
-render_toc(basename(knitr::current_input()))
-```
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(accessrmd)
 ```
 
+```{r, echo=FALSE}
+render_toc(basename(knitr::current_input()))
+```
 ## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
