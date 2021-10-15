@@ -41,32 +41,27 @@ access_head <- function(
   # dynamic head logic ------------------------------------------------------
   # Will need to identify YAML elements present and convert to html flexibly
   # remove YAML bounds "---"
-  head <- setdiff(yaml_head, "---")
-  # check for html output type. Stop if not.
-  html_loc <- grepl(pattern = "html_document", head)
-  if (any(html_loc)) {
-    # html found. subset out the html tag.
-    head <- head[!html_loc]
-  } else {
-    stop("'access_head()' only works with html output.")
-  }
-
+  header_txt <- setdiff(yaml_head, "---")
+  # check html output is compatible.
+  check_compat(header_txt)
+  # html found. subset out the html tag.
+  header_txt <- header_txt[!html_loc]
   # Clean out quotations
-  head <- gsub('"|\'', "", head)
+  header_txt <- gsub('"|\'', "", header_txt)
   # find title
   title_content <- str_squish(
-    str_split(head[grep("title:", head)], pattern = ":")[[1]][2]
+    str_split(header_txt[grep("title:", header_txt)], pattern = ":")[[1]][2]
     )
   # find subtitle
   subtitle <- str_squish(
-    unlist(str_split(head[grep("subtitle: ", head)], ":"))[2]
+    unlist(str_split(header_txt[grep("subtitle: ", header_txt)], ":"))[2]
     )
   # find author
   author <- str_squish(
-    unlist(str_split(head[grep("author: ", head)], ":"))[2]
+    unlist(str_split(header_txt[grep("author: ", header_txt)], ":"))[2]
     )
   # find date
-  date <- str_squish(unlist(str_split(head[grep("date: ", head)], ":"))[2])
+  date <- str_squish(unlist(str_split(header_txt[grep("date: ", header_txt)], ":"))[2])
 # assemble_header ---------------------------------------------------------
   
   html_head <- assemble_header(title = title_content,
@@ -78,9 +73,9 @@ access_head <- function(
 # toc status --------------------------------------------------------------
   
   tocify <- FALSE
-  tocify <- any(grepl("toc: true|toc: yes", head))
+  tocify <- any(grepl("toc: true|toc: yes", header_txt))
   if(tocify){
-    float <- any(grepl("toc_float: true|toc_float: yes", head))
+    float <- any(grepl("toc_float: true|toc_float: yes", header_txt))
   }
   if("float" %in% ls()){
     if(float){
