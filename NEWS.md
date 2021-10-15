@@ -45,6 +45,11 @@ text (as opposed to markdown syntax which can be unreliable).
 * Checks if found lang value has an associated alt text length limit.
 * Returns a found limit.
 
+#### 'check_compat()' (Not exported)
+
+* Handler that stops if output is ioslides, xaringan, flexdashboard, slidy or 
+not a html_document output.
+
 #### 'detect_html_lang()' (Not exported)
 
 * Searches lines for lang values.
@@ -91,8 +96,6 @@ text (as opposed to markdown syntax which can be unreliable).
 
 ## To do
 
-* 'check_compat()' handler that stops if output is ioslides, xaringan, 
-flexdashboard, slidy.
 * urlchecker - broken or permanent redirects. Use RCurl & iterate over found
 urls.
 * wrapper function that finds all images and replaces with 'access_img()' code.
