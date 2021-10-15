@@ -10,8 +10,7 @@ check_compat(yaml_txt)
 \item{yaml_txt}{Output of 'readLines()' separated from body text.}
 }
 \value{
-Error condition if non-standard html found. Returns index of
-"html_document" on success.
+Error condition if non-standard html found.
 }
 \description{
 Checks to ensure file is not a special flavour of html output, including

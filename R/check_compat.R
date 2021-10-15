@@ -6,8 +6,7 @@
 #'
 #' @param yaml_txt Output of 'readLines()' separated from body text.
 #'
-#' @return Error condition if non-standard html found. Returns index of
-#' "html_document" on success.
+#' @return Error condition if non-standard html found.
 #' 
 #' @importFrom stringr str_split
 #'
