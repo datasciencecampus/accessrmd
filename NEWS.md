@@ -91,7 +91,11 @@ text (as opposed to markdown syntax which can be unreliable).
 
 ## To do
 
-* urlchecker - broken or permanent redirects.
+* Yaml bounds on edge cases like xaringan.
+* 'check_compat()' handler that stops if output is ioslides, xaringan, 
+flexdashboard, slidy.
+* urlchecker - broken or permanent redirects. Use RCurl & iterate over found
+urls.
 * wrapper function that finds all images and replaces with 'access_img()' code.
 * Refactor 'insert_toc()', inserted code chunk should contain a call to 
 'render_toc()' only. Dev another func that checks setup code chunk for
