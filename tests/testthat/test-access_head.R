@@ -59,25 +59,6 @@ This is an R Markdown document. Markdown is a <http://rmarkdown.rstudio.com>.",
   con = no_yaml_rmd
 )
 
-
-# test file for non-standard YAML
-
-err_yaml_rmd <- tempfile(fileext = ".Rmd")
-file.create(err_yaml_rmd)
-writeLines("---
-title: \"test\"
-author: \"Richard Leyshon\"
-date: \"02/07/2021\"
-output: html_document
----
----
-
-```
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown", con = err_yaml_rmd)
-
 # test file for non-HTML output
 non_html_rmd <- tempfile(fileext = ".Rmd")
 file.create(non_html_rmd)
@@ -165,10 +146,6 @@ test_that("Expected behaviour on inplace = FALSE", {
 
 test_that("Errors on non-standard Rmd", {
   expect_error(access_head(no_yaml_rmd, lan = "en"), "YAML header not found.")
-  expect_error(
-    access_head(err_yaml_rmd, lan = "en"),
-    "Non standard YAML found."
-  )
   expect_error(
     access_head(non_html_rmd, lan = "en"),
     "only works with html output."
