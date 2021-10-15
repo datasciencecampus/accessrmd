@@ -24,7 +24,7 @@ check_compat <- function(yaml_txt){
     x <- grepl(pattern = outputs, yaml_txt)
     if(any(x)){
       return(stop(paste(names(specials[grepl(outputs, specials)]),
-                 "output is not compatible. Non-trivial accessibility errors")))
+                 "output is not compatible.")))
     }
   }
   # check for html output type. Stop if not.

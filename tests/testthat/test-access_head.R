@@ -59,21 +59,7 @@ This is an R Markdown document. Markdown is a <http://rmarkdown.rstudio.com>.",
   con = no_yaml_rmd
 )
 
-# test file for non-HTML output
-non_html_rmd <- tempfile(fileext = ".Rmd")
-file.create(non_html_rmd)
-writeLines("---
-title: \"test\"
-author: \"Richard Leyshon\"
-date: \"02/07/2021\"
-output: pdf_document
----
 
-```
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown", con = non_html_rmd)
 
 # testfile for YAML-specified lang attribute
 lang_rmd <- tempfile(fileext = ".Rmd")
@@ -144,14 +130,10 @@ test_that("Expected behaviour on inplace = FALSE", {
   expect_true(file.exists(outfile))
 })
 
-test_that("Errors on non-standard Rmd", {
-  expect_error(access_head(no_yaml_rmd, lan = "en"), "YAML header not found.")
-  expect_error(
-    access_head(non_html_rmd, lan = "en"),
-    "only works with html output."
-  )
-})
-
+test_that("Errors on non-standard Rmd",
+          expect_error(
+            access_head(no_yaml_rmd, lan = "en"), "YAML header not found.")
+          )
 
 test_that("YAML lang is set to HTML attr", {
   expect_message(
