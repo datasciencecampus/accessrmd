@@ -9,6 +9,7 @@ institute: "RStudio, PBC"
 date: "2016/12/12 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
+  
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -66,6 +67,3 @@ test_that("func errors as expected", {
                "slidy output is not compatible.")
 })
 
-test_that("func returns html location on success", {
-  expect_equal(which(check_compat(html_yaml)), 5)
-})

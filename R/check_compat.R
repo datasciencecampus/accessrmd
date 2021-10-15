@@ -33,6 +33,6 @@ check_compat <- function(yaml_txt){
   if (!any(html_loc)){
     return(stop("'access_head()' only works with html output."))
   } else {
-    return(html_loc)
+    return(NULL)
   }
 }

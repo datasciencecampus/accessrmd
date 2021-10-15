@@ -43,9 +43,7 @@ access_head <- function(
   # remove YAML bounds "---"
   header_txt <- setdiff(yaml_head, "---")
   # check html output is compatible.
-  html_loc <- check_compat(header_txt)
-  # html found. subset out the html tag.
-  header_txt <- header_txt[!html_loc]
+  check_compat(header_txt)
   # Clean out quotations
   header_txt <- gsub('"|\'', "", header_txt)
   # find title
