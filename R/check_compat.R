@@ -6,7 +6,8 @@
 #'
 #' @param yaml_txt Output of 'readLines()' separated from body text.
 #'
-#' @return Error condition if non-standard html found.
+#' @return Error condition if non-standard html found. Returns index of
+#' "html_document" on success.
 #' 
 #' @importFrom stringr str_split
 #'
@@ -28,7 +29,7 @@ check_compat <- function(yaml_txt){
     }
   }
   # check for html output type. Stop if not.
-  html_loc <- grepl(pattern = "html_document", yaml_txt)
+  html_loc <- grep(pattern = "html_document", yaml_txt)
   if (!any(html_loc)){
     return(stop("'access_head()' only works with html output."))
   } else {
