@@ -20,14 +20,14 @@ check_compat <- function(yaml_txt){
   # check all special cases and output error if found
   for (outputs in specials) {
     x <- grepl(pattern = outputs, yaml_txt)
-    if(x){
+    if(any(x)){
       stop(paste(names(specials[grepl(outputs, specials)]),
                  "output is not compatible. Non-trivial accessibility errors"))
     }
   }
   # check for html output type. Stop if not.
   html_loc <- grepl(pattern = "html_document", yaml_txt)
-  if (!html_loc){
+  if (!any(html_loc)){
     stop("'access_head()' only works with html output.")
     }
 }
