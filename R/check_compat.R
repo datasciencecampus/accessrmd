@@ -7,6 +7,8 @@
 #' @param yaml_txt Output of 'readLines()' separated from body text.
 #'
 #' @return Error condition if non-standard html found.
+#' 
+#' @importFrom stringr str_split
 #'
 check_compat <- function(yaml_txt){
   specials <- c("xaringan::moon_reader:", "ioslides_presentation",
@@ -21,13 +23,13 @@ check_compat <- function(yaml_txt){
   for (outputs in specials) {
     x <- grepl(pattern = outputs, yaml_txt)
     if(any(x)){
-      stop(paste(names(specials[grepl(outputs, specials)]),
-                 "output is not compatible. Non-trivial accessibility errors"))
+      return(stop(paste(names(specials[grepl(outputs, specials)]),
+                 "output is not compatible. Non-trivial accessibility errors")))
     }
   }
   # check for html output type. Stop if not.
   html_loc <- grepl(pattern = "html_document", yaml_txt)
   if (!any(html_loc)){
-    stop("'access_head()' only works with html output.")
+    return(stop("'access_head()' only works with html output."))
     }
 }
