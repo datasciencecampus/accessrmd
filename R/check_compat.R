@@ -31,5 +31,7 @@ check_compat <- function(yaml_txt){
   html_loc <- grepl(pattern = "html_document", yaml_txt)
   if (!any(html_loc)){
     return(stop("'access_head()' only works with html output."))
-    }
+  } else {
+    return(html_loc)
+  }
 }

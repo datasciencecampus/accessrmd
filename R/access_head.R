@@ -30,7 +30,7 @@ access_head <- function(
   yaml_bounds <- grep(pattern = "^---$", lines)
   # stop if YAML bounds not standard
   if (length(yaml_bounds) == 0) {
-    stop("YAML header not found.")
+    stop("YAML header not found. Have you previously run 'access_head()'?")
   }
   # produce yaml sequence
   yaml_seq <- yaml_bounds[1]:yaml_bounds[2]
@@ -43,7 +43,7 @@ access_head <- function(
   # remove YAML bounds "---"
   header_txt <- setdiff(yaml_head, "---")
   # check html output is compatible.
-  check_compat(header_txt)
+  html_loc <- check_compat(header_txt)
   # html found. subset out the html tag.
   header_txt <- header_txt[!html_loc]
   # Clean out quotations
