@@ -91,7 +91,6 @@ text (as opposed to markdown syntax which can be unreliable).
 
 ## To do
 
-* Yaml bounds on edge cases like xaringan.
 * 'check_compat()' handler that stops if output is ioslides, xaringan, 
 flexdashboard, slidy.
 * urlchecker - broken or permanent redirects. Use RCurl & iterate over found
