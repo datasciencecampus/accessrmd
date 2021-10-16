@@ -17,6 +17,8 @@ author and date.
 * load warnings suppressed on inserting 'render_toc()' chunk.
 * Floating toc compatability.
 * Uses 'assemble_header()'.
+* Incompatible with specific types of html output, such as Flexdashboard,
+ioslides, slidy and xaringan.
 
 #### 'access_img()'
 
