@@ -15,10 +15,13 @@ find_all_tags <- function(lines = NULL, tag = c("img", "link")) {
   # set the names of the lines vector as a count
   names(lines) <- seq_along(lines)
 
-  # regex matches img tags & ![]() markdown syntax
-  # tested on https://regex101.com/r/CU4g3f/1
   tag_ind <- grep(pattern = if(tag == "img"){
+    # regex matches img tags & ![]() markdown syntax
+    # tested on https://regex101.com/r/CU4g3f/1
     "(<img.* *>|\\!\\[.* *]\\(.* *\\))"
+    } else if(tag == "link"){
+      # tested on https://regex101.com/r/Yu8syD/1
+      "(<a.* *>|\\[.* *]\\(.* *\\))"
     }, lines)
   
   tag_only <- lines[tag_ind]
