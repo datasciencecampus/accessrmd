@@ -22,7 +22,7 @@ sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   # define placeholder values
   place_val <- c("nbsp", "spacer")
   # return image lines only
-  images <- find_all_imgs(lines)
+  images <- find_all_tags(lines, tag = "img")
   # get alt & src -----------------------------------------------------------
 
   # this can be img tag or markdown syntax
