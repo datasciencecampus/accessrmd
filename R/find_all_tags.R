@@ -20,9 +20,13 @@ find_all_tags <- function(lines = NULL, tag = c("img", "link")) {
     # tested on https://regex101.com/r/CU4g3f/1
     "(<img.* *>|\\!\\[.* *]\\(.* *\\))"
     } else if(tag == "link"){
-      # tested on https://regex101.com/r/Yu8syD/1
-      "(<a.* *>|\\[.* *]\\(.* *\\))"
-    }, lines)
+      # tested on https://regex101.com/r/mwB8mz/1
+      "(<a.* *>|(?<!\\!)\\[.* *]\\(.* *\\))"
+    },
+    lines,
+    # Note that the negative lookbehind used in the "link" regex to exclude
+    # markdown img matches ![]() only works with perl compatible regexes
+    perl = TRUE)
   
   tag_only <- lines[tag_ind]
   return(tag_only)
