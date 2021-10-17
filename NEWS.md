@@ -52,6 +52,10 @@ text (as opposed to markdown syntax which can be unreliable).
 * Handler that stops if output is ioslides, xaringan, flexdashboard, slidy or 
 not a html_document output.
 
+#### 'check_urls()'
+
+* Check urls in an Rmarkdown for errors.
+
 #### 'detect_html_lang()' (Not exported)
 
 * Searches lines for lang values.
@@ -113,6 +117,7 @@ Investigate tmpfile behaviour.
 
 ## Parked
 
+* 'check_urls()' links like: <http://rmarkdown.rstudio.com> aren't found.
 * Microsoft Azure Cognitive Services free API: automate alt text generation for
 images. Appears to only work with web-hosted images. Can local files be
 uploaded?
