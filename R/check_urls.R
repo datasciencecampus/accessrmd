@@ -3,7 +3,8 @@
 #' Check links within an Rmarkdown document for any urls that responds with an
 #' error.
 #'
-#' @param rmd_path
+#' @param rmd_path Path to the Rmd that requires links to be checked. Rmd must
+#' be output type html.
 #'
 #' @return Lines of any urls that respond with an error.
 #'

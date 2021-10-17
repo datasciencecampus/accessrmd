@@ -33,7 +33,8 @@ Imports:
     htmltools,
     stringr,
     rlist,
-    knitr
+    knitr,
+    RCurl
 Suggests:
     testthat,
     rmarkdown,
