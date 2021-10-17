@@ -35,7 +35,7 @@ check_urls <- function(rmd_path) {
   } else {
     warning(
       "Check lines for broken links:\n",
-      paste(names(errors), collape = "\n")
+      paste(names(errors), collapse = "\n")
     )
   }
 }
