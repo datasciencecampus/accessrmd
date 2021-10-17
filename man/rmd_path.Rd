@@ -11,7 +11,8 @@ An object of class \code{character} of length 1.
 rmd_path
 }
 \arguments{
-\item{rmd_path}{}
+\item{rmd_path}{Path to the Rmd that requires links to be checked. Rmd must
+be output type html.}
 }
 \value{
 Lines of any urls that respond with an error.
