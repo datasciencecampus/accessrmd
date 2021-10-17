@@ -55,6 +55,7 @@ not a html_document output.
 #### 'check_urls()'
 
 * Check urls in an Rmarkdown for errors.
+* Returns line numbers of any urls that respond with an error.
 
 #### 'detect_html_lang()' (Not exported)
 
