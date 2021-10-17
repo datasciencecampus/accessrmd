@@ -49,44 +49,48 @@ access_head <- function(
   # find title
   title_content <- str_squish(
     str_split(header_txt[grep("title:", header_txt)], pattern = ":")[[1]][2]
-    )
+  )
   # find subtitle
   subtitle <- str_squish(
     unlist(str_split(header_txt[grep("subtitle: ", header_txt)], ":"))[2]
-    )
+  )
   # find author
   author <- str_squish(
     unlist(str_split(header_txt[grep("author: ", header_txt)], ":"))[2]
-    )
+  )
   # find date
   date <- str_squish(unlist(str_split(header_txt[grep("date: ", header_txt)], ":"))[2])
-# assemble_header ---------------------------------------------------------
-  
-  html_head <- assemble_header(title = title_content,
-                               subtitle = subtitle,
-                               auth = author,
-                               doc_date = date,
-                               enc = encoding)
+  # assemble_header ---------------------------------------------------------
 
-# toc status --------------------------------------------------------------
-  
+  html_head <- assemble_header(
+    title = title_content,
+    subtitle = subtitle,
+    auth = author,
+    doc_date = date,
+    enc = encoding
+  )
+
+  # toc status --------------------------------------------------------------
+
   tocify <- FALSE
   tocify <- any(grepl("toc: true|toc: yes", header_txt))
-  if(tocify){
+  if (tocify) {
     float <- any(grepl("toc_float: true|toc_float: yes", header_txt))
   }
-  if("float" %in% ls()){
-    if(float){
+  if ("float" %in% ls()) {
+    if (float) {
       tocify <- "float"
     }
   }
   # reassemble the accessible head ------------------------------------------
-  
-  html_out <- insert_toc(toc = tocify,
-                         header = html_head,
-                         text = rmd_body,
-                         lan = lan)
-  
+
+  html_out <- insert_toc(
+    toc = tocify,
+    header = html_head,
+    text = rmd_body,
+    lan = lan
+  )
+
   if (inplace == TRUE) {
     # outfile will be the same as infile
     outfile <- rmd_path

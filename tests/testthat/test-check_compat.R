@@ -45,25 +45,35 @@ author: \"Richard Leyshon\"
 date: \"02/07/2021\"
 output: pdf_document
 ---"
-html_yaml <- c('---',
-'title: "Testing"',
-'author: "Rich Leyshon"',
-'date: "15/10/2021"',
-'output: html_document')
+html_yaml <- c(
+  "---",
+  'title: "Testing"',
+  'author: "Rich Leyshon"',
+  'date: "15/10/2021"',
+  "output: html_document"
+)
 
 # tests -------------------------------------------------------------------
 
 test_that("func errors as expected", {
-  expect_error(check_compat(non_html_yaml),
-               "only works with html output."
-               )
-  expect_error(check_compat(xar_yaml),
-               "xaringan output is not compatible.")
-  expect_error(check_compat(io_yaml),
-               "ioslides output is not compatible.")
-  expect_error(check_compat(flex_yaml),
-               "flexdashboard output is not compatible.")
-  expect_error(check_compat(slidy_yaml),
-               "slidy output is not compatible.")
+  expect_error(
+    check_compat(non_html_yaml),
+    "only works with html output."
+  )
+  expect_error(
+    check_compat(xar_yaml),
+    "xaringan output is not compatible."
+  )
+  expect_error(
+    check_compat(io_yaml),
+    "ioslides output is not compatible."
+  )
+  expect_error(
+    check_compat(flex_yaml),
+    "flexdashboard output is not compatible."
+  )
+  expect_error(
+    check_compat(slidy_yaml),
+    "slidy output is not compatible."
+  )
 })
-

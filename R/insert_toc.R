@@ -13,8 +13,7 @@
 insert_toc <- function(toc,
                        header,
                        text,
-                       lan
-                       ){
+                       lan) {
   # if toc is float, embed toc YAML
   if (toc == "float") {
     yaml <- c(
@@ -58,7 +57,6 @@ insert_toc <- function(toc,
   # gsub them back
   html_out <- gsub("&lt;", "<", html_out)
   html_out <- gsub("&gt;", ">", html_out)
-  
+
   return(html_out)
-  
 }

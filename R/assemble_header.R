@@ -10,13 +10,13 @@
 #'
 #' @return An assembled html output page containing the required toc code.
 #'
-assemble_header <- function(title, subtitle, auth, doc_date, enc){
-  
+assemble_header <- function(title, subtitle, auth, doc_date, enc) {
+
   # produce the accessible title
   html_title <- tags$title(title)
   # h1 needs to be the same as title
   h1_content <- tags$h1(title, class = "title toc-ignore")
-  if(length(subtitle) == 0){
+  if (length(subtitle) == 0) {
     h2_auth <- tags$h2(auth, class = "author toc-ignore")
     h2_date <- tags$h2(doc_date, class = "date toc-ignore")
     metas <- list(h2_auth, h2_date)
@@ -27,7 +27,7 @@ assemble_header <- function(title, subtitle, auth, doc_date, enc){
     metas <- list(h2_sub, h3_auth, h3_date)
   }
 
-# assemble header ---------------------------------------------------------
+  # assemble header ---------------------------------------------------------
   html_head <- tags$header(
     tags$meta(charset = enc),
     html_title,

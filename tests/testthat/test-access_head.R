@@ -130,10 +130,12 @@ test_that("Expected behaviour on inplace = FALSE", {
   expect_true(file.exists(outfile))
 })
 
-test_that("Errors on non-standard Rmd",
-          expect_error(
-            access_head(no_yaml_rmd, lan = "en"), "YAML header not found.")
-          )
+test_that(
+  "Errors on non-standard Rmd",
+  expect_error(
+    access_head(no_yaml_rmd, lan = "en"), "YAML header not found."
+  )
+)
 
 test_that("YAML lang is set to HTML attr", {
   expect_message(

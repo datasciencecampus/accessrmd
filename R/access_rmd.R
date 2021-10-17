@@ -54,14 +54,16 @@ access_rmd <- function(
   } else if (all(file.exists(filenm) & !force)) {
     stop("filenm found on disk. 'force' is FALSE.")
   }
-  
-# assemble_header ---------------------------------------------------------
-  header <- assemble_header(title = title,
-                            subtitle = subtitle,
-                            auth = author,
-                            doc_date = date,
-                            enc = encoding)
-  
+
+  # assemble_header ---------------------------------------------------------
+  header <- assemble_header(
+    title = title,
+    subtitle = subtitle,
+    auth = author,
+    doc_date = date,
+    enc = encoding
+  )
+
   # template ----------------------------------------------------------------
   text <- "
 ```{r setup, include=FALSE}
