@@ -86,7 +86,7 @@ writeLines("
 ---
 title: \"test_inline_code\"
 author: \"Richard Leyshon\"
-date: \"`r Sys.Date()`\"
+date: \"`r format(Sys.Date(), '%d %b %y')`\"
 output: html_document
 ---
 
@@ -167,15 +167,11 @@ test_that("Expected behaviour on inplace = TRUE", {
   )
   # YAML should be replaced from source file with html
   expect_false(all(grepl(pattern = "---", readLines(test_rmd))))
-  # check no warnings
-  expect_message(
-    access_head(inline_rmd, lan = "en", inplace = TRUE),
-    "Setting html lan to en"
-  )
 })
 
 test_that("Inline code has been correctly written", {
-  expect_true(any(grepl("r Sys.Date()", readLines(inline_rmd))))
+  expect_true(any(grepl("`r format\\(Sys.Date\\(\\), '%d %b %y'\\)`",
+                        readLines(inline_rmd))))
 })
 
 test_that("Toc code chunk has been inserted", {
