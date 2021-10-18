@@ -15,7 +15,7 @@
 #' @return Adjust the Rmd YAML provided to `rmd_path`, improving its
 #' accessibility for screen readers. Only works with html output.
 #'
-#' @importFrom stringr str_split str_remove str_squish
+#' @importFrom stringr str_split str_remove str_squish str_sub
 #' @importFrom knitr current_input
 #'
 #' @export
@@ -45,21 +45,23 @@ access_head <- function(
   # check html output is compatible.
   check_compat(header_txt)
   # Clean out quotations
-  header_txt <- gsub('"|\'', "", header_txt)
+  # header_txt <- gsub('"|\'', "", header_txt)
   # find title
-  title_content <- str_squish(
+  title_content <- str_sub(str_squish(
     str_split(header_txt[grep("title:", header_txt)], pattern = ":")[[1]][2]
-  )
+  ), 2, -2)
   # find subtitle
-  subtitle <- str_squish(
+  subtitle <- str_sub(str_squish(
     unlist(str_split(header_txt[grep("subtitle: ", header_txt)], ":"))[2]
-  )
+  ), 2, -2)
   # find author
-  author <- str_squish(
+  author <- str_sub(str_squish(
     unlist(str_split(header_txt[grep("author: ", header_txt)], ":"))[2]
-  )
+  ), 2, -2)
   # find date
-  date <- str_squish(unlist(str_split(header_txt[grep("date: ", header_txt)], ":"))[2])
+  date <- str_sub(str_squish(unlist(str_split(header_txt[grep("date: ", header_txt)],
+                                      ":"))[2]), 2, -2)
+
   # assemble_header ---------------------------------------------------------
 
   html_head <- assemble_header(
