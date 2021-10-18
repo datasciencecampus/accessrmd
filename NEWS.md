@@ -19,6 +19,7 @@ author and date.
 * Uses 'assemble_header()'.
 * Incompatible with specific types of html output, such as Flexdashboard,
 ioslides, slidy and xaringan.
+* Inline code syntax bug fix.
 
 #### 'access_img()'
 
