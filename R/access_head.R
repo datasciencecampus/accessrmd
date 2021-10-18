@@ -59,8 +59,11 @@ access_head <- function(
     unlist(str_split(header_txt[grep("author: ", header_txt)], ":"))[2]
   ), 2, -2)
   # find date
-  date <- str_sub(str_squish(unlist(str_split(header_txt[grep("date: ", header_txt)],
-                                      ":"))[2]), 2, -2)
+  date <- str_sub(
+    str_squish(unlist(str_split(
+      header_txt[grep("date: ", header_txt)], ":"
+      ))[2]),
+    2, -2)
 
   # assemble_header ---------------------------------------------------------
 
