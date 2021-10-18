@@ -12,7 +12,6 @@
 #' @importFrom RCurl url.exists
 #'
 #' @export
-rmd_path <- "tests/testfiles/test_links.Rmd"
 check_urls <- function(rmd_path) {
   message(paste("Checking", basename(rmd_path)))
   lines <- handle_rmd_path(rmd_path = rmd_path)
