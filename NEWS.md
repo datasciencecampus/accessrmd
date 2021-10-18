@@ -103,9 +103,6 @@ not a html_document output.
 
 ## To do
 
-* urlchecker - broken or permanent redirects. Use RCurl & iterate over found
-urls.
-* wrapper function that finds all images and replaces with 'access_img()' code.
 * Refactor 'insert_toc()', inserted code chunk should contain a call to 
 'render_toc()' only. Dev another func that checks setup code chunk for
 'library(accessmrd' and insert with warning if needed.
@@ -118,6 +115,7 @@ Investigate tmpfile behaviour.
 
 ## Parked
 
+* wrapper function that finds all images and replaces with 'access_img()' code.
 * 'check_urls()' links like: <http://rmarkdown.rstudio.com> aren't found.
 * Microsoft Azure Cognitive Services free API: automate alt text generation for
 images. Appears to only work with web-hosted images. Can local files be
