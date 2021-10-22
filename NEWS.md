@@ -116,6 +116,9 @@ Investigate tmpfile behaviour.
 
 ## Parked
 
+* 'assemble_header()' handles errors gracefully. Consider refactoring and
+handling cases where no date, no author, what about other potential metas like
+abstract for academic papers?
 * wrapper function that finds all images and replaces with 'access_img()' code.
 * 'check_urls()' links like: <http://rmarkdown.rstudio.com> aren't found.
 * Microsoft Azure Cognitive Services free API: automate alt text generation for
