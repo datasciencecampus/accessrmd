@@ -4,7 +4,7 @@
 \alias{assemble_header}
 \title{Assemble HTML header output from text provided.}
 \usage{
-assemble_header(title, subtitle, auth, doc_date, enc)
+assemble_header(title, subtitle = NULL, auth, doc_date, enc)
 }
 \arguments{
 \item{title}{Text string to use as document title and h1 heading.}
