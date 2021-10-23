@@ -70,6 +70,7 @@ not a html_document output.
 #### 'insert_toc()' (Not exported)
 
 * Handler assembles html document with inserted toc code.
+* Messages on toc or toc_float.
 
 #### 'find_all_imgs()' (Not exported)
 
@@ -104,7 +105,6 @@ not a html_document output.
 
 ## To do
 
-* 'insert_toc()' should msg on toc_float.
 * 'access_head()' author: "Lead Developers: Name 1<br>Name 2" results in
 <h3 class="author toc-ignore">Lead Developer</h3>.
 * 'access_head()' subtitle is always included.
