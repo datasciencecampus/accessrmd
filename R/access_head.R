@@ -48,20 +48,21 @@ access_head <- function(
   # header_txt <- gsub('"|\'', "", header_txt)
   # find title
   title_content <- str_sub(str_squish(
-    str_split(header_txt[grep("title:", header_txt)], pattern = ":")[[1]][2]
+    str_split(header_txt[grep("title:", header_txt)],
+              pattern = ":", n = 2)[[1]][2]
   ), 2, -2)
   # find subtitle
   subtitle <- str_sub(str_squish(
-    unlist(str_split(header_txt[grep("subtitle: ", header_txt)], ":"))[2]
+    unlist(str_split(header_txt[grep("subtitle: ", header_txt)], ":", n = 2))[2]
   ), 2, -2)
   # find author
   author <- str_sub(str_squish(
-    unlist(str_split(header_txt[grep("author: ", header_txt)], ":"))[2]
+    unlist(str_split(header_txt[grep("author: ", header_txt)], ":", n = 2))[2]
   ), 2, -2)
   # find date
   date <- str_sub(
     str_squish(unlist(str_split(
-      header_txt[grep("date: ", header_txt)], ":"
+      header_txt[grep("date: ", header_txt)], ":", n = 2
       ))[2]),
     2, -2)
 
