@@ -104,6 +104,16 @@ not a html_document output.
 
 ## To do
 
+* 'insert_toc()' should msg on toc_float.
+* 'access_head()' author: "Lead Developers: Name 1<br>Name 2" results in
+<h3 class="author toc-ignore">Lead Developer</h3>.
+* 'access_head()' subtitle is always included.
+* 'access_head()' date is always included.
+* 'access_head()' title: 'Data Science for Policy: Preprocessing' results in:
+  <title>Data Science for Polic</title>
+  <h1 class="title toc-ignore">Data Science for Polic</h1>
+
+
 * Refactor 'insert_toc()', inserted code chunk should contain a call to 
 'render_toc()' only. Dev another func that checks setup code chunk for
 'library(accessmrd' and insert with warning if needed.
