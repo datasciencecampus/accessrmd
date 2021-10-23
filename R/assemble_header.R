@@ -16,7 +16,7 @@ assemble_header <- function(title, subtitle = NULL, auth, doc_date, enc) {
   html_title <- tags$title(title)
   # h1 needs to be the same as title
   h1_content <- tags$h1(title, class = "title toc-ignore")
-  if (is.null(subtitle)) {
+  if (is.null(subtitle) | length(subtitle) == 0) {
     h2_auth <- tags$h2(auth, class = "author toc-ignore")
     h2_date <- tags$h2(doc_date, class = "date toc-ignore")
     metas <- list(h2_auth, h2_date)
