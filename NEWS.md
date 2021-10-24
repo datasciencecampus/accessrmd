@@ -106,7 +106,6 @@ not a html_document output.
 
 ## To do
 
-* 'access_head()' subtitle is always included.
 * 'access_head()' date is always included.
 
 
