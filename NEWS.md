@@ -95,6 +95,11 @@ not a html_document output.
 * Search for Rmds within a file structure, return relative paths.
 * Output relative paths to txt file for posterity.
 
+#### 'return_heading()' (Not exported)
+
+* Returns NULL if heading text is length zero.
+* Returns required heading level and class if text exceeds length zero.
+
 #### 'sus_alt()'
 
 * Searches Rmd files for suspicious alt text.
