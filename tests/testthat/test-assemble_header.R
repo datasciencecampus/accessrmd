@@ -49,3 +49,8 @@ test_that("Metas render correctly with subtitle", {
                any(grepl("h3", unlist(header2[[4]][[3]])))
   )
 })
+
+test_that("Func errors on no title found", 
+          expect_error(assemble_header(title = character()),
+                       "No document title found. Please adjust the Rmarkdown.")
+          )
