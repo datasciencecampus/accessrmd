@@ -1,5 +1,11 @@
+
+# deps --------------------------------------------------------------------
+
+eg_title <- return_heading(txt = "Some title.", lvl = 1, class = "title")
+
+# tests -------------------------------------------------------------------
+
 test_that("Tag is returned", {
-  eg_title <- return_heading(txt = "Some title.", lvl = 1, class = "title")
   expect_true(class(eg_title) == "shiny.tag")
 })
 
