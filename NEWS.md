@@ -111,7 +111,6 @@ not a html_document output.
 
 ## To do
 
-* test 'return_headings()'.
 * test 'assemble_header()' new error msg.
 * Where appropriate, refactor test deps to be included within test_that env.
 **MVP**
