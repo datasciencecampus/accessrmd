@@ -18,21 +18,7 @@ assemble_header <- function(title, subtitle = NULL, auth, doc_date, enc) {
   html_title <- tags$title(title)
   # h1 needs to be the same as title
   h1_content <- tags$h1(title, class = "title toc-ignore")
-  
 
-# return_heading -----------------------------------------------------------
-  # def func that returns null or required heading level with class attr
-  return_heading <- function(txt, lvl, class){
-    if(length(txt) == 0){
-      return(NULL)
-    } else{
-      h_lvl <- paste0("h", lvl)
-      heading <- tags[[h_lvl]](txt, class = paste(class, "toc-ignore"))
-    }
-  }
-  
-  
-  
   if (is.null(subtitle) | length(subtitle) == 0) {
     h2_auth <- return_heading(txt = auth, lvl = 2, class = "author")
     h2_date <- return_heading(txt = doc_date, lvl = 2, class = "date")
