@@ -18,14 +18,29 @@ assemble_header <- function(title, subtitle = NULL, auth, doc_date, enc) {
   html_title <- tags$title(title)
   # h1 needs to be the same as title
   h1_content <- tags$h1(title, class = "title toc-ignore")
+  
+
+# return_heading -----------------------------------------------------------
+  # def func that returns null or required heading level with class attr
+  return_heading <- function(txt, lvl, class){
+    if(length(txt) == 0){
+      return(NULL)
+    } else{
+      h_lvl <- paste0("h", lvl)
+      heading <- tags[[h_lvl]](txt, class = paste(class, "toc-ignore"))
+    }
+  }
+  
+  
+  
   if (is.null(subtitle) | length(subtitle) == 0) {
-    h2_auth <- tags$h2(auth, class = "author toc-ignore")
-    h2_date <- tags$h2(doc_date, class = "date toc-ignore")
+    h2_auth <- return_heading(txt = auth, lvl = 2, class = "author")
+    h2_date <- return_heading(txt = doc_date, lvl = 2, class = "date")
     metas <- list(h2_auth, h2_date)
   } else {
-    h2_sub <- tags$h2(subtitle, class = "subtitle toc-ignore")
-    h3_auth <- tags$h3(auth, class = "author toc-ignore")
-    h3_date <- tags$h3(doc_date, class = "date toc-ignore")
+    h2_sub <- return_heading(txt = subtitle, lvl = 2, class = "subtitle")
+    h3_auth <- return_heading(txt = auth, lvl = 3, class = "author")
+    h3_date <- return_heading(txt = doc_date, lvl = 3, class = "date")
     metas <- list(h2_sub, h3_auth, h3_date)
   }
 
