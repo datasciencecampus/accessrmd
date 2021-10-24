@@ -111,9 +111,10 @@ not a html_document output.
 
 ## To do
 
-* 'access_head()' date is always included.
-
-
+* test 'return_headings()'.
+* test 'assemble_header()' new error msg.
+* Where appropriate, refactor test deps to be included within test_that env.
+**MVP**
 * Refactor 'insert_toc()', inserted code chunk should contain a call to 
 'render_toc()' only. Dev another func that checks setup code chunk for
 'library(accessmrd' and insert with warning if needed.
