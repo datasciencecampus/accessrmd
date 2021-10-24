@@ -111,8 +111,6 @@ not a html_document output.
 
 ## To do
 
-* test 'assemble_header()' new error msg.
-* Where appropriate, refactor test deps to be included within test_that env.
 **MVP**
 * Refactor 'insert_toc()', inserted code chunk should contain a call to 
 'render_toc()' only. Dev another func that checks setup code chunk for
