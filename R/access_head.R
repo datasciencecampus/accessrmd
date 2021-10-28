@@ -106,12 +106,10 @@ access_head <- function(
     rmd_file <- basename(rmd_path)
     # get the directory
     rmd_dir <- str_remove(rmd_path, rmd_file)
-    # store dir loc
-    dir_loc <- paste0(rmd_dir, "accessrmd/")
-    # create the accessrmd dir
-    dir.create(dir_loc)
+    # append accessrmd
+    rmd_file <- paste0("accessrmd_", rmd_file)
     # outfile saves to accessrmd dir
-    outfile <- paste0(dir_loc, rmd_file)
+    outfile <- paste0(rmd_dir, rmd_file)
   }
   return(writeLines(paste(html_out), con = outfile))
 }
