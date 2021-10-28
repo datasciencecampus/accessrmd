@@ -111,5 +111,6 @@ access_head <- function(
     # outfile saves to accessrmd dir
     outfile <- paste0(rmd_dir, rmd_file)
   }
+  message(paste("Writing file to", outfile))
   return(writeLines(paste(html_out), con = outfile))
 }
