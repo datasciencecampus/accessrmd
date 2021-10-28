@@ -42,9 +42,9 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent",
 # expected output dir for inplace = FALSE
 rmd_file <- basename(test_rmd)
 # store dir loc
-dir_loc <- paste0(str_remove(test_rmd, rmd_file), "accessrmd/")
-# outfile saves to accessrmd dir
-outfile <- paste0(dir_loc, rmd_file)
+dir_loc <- str_remove(test_rmd, rmd_file)
+# outfile appends accessrmd to filenm
+outfile <- paste0(dir_loc, "accessrmd_", rmd_file)
 
 # test file for no YAML
 no_yaml_rmd <- tempfile(fileext = ".Rmd")
@@ -124,9 +124,6 @@ knitr::opts_chunk$set(echo = TRUE)
 test_that("Expected behaviour on inplace = FALSE", {
   # check no warnings
   expect_message(access_head(test_rmd, lan = "en"), "Setting html lan to en")
-  # check warnings for file exists
-  expect_warning(access_head(test_rmd, lan = "en"), "already exists")
-  # check file exists
   expect_true(file.exists(outfile))
 })
 
