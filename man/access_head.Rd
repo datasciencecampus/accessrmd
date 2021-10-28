@@ -19,8 +19,8 @@ must be output type html.}
 attribute value from the rmd document. Alternatively, use a character string
 such as "en".}
 
-\item{inplace}{When set to FALSE (the default) writes to new file
-(accessrmd_<rmd_path>). If TRUE, writes in place.}
+\item{inplace}{When set to FALSE (the default) writes to new file. If TRUE,
+writes in place.}
 
 \item{encoding}{Defaults to utf-8.}
 }
