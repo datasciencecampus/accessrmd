@@ -101,5 +101,5 @@ plot from the knitted HTML document."
 
   # write to file
   file.create(filenm)
-  writeLines(paste(html_out), con = filenm)
+  return(writeLines(paste(html_out), con = filenm))
 }
