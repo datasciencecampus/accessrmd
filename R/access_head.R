@@ -105,9 +105,9 @@ access_head <- function(
     # get the file
     rmd_file <- basename(rmd_path)
     # get the directory
-    rdm_dir <- str_remove(rmd_path, rmd_file)
+    rmd_dir <- str_remove(rmd_path, rmd_file)
     # store dir loc
-    dir_loc <- paste0(rdm_dir, "accessrmd/")
+    dir_loc <- paste0(rmd_dir, "accessrmd/")
     # create the accessrmd dir
     dir.create(dir_loc)
     # outfile saves to accessrmd dir
