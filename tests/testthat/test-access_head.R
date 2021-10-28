@@ -124,6 +124,10 @@ knitr::opts_chunk$set(echo = TRUE)
 test_that("Expected behaviour on inplace = FALSE", {
   # check no warnings
   expect_message(access_head(test_rmd, lan = "en"), "Setting html lan to en")
+  expect_message(access_head(test_rmd, lan = "en"), paste("Writing file to",
+                                                          outfile)
+                 )
+  
   expect_true(file.exists(outfile))
 })
 
