@@ -21,6 +21,7 @@ author and date.
 ioslides, slidy and xaringan.
 * Inline code syntax bug fix.
 * Bug fix: Func can handle colons in title, date or author fields.
+* 'inplace = FALSE' behaviour is now to append 'accessrmd_' to file name.
 
 #### 'access_img()'
 
