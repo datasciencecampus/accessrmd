@@ -8,8 +8,8 @@
 #' @param lan Identify the language of text content. Attempts to find a lang
 #' attribute value from the rmd document. Alternatively, use a character string
 #' such as "en".
-#' @param inplace When set to FALSE (the default) writes to new file
-#' (accessrmd_<rmd_path>). If TRUE, writes in place.
+#' @param inplace When set to FALSE (the default) writes to new file. If TRUE,
+#' writes in place.
 #' @param encoding Defaults to utf-8.
 #'
 #' @return Adjust the Rmd YAML provided to `rmd_path`, improving its
