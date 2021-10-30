@@ -18,9 +18,9 @@ test_that("Func behaves as expected on minimal parameters", {
     access_rmd(test_file, title = "minimal test", lan = "en"),
     "Setting html lan to en"
   )
-  expect_message(
-    access_rmd(test_file, title = "minimal test", lan = "en"),
-    paste("Writing file to")
+  expect_warning(
+    access_rmd(test_file, title = "minimal test", lan = "en", force = TRUE),
+    "Overwriting filenm."
   )
   
   expect_message(
