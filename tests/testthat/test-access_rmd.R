@@ -2,16 +2,27 @@
 with(globalenv(), {
   .old_wd <- setwd(tempdir())
 })
-# tests -------------------------------------------------------------------
+
+# deps --------------------------------------------------------------------
 
 test_file <- tempfile(fileext = ".Rmd")
+test_f <- basename(test_file)
+test_dir <- str_remove(test_file, test_f)
+out_file <- paste0(test_dir, "accessrmd_", test_f)
 test_toc <- tempfile(fileext = ".Rmd")
+
+# tests -------------------------------------------------------------------
 
 test_that("Func behaves as expected on minimal parameters", {
   expect_message(
     access_rmd(test_file, title = "minimal test", lan = "en"),
     "Setting html lan to en"
   )
+  expect_message(
+    access_rmd(test_file, title = "minimal test", lan = "en"),
+    paste("Writing file to")
+  )
+  
   expect_message(
     access_rmd(test_toc,
       title = "minimal test", lan = "en",
