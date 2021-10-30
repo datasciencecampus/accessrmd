@@ -80,6 +80,12 @@ test_that(
   )
 )
 
+test_that("Func handles filenm suffix as expected",
+          expect_message(access_rmd(filenm = "forgotten_suffix",
+                     title = "I forgot to include a suffix", lan = "en"),
+                     "Writing file to forgotten_suffix.Rmd")
+          )
+
 # set the wd to test directory
 with(globalenv(), {
   setwd(.old_wd)
