@@ -12,55 +12,39 @@ author: \"Richard Leyshon\"
 date: \"02/07/2021\"
 output: html_document
 ---
-
 ```
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 ## R Markdown
-
 This is an R Markdown document. Markdown is a si <http://rmarkdown.rstudio.com>.
-
 When you click the **Knit** button a document will be generated that includes
-
 ```
 summary(cars)
 ```
-
 ## Including Plots
-
 You can also embed plots, for example:
-
 ```
 plot(pressure)
 ```
-
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent",
   con = test_rmd
 )
-
 # expected output dir for inplace = FALSE
 rmd_file <- basename(test_rmd)
 # store dir loc
 dir_loc <- str_remove(test_rmd, rmd_file)
 # outfile appends accessrmd to filenm
 outfile <- paste0(dir_loc, "accessrmd_", rmd_file)
-
 # test file for no YAML
 no_yaml_rmd <- tempfile(fileext = ".Rmd")
 file.create(no_yaml_rmd)
 writeLines("```
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 ## R Markdown
-
 This is an R Markdown document. Markdown is a <http://rmarkdown.rstudio.com>.",
-  con = no_yaml_rmd
+           con = no_yaml_rmd
 )
-
-
-
 # testfile for YAML-specified lang attribute
 lang_rmd <- tempfile(fileext = ".Rmd")
 file.create(lang_rmd)
@@ -72,13 +56,10 @@ output:
   html_document:
     lang: \"en\"
 ---
-
 ```
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 ## R Markdown", con = lang_rmd)
-
 # inline code testfile
 inline_rmd <- tempfile(fileext = ".Rmd")
 file.create(inline_rmd)
@@ -89,13 +70,10 @@ author: \"Richard Leyshon\"
 date: \"`r format(Sys.Date(), '%d %b %y')`\"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 ## R Markdown", con = inline_rmd)
-
 # toc: true testfile
 toc_file <- tempfile(fileext = ".Rmd")
 file.create(toc_file)
@@ -108,44 +86,35 @@ output:
   html_document:
     toc: true
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ## R Markdown
-
 ## Including Plots
 ',
   con = toc_file
 )
-
 # tests -------------------------------------------------------------------
-
 test_that("Expected behaviour on inplace = FALSE", {
   # check no warnings
-  expect_message(access_head(test_rmd, lan = "en"), "Setting html lan to en")
-  expect_message(access_head(test_rmd, lan = "en"), paste(
-    "Writing file to",
-    outfile
-  ))
-
+  expect_message(access_head(test_rmd, lan = "en"), c("Setting html lan to en"))
+  expect_message(access_head(test_rmd, lan = "en"),
+                 "Writing file to"
+  )
   expect_true(file.exists(outfile))
 })
-
 test_that(
   "Errors on non-standard Rmd",
   expect_error(
     access_head(no_yaml_rmd, lan = "en"), "YAML header not found."
   )
 )
-
 test_that("YAML lang is set to HTML attr", {
   expect_message(
     access_head(lang_rmd, inplace = TRUE),
     "Setting html lan to en"
   )
 })
-
 # move to insert_toc tests
 test_that("Behaves as expected with toc: true", {
   expect_message(
@@ -153,7 +122,6 @@ test_that("Behaves as expected with toc: true", {
     "Setting html lan to cy"
   )
 })
-
 # check test outputs ------------------------------------------------------
 # check structure has written
 lang_html <- readLines(lang_rmd)
@@ -161,7 +129,6 @@ lang <- lang_html[grep("lang=", lang_html)]
 test_that("YAML lang has been written as HTML", {
   expect_equal(lang, "<html lang=\"en\">")
 })
-
 test_that("Expected behaviour on inplace = TRUE", {
   expect_message(
     access_head(test_rmd, lan = "en", inplace = TRUE),
@@ -170,21 +137,18 @@ test_that("Expected behaviour on inplace = TRUE", {
   # YAML should be replaced from source file with html
   expect_false(all(grepl(pattern = "---", readLines(test_rmd))))
 })
-
 test_that("Inline code has been correctly written", {
   expect_true(any(grepl(
     "`r format\\(Sys.Date\\(\\), '%d %b %y'\\)`",
     readLines(inline_rmd)
   )))
 })
-
 test_that("Toc code chunk has been inserted", {
   expect_true(grep(
     "render_toc\\(basename\\(knitr::current_input\\(\\)\\)\\)",
     readLines(toc_file)
   ) > 0)
 })
-
 # set the wd to test directory
 with(globalenv(), {
   setwd(.old_wd)
