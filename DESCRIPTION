@@ -20,9 +20,9 @@ Authors@R:
            'accessrmd/R/tags.R' is attributed.")
            )
 Description: The aim of 'accessrmd' is to provide a simple method to improve the
-accessibility of Rmarkdown documents. The package provides functions for
-creating or modifying Rmarkdown documents to resolve some of the known errors
-and alerts that result in accessibility issues for screen reader users.
+    accessibility of Rmarkdown documents. The package provides functions for 
+    creating or modifying Rmarkdown documents to resolve some of the known errors
+    and alerts that result in accessibility issues for screen reader users.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
