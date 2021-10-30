@@ -22,6 +22,7 @@ ioslides, slidy and xaringan.
 * Inline code syntax bug fix.
 * Bug fix: Func can handle colons in title, date or author fields.
 * 'inplace = FALSE' behaviour is now to append 'accessrmd_' to file name.
+* Messages location of written file.
 
 #### 'access_img()'
 
@@ -39,6 +40,7 @@ text (as opposed to markdown syntax which can be unreliable).
 * TOC compatible.
 * Floating TOC compatible.
 * Uses 'assemble_header()'.
+* Messages location of written file.
 
 #### 'assemble_header()' (Not exported)
 
