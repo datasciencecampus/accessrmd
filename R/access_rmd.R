@@ -100,6 +100,7 @@ plot from the knitted HTML document."
   html_out <- insert_toc(toc = toc, header = header, text = text, lan = lan)
 
   # write to file
+  message(paste("Writing file to", filenm))
   file.create(filenm)
   return(writeLines(paste(html_out), con = filenm))
 }
