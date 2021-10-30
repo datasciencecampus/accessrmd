@@ -124,10 +124,11 @@ knitr::opts_chunk$set(echo = TRUE)
 test_that("Expected behaviour on inplace = FALSE", {
   # check no warnings
   expect_message(access_head(test_rmd, lan = "en"), "Setting html lan to en")
-  expect_message(access_head(test_rmd, lan = "en"), paste("Writing file to",
-                                                          outfile)
-                 )
-  
+  expect_message(access_head(test_rmd, lan = "en"), paste(
+    "Writing file to",
+    outfile
+  ))
+
   expect_true(file.exists(outfile))
 })
 
@@ -171,8 +172,10 @@ test_that("Expected behaviour on inplace = TRUE", {
 })
 
 test_that("Inline code has been correctly written", {
-  expect_true(any(grepl("`r format\\(Sys.Date\\(\\), '%d %b %y'\\)`",
-                        readLines(inline_rmd))))
+  expect_true(any(grepl(
+    "`r format\\(Sys.Date\\(\\), '%d %b %y'\\)`",
+    readLines(inline_rmd)
+  )))
 })
 
 test_that("Toc code chunk has been inserted", {

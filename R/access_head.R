@@ -49,7 +49,8 @@ access_head <- function(
   # find title
   title_content <- str_sub(str_squish(
     str_split(header_txt[grep("title:", header_txt)],
-              pattern = ":", n = 2)[[1]][2]
+      pattern = ":", n = 2
+    )[[1]][2]
   ), 2, -2)
   # find subtitle
   subtitle <- str_sub(str_squish(
@@ -62,9 +63,11 @@ access_head <- function(
   # find date
   date <- str_sub(
     str_squish(unlist(str_split(
-      header_txt[grep("date: ", header_txt)], ":", n = 2
-      ))[2]),
-    2, -2)
+      header_txt[grep("date: ", header_txt)], ":",
+      n = 2
+    ))[2]),
+    2, -2
+  )
 
   # assemble_header ---------------------------------------------------------
 

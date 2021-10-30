@@ -11,7 +11,7 @@
 #' @return An assembled html output page containing the required toc code.
 #'
 assemble_header <- function(title, subtitle = NULL, auth, doc_date, enc) {
-  if(length(title) == 0){
+  if (length(title) == 0) {
     stop("No document title found. Please adjust the Rmarkdown.")
   }
   # produce the accessible title

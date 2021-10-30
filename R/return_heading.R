@@ -13,10 +13,10 @@
 #'
 #' @return null if txt is length 0 or required heading level with class attr
 #'
-return_heading <- function(txt, lvl, class){
-  if(length(txt) == 0){
+return_heading <- function(txt, lvl, class) {
+  if (length(txt) == 0) {
     return(NULL)
-  } else{
+  } else {
     h_lvl <- paste0("h", lvl)
     heading <- tags[[h_lvl]](txt, class = paste(class, "toc-ignore"))
   }

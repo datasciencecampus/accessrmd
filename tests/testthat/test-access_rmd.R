@@ -22,7 +22,7 @@ test_that("Func behaves as expected on minimal parameters", {
     access_rmd(test_file, title = "minimal test", lan = "en", force = TRUE),
     "Overwriting filenm."
   )
-  
+
   expect_message(
     access_rmd(test_toc,
       title = "minimal test", lan = "en",
@@ -80,11 +80,16 @@ test_that(
   )
 )
 
-test_that("Func handles filenm suffix as expected",
-          expect_message(access_rmd(filenm = "forgotten_suffix",
-                     title = "I forgot to include a suffix", lan = "en"),
-                     "Writing file to forgotten_suffix.Rmd")
-          )
+test_that(
+  "Func handles filenm suffix as expected",
+  expect_message(
+    access_rmd(
+      filenm = "forgotten_suffix",
+      title = "I forgot to include a suffix", lan = "en"
+    ),
+    "Writing file to forgotten_suffix.Rmd"
+  )
+)
 
 # set the wd to test directory
 with(globalenv(), {
