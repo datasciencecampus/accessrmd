@@ -32,7 +32,7 @@ identified by \code{Sys.info()}.}
 \item{date}{Required - The author date. Defaults to today's date.}
 
 \item{toc}{Optional, defaults to FALSE. Should a table of contents be
-included. Valid entries are FALSE, TRUE or "float".}
+included. Valid entries are FALSE (the default) or TRUE.}
 
 \item{encoding}{Defaults to "utf-8".}
 
