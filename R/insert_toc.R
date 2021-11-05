@@ -25,18 +25,7 @@ insert_toc <- function(toc,
       "---"
     )
   }
-  # conditional logic if toc is TRUE, insert code chunk that renders toc
-  if (toc == TRUE) {
-    message("Embedding render_toc code chunk")
-    text <- c(
-      "",
-      "```{r, echo=FALSE, warning=FALSE}",
-      "library(accessrmd, quietly = TRUE)",
-      "render_toc(basename(knitr::current_input()))",
-      "```",
-      text
-    )
-  }
+
   # wrap text in body tags
   body <- tags$body(paste(text, collapse = "\n"))
   # set the html lang & message
