@@ -7,7 +7,7 @@
 insert_toc(toc, header, text, lan)
 }
 \arguments{
-\item{toc}{TOC status, FALSE, TRUE or "float".}
+\item{toc}{TOC status, FALSE (the default) or TRUE.}
 
 \item{header}{Metadata items wrapped with 'tags$header()'.}
 
@@ -19,6 +19,5 @@ insert_toc(toc, header, text, lan)
 An assembled html output page containing the required toc code.
 }
 \description{
-Inserts 'render_toc()' code chunk if toc is TRUE. Inserts YAML header if toc
-is "float".
+Inserts YAML header for floating toc if toc is TRUE.
 }
