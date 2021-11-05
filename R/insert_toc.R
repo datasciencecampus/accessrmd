@@ -3,7 +3,7 @@
 #' Inserts 'render_toc()' code chunk if toc is TRUE. Inserts YAML header if toc
 #' is "float".
 #'
-#' @param toc TOC status, FALSE, TRUE or "float".
+#' @param toc TOC status, FALSE (the default) or TRUE.
 #' @param header Metadata items wrapped with 'tags$header()'.
 #' @param text Raw text required for Rmarkdown body.
 #' @param lan lang attribute value.
