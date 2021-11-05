@@ -143,12 +143,7 @@ test_that("Inline code has been correctly written", {
     readLines(inline_rmd)
   )))
 })
-test_that("Toc code chunk has been inserted", {
-  expect_true(grep(
-    "render_toc\\(basename\\(knitr::current_input\\(\\)\\)\\)",
-    readLines(toc_file)
-  ) > 0)
-})
+
 # set the wd to test directory
 with(globalenv(), {
   setwd(.old_wd)
