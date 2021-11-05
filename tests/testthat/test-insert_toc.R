@@ -45,7 +45,7 @@ test_that("Lan messages behave", {
 test_that("Output toc is correct", {
   expect_true(
     grepl(
-      "render_toc\\(basename\\(knitr::current_input\\(\\)\\)\\)",
+      "      toc_float: true",
       insert_toc(
         toc = TRUE,
         header = html_head,
@@ -58,7 +58,7 @@ test_that("Output toc is correct", {
     grepl(
       "output:\n    html_document:\n      toc: true\n      toc_float: true\n",
       insert_toc(
-        toc = "float",
+        toc = TRUE,
         header = html_head,
         text = rmd_text,
         lan = lan
