@@ -1,7 +1,6 @@
 #' Insert the required code for the specified toc type.
 #'
-#' Inserts 'render_toc()' code chunk if toc is TRUE. Inserts YAML header if toc
-#' is "float".
+#' Inserts YAML header for floating toc if toc is TRUE.
 #'
 #' @param toc TOC status, FALSE (the default) or TRUE.
 #' @param header Metadata items wrapped with 'tags$header()'.
