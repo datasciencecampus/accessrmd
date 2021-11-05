@@ -14,7 +14,6 @@ author and date.
 * 'access_head()' works with inline code.
 * Inserts floating toc YAML if finds `toc: true` or `toc: yes`.
 * Specifies character encoding as "utf-8" by default.
-* load warnings suppressed on inserting 'render_toc()' chunk.
 * Uses 'assemble_header()'.
 * Incompatible with specific types of html output, such as Flexdashboard,
 ioslides, slidy and xaringan.
@@ -101,8 +100,6 @@ not a html_document output.
 
 **MVP**
 * Refactor 'insert_toc()', inserted code chunk should contain a call to 
-'render_toc()' only. Dev another func that checks setup code chunk for
-'library(accessmrd' and insert with warning if needed.
 * correct header hierarchy.
 * refactor: find all alts
 * wrapper function that packages up broken links, sus alt text, long alt text,
@@ -138,10 +135,6 @@ metadata. May wish to consider the alternative format [.rhtml](https://bookdown.
 
 * intermediate plots occasionally appear in dir
 
-### render_toc
-
-* toc-float support if possible.
-
 ***
 
 ## Tests
@@ -158,11 +151,6 @@ Results in non standard YAML bounds. Using regex to increase specificity but wou
 
 * rmd knitting behaviour is producing saved intermediate chart images in the wd of the rmd. Once resolved, this would make a good test case.
 
-### render_toc
-
-* special header slug "\\{#.+\\}(\\s+)?$" - {.classes} and {#IDs} are showing
-up in toc links.
-* preceding hashes on any header with an {#ID} are showing up in toc links
 
 ### sus_alt
 
