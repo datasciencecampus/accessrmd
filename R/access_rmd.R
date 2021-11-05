@@ -12,7 +12,7 @@
 #' identified by `Sys.info()`.
 #' @param date Required - The author date. Defaults to today's date.
 #' @param toc Optional, defaults to FALSE. Should a table of contents be
-#' included. Valid entries are FALSE, TRUE or "float".
+#' included. Valid entries are FALSE (the default) or TRUE.
 #' @param encoding Defaults to "utf-8".
 #' @param force Defaults to FALSE. If TRUE, overwrites a pre-existing file with
 #' the same filenm with warning.
