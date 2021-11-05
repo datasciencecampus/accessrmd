@@ -28,7 +28,7 @@ test_that("Func behaves as expected on minimal parameters", {
       title = "minimal test", lan = "en",
       toc = TRUE
     ),
-    "Embedding render_toc code chunk"
+    "Using toc_float YAML"
   )
   expect_true(file.exists(test_file))
 })
@@ -66,7 +66,6 @@ test_that("Output has been written as expected", {
   expect_true(any(grepl(format(Sys.Date(), "%d %b %Y"), lines)))
   expect_true(any(grepl("</header>", lines)))
   expect_true(any(grepl("<body>", lines)))
-  expect_true(any(grepl("render_toc", toc_lines)))
 })
 
 test_that(
