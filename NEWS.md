@@ -12,10 +12,9 @@ author and date.
 * If lang found in YAML, use for html lang tag.
 * Errors if no lang value attribute set.
 * 'access_head()' works with inline code.
-* Inserts accessible toc chunk if finds `toc: true` or `toc: yes`.
+* Inserts floating toc YAML if finds `toc: true` or `toc: yes`.
 * Specifies character encoding as "utf-8" by default.
 * load warnings suppressed on inserting 'render_toc()' chunk.
-* Floating toc compatability.
 * Uses 'assemble_header()'.
 * Incompatible with specific types of html output, such as Flexdashboard,
 ioslides, slidy and xaringan.
@@ -37,8 +36,7 @@ text (as opposed to markdown syntax which can be unreliable).
 #### 'access_rmd()'
 
 * Produce an accessible R markdown template with the specified metadata.
-* TOC compatible.
-* Floating TOC compatible.
+* Inserts floating toc YAML if toc parameter is set to TRUE.
 * Uses 'assemble_header()'.
 * Messages location of written file.
 
@@ -79,19 +77,6 @@ not a html_document output.
 #### 'find_all_imgs()' (Not exported)
 
 * Helper func to find all images within an Rmd.
-
-#### 'render_toc()'
-
-* Finds all headers within an rmd & renders a standard toc
-* Original author credit to Garrick Aiden-Buie
-* [Original author's gist](https://gist.github.com/gadenbuie/c83e078bf8c81b035e32c3fc0cf04ee8)
-* **Adaptations follow:**
-* Avoid stripping digits from start of headers
-* Include nav tag in toc output
-* Avoid ID hashes showing up in nav links
-* Strip curly braces if no spaces follow header, eg "## 2nd lvl header{.toc-ignore}"
-* \{.toc-ignore\} compatibility.
-* Code fence regex adapted to avoid incorrect toc render when code chunk included prior to first h2 header.
 
 #### 'retrieve_rmds()'
 
