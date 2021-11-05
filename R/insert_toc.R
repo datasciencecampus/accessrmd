@@ -14,7 +14,7 @@ insert_toc <- function(toc,
                        text,
                        lan) {
   # if toc is float, embed toc YAML
-  if (toc == "float") {
+  if (toc) {
     message("Using toc_float YAML")
     yaml <- c(
       "---",
