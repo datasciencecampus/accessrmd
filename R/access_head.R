@@ -82,15 +82,9 @@ access_head <- function(
   # toc status --------------------------------------------------------------
 
   tocify <- FALSE
-  tocify <- any(grepl("toc: true|toc: yes", header_txt))
-  if (tocify) {
-    float <- any(grepl("toc_float: true|toc_float: yes", header_txt))
-  }
-  if ("float" %in% ls()) {
-    if (float) {
-      tocify <- "float"
-    }
-  }
+  tocify <- any(grepl("toc: true|toc: yes|toc_float: true|toc_float: yes",
+                      header_txt))
+
   # reassemble the accessible head ------------------------------------------
 
   html_out <- insert_toc(
