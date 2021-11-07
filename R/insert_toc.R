@@ -54,6 +54,16 @@ insert_yaml <- function(toc,
       paste("      theme:", theme),
       "---"
     )
+  } else {
+    # If no toc, just apply the styling values
+    yaml <- c(
+      "---",
+      "output:",
+      "    html_document:",
+      paste("      highlight:", highlight),
+      paste("      theme:", theme),
+      "---"
+    )
   }
 
   # wrap text in body tags
