@@ -6,13 +6,33 @@
 #' @param header Metadata items wrapped with 'tags$header()'.
 #' @param text Raw text required for Rmarkdown body.
 #' @param lan lang attribute value.
+#' @param theme Text styling to apply. Defaults to "readable". Valid values are
+#' default, journal, flatly, darkly, readable, spacelab, united, cosmo, lumen,
+#' paper, sandstone and yeti. Please note that cerulean and simplex present
+#' accessibility errors and are therefore not supported by this function.
+#' @param highlight Currently only "null" is a valid, due to accessibility
+#' errors found in all built-in highlight options.
 #'
 #' @return An assembled html output page containing the required toc code.
 #'
 insert_toc <- function(toc,
                        header,
                        text,
-                       lan) {
+                       lan,
+                       theme = c("readable",
+                                 "default",
+                                 "journal",
+                                 "flatly",
+                                 "darkly",
+                                 "readable",
+                                 "spacelab",
+                                 "united",
+                                 "cosmo",
+                                 "lumen",
+                                 "paper",
+                                 "sandstone",
+                                 "yeti"),
+                       highlight = "null") {
   # if toc is float, embed toc YAML
   if (toc) {
     message("Using toc_float YAML")
