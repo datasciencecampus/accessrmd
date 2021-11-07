@@ -29,15 +29,15 @@ lan1 <- "cy"
 
 test_that("Lan messages behave", {
   expect_message(
-    insert_toc(toc = FALSE, header = html_head, text = rmd_text, lan = lan),
+    insert_yaml(toc = FALSE, header = html_head, text = rmd_text, lan = lan),
     "Setting html lan to en"
   )
   expect_message(
-    insert_toc(toc = FALSE, header = html_head, text = rmd_text, lan = lan1),
+    insert_yaml(toc = FALSE, header = html_head, text = rmd_text, lan = lan1),
     "Setting html lan to cy"
   )
   expect_error(
-    insert_toc(toc = FALSE, header = html_head, text = rmd_text),
+    insert_yaml(toc = FALSE, header = html_head, text = rmd_text),
     '"lan" is missing'
   )
 })
@@ -46,7 +46,7 @@ test_that("Output toc is correct", {
   expect_true(
     grepl(
       "      toc_float: true",
-      insert_toc(
+      insert_yaml(
         toc = TRUE,
         header = html_head,
         text = rmd_text,
@@ -57,7 +57,7 @@ test_that("Output toc is correct", {
   expect_true(
     grepl(
       "output:\n    html_document:\n      toc: true\n      toc_float: true\n",
-      insert_toc(
+      insert_yaml(
         toc = TRUE,
         header = html_head,
         text = rmd_text,
