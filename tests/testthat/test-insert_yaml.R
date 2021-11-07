@@ -29,15 +29,18 @@ lan1 <- "cy"
 
 test_that("Lan messages behave", {
   expect_message(
-    insert_yaml(toc = FALSE, header = html_head, text = rmd_text, lan = lan),
+    insert_yaml(toc = FALSE, header = html_head, text = rmd_text, lan = lan,
+                theme = "default"),
     "Setting html lan to en"
   )
   expect_message(
-    insert_yaml(toc = FALSE, header = html_head, text = rmd_text, lan = lan1),
+    insert_yaml(toc = FALSE, header = html_head, text = rmd_text, lan = lan1,
+                theme = "default"),
     "Setting html lan to cy"
   )
   expect_error(
-    insert_yaml(toc = FALSE, header = html_head, text = rmd_text),
+    insert_yaml(toc = FALSE, header = html_head, text = rmd_text,
+                theme = "default"),
     '"lan" is missing'
   )
 })
@@ -50,7 +53,8 @@ test_that("Output toc is correct", {
         toc = TRUE,
         header = html_head,
         text = rmd_text,
-        lan = lan
+        lan = lan,
+        theme = "default"
       )
     )
   )
@@ -61,8 +65,26 @@ test_that("Output toc is correct", {
         toc = TRUE,
         header = html_head,
         text = rmd_text,
-        lan = lan
+        lan = lan,
+        theme = "default"
       )
     )
+  )
+})
+
+test_that("Func applies styles as required", {
+  expect_true(grepl("theme: flatly", insert_yaml(toc = FALSE,
+              header = html_head,
+              text = rmd_text,
+              lan = lan,
+              theme = "flatly"))
+  )
+  expect_warning(insert_yaml(toc = FALSE,
+                             header = html_head,
+                             text = rmd_text,
+                             lan = lan,
+                             theme = "cerulean"),
+                 "The cerulean theme has known accessibility errors and is
+    not supported by this function."
   )
 })
