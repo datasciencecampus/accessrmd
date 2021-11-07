@@ -36,8 +36,10 @@ insert_yaml <- function(toc,
                        highlight = "null") {
   # if theme is cerulean or simplex, break with error message
   if(theme == "cerulean|simplex"){
-    stop("The", paste(theme), "theme has known accessibility errors and is not
-         supported by this function.")
+    warning("The", paste(theme), "theme has known accessibility errors and is
+    not supported by this function.")
+    # apply default theme instead
+    theme <- "default"
   }
   # if toc is float, embed toc YAML
   if (toc) {
