@@ -9,7 +9,7 @@ insert_yaml(
   header,
   text,
   lan,
-  theme = c("readable", "default", "journal", "flatly", "darkly", "readable",
+  theme = c("default", "readable", "journal", "flatly", "darkly", "readable",
     "spacelab", "united", "cosmo", "lumen", "paper", "sandstone", "yeti"),
   highlight = "null"
 )
@@ -23,10 +23,10 @@ insert_yaml(
 
 \item{lan}{lang attribute value.}
 
-\item{theme}{Text styling to apply. Defaults to "readable". Valid values are
-default, journal, flatly, darkly, readable, spacelab, united, cosmo, lumen,
-paper, sandstone and yeti. Please note that cerulean and simplex present
-accessibility errors and are therefore not supported by this function.}
+\item{theme}{Text styling to apply. Valid values are default, journal,
+flatly, darkly, readable, spacelab, united, cosmo, lumen, paper, sandstone
+and yeti. Please note that cerulean and simplex present accessibility errors
+and are therefore not supported by this function.}
 
 \item{highlight}{Currently only "null" is a valid, due to accessibility
 errors found in all built-in highlight options.}
