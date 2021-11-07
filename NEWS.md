@@ -68,7 +68,7 @@ not a html_document output.
 
 * Handler checks rmd path is valid.
 
-#### 'insert_toc()' (Not exported)
+#### 'insert_yaml()' (Not exported)
 
 * Handler assembles html document with inserted toc code.
 * Messages on toc or toc_float.
@@ -99,7 +99,7 @@ not a html_document output.
 ## To do
 
 **MVP**
-* Refactor 'insert_toc()', inserted code chunk should contain a call to 
+* Refactor 'insert_yaml()', inserted code chunk should contain a call to 
 * correct header hierarchy.
 * refactor: find all alts
 * wrapper function that packages up broken links, sus alt text, long alt text,
