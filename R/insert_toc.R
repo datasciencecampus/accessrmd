@@ -15,7 +15,7 @@
 #'
 #' @return An assembled html output page containing the required toc code.
 #'
-insert_toc <- function(toc,
+insert_yaml <- function(toc,
                        header,
                        text,
                        lan,
