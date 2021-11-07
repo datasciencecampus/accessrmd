@@ -87,7 +87,7 @@ access_head <- function(
 
   # reassemble the accessible head ------------------------------------------
 
-  html_out <- insert_toc(
+  html_out <- insert_yaml(
     toc = tocify,
     header = html_head,
     text = rmd_body,

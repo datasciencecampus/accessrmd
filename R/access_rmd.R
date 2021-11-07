@@ -97,7 +97,7 @@ plot from the knitted HTML document."
   # end of template ---------------------------------------------------------
 
   # Assemble output
-  html_out <- insert_toc(toc = toc, header = header, text = text, lan = lan)
+  html_out <- insert_yaml(toc = toc, header = header, text = text, lan = lan)
 
   # write to file
   message(paste("Writing file to", filenm))
