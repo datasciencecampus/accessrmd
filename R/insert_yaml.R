@@ -36,8 +36,8 @@ insert_yaml <- function(toc,
                        highlight = "null") {
   # if theme is cerulean or simplex, break with error message
   if(theme == "cerulean" | theme == "simplex"){
-    warning("The", paste(theme), "theme has known accessibility errors and is
-    not supported by this function.")
+    warning(paste("The", theme, "theme has known accessibility errors and is
+    not supported by this function."))
     # apply default theme instead
     theme <- "default"
   }
