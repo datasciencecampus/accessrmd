@@ -43,6 +43,8 @@ insert_yaml <- function(toc,
       "    html_document:",
       "      toc: true",
       "      toc_float: true",
+      paste("      highlight:", highlight)
+      paste("      theme:", theme)
       "---"
     )
   }
