@@ -4,36 +4,23 @@
 #' of 'find_theme()'. Looks for YAML theme parameter value. Returns the theme
 #' if found of YAML syntax 'null' if not found.
 #'
-#' @param lines The output of 'readLines()' or 'handle_rmd_path()'. Ensure
-#' 'check_compat()' has been used prior.
+#' @param yaml A YAML header text string. 
 #'
 #' @return The theme value as a character string.
 #'
-find_theme <- function(lines = NULL) {
+find_theme <- function(yaml = NULL) {
   # searching ---------------------------------------------------------------
-  # search for YAML theme, ensuring html_doc first
-  # below only works if YAML bounds found
-  YAML_bounds <- grep("^---$", lines)
-  if (length(YAML_bounds) == 2) {
-    # Taking some trouble to safeguard against theme attributes set within
-    # the rmarkdown body
-    YAML_ind <- seq.int(YAML_bounds[1], YAML_bounds[2])
-    YAML <- lines[YAML_ind]
-    found_ind <- grep(" ?theme: ", YAML)
-  }
-
+  found_ind <- grep(" ?theme: ", yaml)
   # extract the lang line
   theme_line <- lines[found_ind]
   
   # cleaning ----------------------------------------------------------------
-  
   # split on :
   theme <- unlist(strsplit(theme_line, ":"))[2]
   # tidy up string
   theme <- str_remove_all(theme, " |'|\"|>")
   
-  # is valid? ---------------------------------------------------------------
-  
+  # null theme? -------------------------------------------------------------
   # if no theme found, set theme as YAML syntax 'null'
   if (length(theme) == 0) {
     message("No theme found. Specifying theme: null")
