@@ -20,6 +20,7 @@ insert_yaml <- function(toc,
                        text,
                        lan,
                        theme = c(
+                         "null",
                          "default",
                          "readable",
                          "journal",
@@ -38,8 +39,8 @@ insert_yaml <- function(toc,
   if(theme == "cerulean" | theme == "simplex"){
     warning(paste("The", theme, "theme has known accessibility errors and is
     not supported by this function."))
-    # apply default theme instead
-    theme <- "default"
+    # apply null theme instead
+    theme <- "null"
   }
   # if toc is float, embed toc YAML
   if (toc) {
