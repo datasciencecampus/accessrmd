@@ -1,9 +1,11 @@
-#' Searches a file for YAML theme parameters, returning the theme if found.
+#' Searches YAML head for YAML theme parameters, returning the theme if found.
 #'
-#' Takes the output of 'readLines()' and looks for YAML theme parameter value.
-#' Typically used on the output of handle_rmd_path()'. 
+#' Use on YAML head text only. 'check_compat()' should be used prior to the use
+#' of 'find_theme()'. Looks for YAML theme parameter value. Returns the theme
+#' if found of YAML syntax 'null' if not found.
 #'
-#' @param lines The output of 'readLines()' or 'handle_rmd_path()'.
+#' @param lines The output of 'readLines()' or 'handle_rmd_path()'. Ensure
+#' 'check_compat()' has been used prior.
 #'
 #' @return The theme value as a character string.
 #'
