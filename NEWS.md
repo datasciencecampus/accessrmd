@@ -21,6 +21,11 @@ ioslides, slidy and xaringan.
 * Bug fix: Func can handle colons in title, date or author fields.
 * 'inplace = FALSE' behaviour is now to append 'accessrmd_' to file name.
 * Messages location of written file.
+* Works with in-built themes. Accessibility issues with the cerulean and simplex
+themes, therefore specifying those particular themes results in overriding with
+a null theme and a warning to console.
+* Sets highlight to null - the only option that does not result in accessibility
+issues.
 
 #### 'access_img()'
 
@@ -38,6 +43,11 @@ text (as opposed to markdown syntax which can be unreliable).
 * Inserts floating toc YAML if toc parameter is set to TRUE.
 * Uses 'assemble_header()'.
 * Messages location of written file.
+* Works with in-built themes. Accessibility issues with the cerulean and simplex
+themes, therefore specifying those particular themes results in overriding with
+a null theme and a warning to console.
+* Sets highlight to null - the only option that does not result in accessibility
+issues.
 
 #### 'assemble_header()' (Not exported)
 
@@ -48,6 +58,12 @@ text (as opposed to markdown syntax which can be unreliable).
 * Finds html lang value with 'detect_html_lang()'.
 * Checks if found lang value has an associated alt text length limit.
 * Returns a found limit.
+
+#### 'find_theme()' (Not exported)
+
+* Finds YAML theme settings.
+* Returns the found theme.
+* Returns YAML syntax 'null' if no theme set.
 
 #### 'check_compat()' (Not exported)
 
