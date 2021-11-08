@@ -39,6 +39,11 @@ included. Valid entries are FALSE (the default) or TRUE.}
 
 \item{force}{Defaults to FALSE. If TRUE, overwrites a pre-existing file with
 the same filenm with warning.}
+
+\item{theme}{Text styling to apply. Valid values are default, journal,
+flatly, darkly, readable, spacelab, united, cosmo, lumen, paper, sandstone
+and yeti. Please note that cerulean and simplex present accessibility errors
+and are therefore not supported by this function.}
 }
 \value{
 An Rmarkdown file with an HTML head, populated with metadata
