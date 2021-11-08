@@ -44,6 +44,9 @@ access_head <- function(
   header_txt <- setdiff(yaml_head, "---")
   # check html output is compatible.
   check_compat(header_txt)
+
+  # return theme ------------------------------------------------------------
+  theme <- find_theme(header_txt)
   # Clean out quotations
   # header_txt <- gsub('"|\'', "", header_txt)
   # find title
@@ -91,7 +94,8 @@ access_head <- function(
     toc = tocify,
     header = html_head,
     text = rmd_body,
-    lan = lan
+    lan = lan,
+    theme = theme
   )
 
   if (inplace == TRUE) {
