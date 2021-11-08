@@ -13,7 +13,8 @@ access_rmd(
   date = format(Sys.Date(), "\%d \%b \%Y"),
   toc = FALSE,
   encoding = "utf-8",
-  force = FALSE
+  force = FALSE,
+  theme = "null"
 )
 }
 \arguments{

@@ -9,7 +9,7 @@ insert_yaml(
   header,
   text,
   lan,
-  theme = c("default", "readable", "journal", "flatly", "darkly", "readable",
+  theme = c("null", "default", "readable", "journal", "flatly", "darkly", "readable",
     "spacelab", "united", "cosmo", "lumen", "paper", "sandstone", "yeti"),
   highlight = "null"
 )
