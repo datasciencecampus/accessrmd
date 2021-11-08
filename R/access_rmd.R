@@ -32,7 +32,8 @@ access_rmd <- function(
                        date = format(Sys.Date(), "%d %b %Y"),
                        toc = FALSE,
                        encoding = "utf-8",
-                       force = FALSE) {
+                       force = FALSE,
+                       theme = "null") {
 
   # Stop if lan  = NULL
   if (is.null(lan)) {
@@ -97,7 +98,8 @@ plot from the knitted HTML document."
   # end of template ---------------------------------------------------------
 
   # Assemble output
-  html_out <- insert_yaml(toc = toc, header = header, text = text, lan = lan)
+  html_out <- insert_yaml(toc = toc, header = header, text = text, lan = lan,
+                          theme = theme)
 
   # write to file
   message(paste("Writing file to", filenm))
