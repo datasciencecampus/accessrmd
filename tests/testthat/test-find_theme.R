@@ -31,6 +31,21 @@ flatly <- c('---',
 '',
 '## R Markdown')
 
+none <- c('---',
+              'title: "null"',
+              'author: "R Leyshon"',
+              'date: "08/11/2021"',
+              'output:',
+              '    html_document:',
+              '      highlight: breezedark',
+              '---',
+              '',
+              '```{r setup, include=FALSE}',
+              'knitr::opts_chunk$set(echo = TRUE)',
+              '```',
+              '',
+              '## R Markdown')
+
 
 
 # tests -------------------------------------------------------------------
@@ -40,6 +55,6 @@ test_that("Func returns found themes", {
   
 })
 
-
-
-
+test_that("Func returns 'null' if no theme set",
+          expect_identical(find_theme(none), "null")
+          )
