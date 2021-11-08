@@ -16,6 +16,10 @@
 #' @param encoding Defaults to "utf-8".
 #' @param force Defaults to FALSE. If TRUE, overwrites a pre-existing file with
 #' the same filenm with warning.
+#' @param theme Text styling to apply. Valid values are default, journal,
+#' flatly, darkly, readable, spacelab, united, cosmo, lumen, paper, sandstone
+#' and yeti. Please note that cerulean and simplex present accessibility errors
+#' and are therefore not supported by this function.
 #'
 #' @return An Rmarkdown file with an HTML head, populated with metadata
 #' specified within the function parameters.
