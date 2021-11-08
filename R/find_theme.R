@@ -12,7 +12,7 @@ find_theme <- function(yaml = NULL) {
   # searching ---------------------------------------------------------------
   found_ind <- grep(" ?theme: ", yaml)
   # extract the lang line
-  theme_line <- lines[found_ind]
+  theme_line <- yaml[found_ind]
   
   # cleaning ----------------------------------------------------------------
   # split on :
