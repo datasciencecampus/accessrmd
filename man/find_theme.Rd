@@ -4,11 +4,10 @@
 \alias{find_theme}
 \title{Searches YAML head for YAML theme parameters, returning the theme if found.}
 \usage{
-find_theme(lines = NULL)
+find_theme(yaml = NULL)
 }
 \arguments{
-\item{lines}{The output of 'readLines()' or 'handle_rmd_path()'. Ensure
-'check_compat()' has been used prior.}
+\item{yaml}{A YAML header text string.}
 }
 \value{
 The theme value as a character string.
