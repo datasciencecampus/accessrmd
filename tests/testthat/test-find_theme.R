@@ -8,13 +8,7 @@ cerulean <- c('---',
 'output:',
 '    html_document:',
 '      theme: cerulean',
-'---',
-'',
-'```{r setup, include=FALSE}',
-'knitr::opts_chunk$set(echo = TRUE)',
-'```',
-'',
-'## R Markdown')
+'---')
 
 flatly <- c('---',
 'title: "flatly"',
@@ -23,13 +17,7 @@ flatly <- c('---',
 'output:',
 '    html_document:',
 '      theme: flatly',
-'---',
-'',
-'```{r setup, include=FALSE}',
-'knitr::opts_chunk$set(echo = TRUE)',
-'```',
-'',
-'## R Markdown')
+'---')
 
 none <- c('---',
               'title: "null"',
@@ -38,13 +26,7 @@ none <- c('---',
               'output:',
               '    html_document:',
               '      highlight: breezedark',
-              '---',
-              '',
-              '```{r setup, include=FALSE}',
-              'knitr::opts_chunk$set(echo = TRUE)',
-              '```',
-              '',
-              '## R Markdown')
+              '---')
 
 
 
