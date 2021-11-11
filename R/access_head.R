@@ -21,7 +21,29 @@
 #'
 #' @importFrom stringr str_split str_remove str_squish str_sub
 #' @importFrom knitr current_input
+#' 
+#' @examples
+#' \dontshow{.old_wd <- setwd(tempdir())}
+#'# create a testfile
+#'rmd <- tempfile("testing", fileext = ".rmd")
+#'# write basic markdown content
+#'writeLines('---
+#'title: "testfile"
+#'author: "Some Author"
+#'date: "`r format(Sys.Date(), "%d %b %Y")`"
+#'output: html_document
+#'---
+#'  
+#'  ```{r setup, include=FALSE}
+#'knitr::opts_chunk$set(echo = TRUE)
+#'```
 #'
+#'## R Markdown', con = rmd)
+#'
+#'# Adjust the document header to improve screen reader accessibility
+#'access_head(rmd, lan = "en")
+#'
+#' \dontshow{setwd(.old_wd)}
 #' @export
 access_head <- function(
                         rmd_path = NULL,
