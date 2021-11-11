@@ -38,5 +38,5 @@ test_that("Func returns found themes", {
 })
 
 test_that("Func returns 'null' if no theme set",
-          expect_identical(find_theme(none), "null")
+          expect_identical(find_theme(none), "default")
           )
