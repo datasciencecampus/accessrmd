@@ -9,7 +9,5 @@
 Rmarkdown documents. Designed to work with standard Rmarkdown html_document
 outputs. 
 
-View a [comparison of accessibility checks](https://datasciencecampus.github.io/accessrmd/)
-before and after applying "accessrmd" functions.
-
-View the ['accessrmd' blog](https://r-leyshon.github.io/access_rmd_docs/).
+View the ['accessrmd' blog](https://r-leyshon.github.io/access_rmd_docs/) to see
+examples and accessibility checks.
