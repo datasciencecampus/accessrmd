@@ -26,7 +26,7 @@
 #'
 #' @importFrom stringr str_remove_all
 #' 
-#' @example
+#' @examples
 #' \dontshow{.old_wd <- setwd(tempdir())}
 #' # create an accessible rmarkdown document from scratch
 #' access_rmd(

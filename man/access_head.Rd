@@ -62,4 +62,5 @@ knitr::opts_chunk$set(echo = TRUE)
 access_head(rmd, lan = "en")
 
 \dontshow{setwd(.old_wd)}
+
 }
