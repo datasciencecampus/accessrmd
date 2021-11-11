@@ -72,12 +72,13 @@ test_that("Output toc is correct", {
   )
 })
 
-test_that("Func applies styles as required", {
-  expect_true(grepl("theme: flatly", insert_yaml(toc = FALSE,
+test_that("Func applies default theme only", {
+  expect_true(grepl("theme: default", insert_yaml(toc = FALSE,
               header = html_head,
               text = rmd_text,
               lan = lan,
-              theme = "flatly"))
+              theme = "default")
+              )
   )
   expect_warning(insert_yaml(toc = FALSE,
                              header = html_head,
