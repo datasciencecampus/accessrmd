@@ -15,5 +15,5 @@ The theme value as a character string.
 \description{
 Use on YAML head text only. 'check_compat()' should be used prior to the use
 of 'find_theme()'. Looks for YAML theme parameter value. Returns the theme
-if found of YAML syntax 'null' if not found.
+if found or 'default' if no theme specified.
 }
