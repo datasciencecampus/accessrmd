@@ -63,7 +63,7 @@ issues.
 
 * Finds YAML theme settings.
 * Returns the found theme.
-* Returns YAML syntax 'null' if no theme set.
+* Returns theme default if no theme specfied.
 
 #### 'check_compat()' (Not exported)
 
