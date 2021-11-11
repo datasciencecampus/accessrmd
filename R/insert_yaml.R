@@ -6,10 +6,8 @@
 #' @param header Metadata items wrapped with 'tags$header()'.
 #' @param text Raw text required for Rmarkdown body.
 #' @param lan lang attribute value.
-#' @param theme Text styling to apply. Valid values are default, journal,
-#' flatly, darkly, readable, spacelab, united, cosmo, lumen, paper, sandstone
-#' and yeti. Please note that cerulean and simplex present accessibility errors
-#' and are therefore not supported by this function.
+#' @param theme Text styling to apply. Valid values are default only. All other
+#' themes present accessibility errors on testing. 
 #' @param highlight Currently only "null" is a valid, due to accessibility
 #' errors found in all built-in highlight options.
 #'
@@ -19,21 +17,7 @@ insert_yaml <- function(toc,
                        header,
                        text,
                        lan,
-                       theme = c(
-                         "null",
-                         "default",
-                         "readable",
-                         "journal",
-                         "flatly",
-                         "darkly",
-                         "readable",
-                         "spacelab",
-                         "united",
-                         "cosmo",
-                         "lumen",
-                         "paper",
-                         "sandstone",
-                         "yeti"),
+                       theme = "default",
                        highlight = "null") {
   # if theme is cerulean or simplex, break with error message
   if(theme == "cerulean" | theme == "simplex"){
