@@ -16,10 +16,10 @@
 #' @param encoding Defaults to "utf-8".
 #' @param force Defaults to FALSE. If TRUE, overwrites a pre-existing file with
 #' the same filenm with warning.
-#' @param theme Text styling to apply. Valid values are default, journal,
-#' flatly, darkly, readable, spacelab, united, cosmo, lumen, paper, sandstone
-#' and yeti. Please note that cerulean and simplex present accessibility errors
-#' and are therefore not supported by this function.
+#' @param theme Set to "default", currently the only in-built theme that does
+#' not result in accessibility errors.
+#' @param highlight Set to "null", currently the only in-built highlight that
+#' does not result in accessibility errors.
 #'
 #' @return An Rmarkdown file with an HTML head, populated with metadata
 #' specified within the function parameters.
@@ -37,7 +37,8 @@ access_rmd <- function(
                        toc = FALSE,
                        encoding = "utf-8",
                        force = FALSE,
-                       theme = "null") {
+                       theme = "default",
+                       highlight = "null") {
 
   # Stop if lan  = NULL
   if (is.null(lan)) {
@@ -103,7 +104,7 @@ plot from the knitted HTML document."
 
   # Assemble output
   html_out <- insert_yaml(toc = toc, header = header, text = text, lan = lan,
-                          theme = theme)
+                          theme = theme, highlight = highlight)
 
   # write to file
   message(paste("Writing file to", filenm))
