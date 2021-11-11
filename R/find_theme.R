@@ -2,7 +2,7 @@
 #'
 #' Use on YAML head text only. 'check_compat()' should be used prior to the use
 #' of 'find_theme()'. Looks for YAML theme parameter value. Returns the theme
-#' if found of YAML syntax 'null' if not found.
+#' if found or 'default' if no theme specified.
 #'
 #' @param yaml A YAML header text string. 
 #'
@@ -23,8 +23,8 @@ find_theme <- function(yaml = NULL) {
   # null theme? -------------------------------------------------------------
   # if no theme found, set theme as YAML syntax 'null'
   if (length(theme) == 0) {
-    message("No theme found. Specifying theme: null")
-    theme <- "null"
+    message("No theme found. Specifying theme: default")
+    theme <- "default"
   }
   return(theme)
 }
