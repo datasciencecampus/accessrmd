@@ -6,8 +6,8 @@
 #' @param header Metadata items wrapped with 'tags$header()'.
 #' @param text Raw text required for Rmarkdown body.
 #' @param lan lang attribute value.
-#' @param theme Text styling to apply. Valid values are default only. All other
-#' themes present accessibility errors on testing. 
+#' @param theme Text styling to apply. Current valid value is "default" only.
+#' All other themes present accessibility errors on testing. 
 #' @param highlight Currently only "null" is a valid, due to accessibility
 #' errors found in all built-in highlight options.
 #'
