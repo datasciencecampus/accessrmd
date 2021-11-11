@@ -25,6 +25,14 @@
 #' specified within the function parameters.
 #'
 #' @importFrom stringr str_remove_all
+#' 
+#' @example
+#' \dontshow{.old_wd <- setwd(tempdir())}
+#' # create an accessible rmarkdown document from scratch
+#' access_rmd(
+#' "some_filenm", title = "Title Goes Here", lan = "en", author = "Author here"
+#' )
+#' \dontshow{setwd(.old_wd)}
 #'
 #' @export
 access_rmd <- function(

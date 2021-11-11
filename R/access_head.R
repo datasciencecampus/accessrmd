@@ -22,7 +22,7 @@
 #' @importFrom stringr str_split str_remove str_squish str_sub
 #' @importFrom knitr current_input
 #' 
-#' @examples
+#' @example
 #' \dontshow{.old_wd <- setwd(tempdir())}
 #'# create a testfile
 #'rmd <- tempfile("testing", fileext = ".rmd")
@@ -44,6 +44,7 @@
 #'access_head(rmd, lan = "en")
 #'
 #' \dontshow{setwd(.old_wd)}
+#' 
 #' @export
 access_head <- function(
                         rmd_path = NULL,
