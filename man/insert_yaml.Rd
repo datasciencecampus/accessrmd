@@ -4,15 +4,7 @@
 \alias{insert_yaml}
 \title{Insert the required code for the specified toc type.}
 \usage{
-insert_yaml(
-  toc,
-  header,
-  text,
-  lan,
-  theme = c("null", "default", "readable", "journal", "flatly", "darkly", "readable",
-    "spacelab", "united", "cosmo", "lumen", "paper", "sandstone", "yeti"),
-  highlight = "null"
-)
+insert_yaml(toc, header, text, lan, theme = "default", highlight = "null")
 }
 \arguments{
 \item{toc}{TOC status, FALSE (the default) or TRUE.}
@@ -23,10 +15,8 @@ insert_yaml(
 
 \item{lan}{lang attribute value.}
 
-\item{theme}{Text styling to apply. Valid values are default, journal,
-flatly, darkly, readable, spacelab, united, cosmo, lumen, paper, sandstone
-and yeti. Please note that cerulean and simplex present accessibility errors
-and are therefore not supported by this function.}
+\item{theme}{Text styling to apply. Current valid value is "default" only.
+All other themes present accessibility errors on testing.}
 
 \item{highlight}{Currently only "null" is a valid, due to accessibility
 errors found in all built-in highlight options.}
