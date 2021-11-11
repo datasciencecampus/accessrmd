@@ -8,7 +8,9 @@ access_head(
   rmd_path = NULL,
   lan = detect_html_lang(lines),
   inplace = FALSE,
-  encoding = "utf-8"
+  encoding = "utf-8",
+  theme = "default",
+  highlight = "null"
 )
 }
 \arguments{
@@ -23,6 +25,12 @@ such as "en".}
 writes in place.}
 
 \item{encoding}{Defaults to utf-8.}
+
+\item{theme}{Set to "default", currently the only in-built theme that does
+not result in accessibility errors.}
+
+\item{highlight}{Set to "null", currently the only in-built highlight that
+does not result in accessibility errors.}
 }
 \value{
 Adjust the Rmd YAML provided to \code{rmd_path}, improving its
