@@ -11,6 +11,10 @@
 #' @param inplace When set to FALSE (the default) writes to new file. If TRUE,
 #' writes in place.
 #' @param encoding Defaults to utf-8.
+#' @param theme Set to "default", currently the only in-built theme that does
+#' not result in accessibility errors.
+#' @param highlight Set to "null", currently the only in-built highlight that
+#' does not result in accessibility errors.
 #'
 #' @return Adjust the Rmd YAML provided to `rmd_path`, improving its
 #' accessibility for screen readers. Only works with html output.
@@ -23,7 +27,9 @@ access_head <- function(
                         rmd_path = NULL,
                         lan = detect_html_lang(lines),
                         inplace = FALSE,
-                        encoding = "utf-8") {
+                        encoding = "utf-8",
+                        theme = "default",
+                        highlight = "null") {
   # check rmd_path
   lines <- handle_rmd_path(rmd_path)
   # check for presence of YAML features
@@ -95,7 +101,8 @@ access_head <- function(
     header = html_head,
     text = rmd_body,
     lan = lan,
-    theme = theme
+    theme = theme,
+    highlight = highlight
   )
 
   if (inplace == TRUE) {
