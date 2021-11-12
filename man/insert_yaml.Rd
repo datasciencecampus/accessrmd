@@ -27,15 +27,3 @@ An assembled html output page containing the required toc code.
 \description{
 Inserts YAML header for floating toc if toc is TRUE.
 }
-\examples{
-insert_yaml(
-toc = TRUE,
-header = "<header>
-   <h1>A Heading Here</h1>
-   <title>A Heading Here</title>
-   <p>Posted by Someone</p>
-   </header>",
-text = "Some document text",
-lan = "en")
-
-}
