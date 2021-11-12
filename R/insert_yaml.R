@@ -10,6 +10,17 @@
 #' All other themes present accessibility errors on testing. 
 #' @param highlight Currently only "null" is a valid, due to accessibility
 #' errors found in all built-in highlight options.
+#' 
+#' @examples
+#' insert_yaml(
+#'toc = TRUE,
+#'header = "<header>
+#'    <h1>A Heading Here</h1>
+#'    <title>A Heading Here</title>
+#'    <p>Posted by Someone</p>
+#'    </header>",
+#'text = "Some document text",
+#'lan = "en")
 #'
 #' @return An assembled html output page containing the required toc code.
 #'
