@@ -40,3 +40,21 @@ Reads in an image and produces the HTML structure expected by web
 accessibility checkers such as WAVE. Also works as a wrapper around
 ggplot2 charts.
 }
+\examples{
+\dontshow{.old_wd <- setwd(tempdir())}
+# create a ggplot2 chart
+ggplot(pressure, aes(temperature, pressure)) + 
+geom_point()
+
+# Use 'access_img()' to render the chart with alt text
+access_img(alt = "Vapor Pressure of Mercury as a Function of Temperature")
+
+# Create a png.
+file.create(tempfile("some_img", fileext = ".png"))
+
+# Read it from disk and include alt text
+access_img("some_img.png", alt = "Some meaningful alt text")
+
+\dontshow{setwd(.old_wd)}
+
+}
