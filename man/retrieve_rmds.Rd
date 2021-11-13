@@ -23,7 +23,9 @@ Recursively searches file structure for Rmarkdown files. Returns the found
 Rmd relative paths.
 }
 \examples{
-\dontshow{.old_wd <- setwd(tempdir())}
+\dontshow{
+.old_wd <- setwd(tempdir())
+}
 # Create a test directory
 dir.create("parent")
 dir.create("parent/child")
@@ -33,8 +35,8 @@ dir.create("parent/child")
 nm_vec <- character()
 # create numbered file names
 for (num in 1:6) {
-nm <- paste0(num, "-test.Rmd")
-nm_vec <- append(nm_vec, nm)
+  nm <- paste0(num, "-test.Rmd")
+  nm_vec <- append(nm_vec, nm)
 }
 # Create some files in parent & child directories
 file.create(paste0("parent/", nm_vec[1:3]))
@@ -45,6 +47,8 @@ retrieve_rmds("parent")
 
 # tidy up environment
 unlink(c("parent", "child"), recursive = TRUE)
-\dontshow{setwd(.old_wd)}
+\dontshow{
+setwd(.old_wd)
+}
 
 }

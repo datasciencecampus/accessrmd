@@ -18,17 +18,20 @@ Check links within an Rmarkdown document for any urls that responds with an
 error.
 }
 \examples{
-\dontshow{.old_wd <- setwd(tempdir())}
+\dontshow{
+.old_wd <- setwd(tempdir())
+}
 # create a testfile
 links <- tempfile("mixed_links", fileext = ".rmd")
 file.create(links)
 writeLines("[a good link](https://datasciencecampus.ons.gov.uk/)
 [a bad link](https://datasciencecampus.ons.gov.uk/broken)",
-           con = links)
+  con = links
+)
 # Test the file
 check_urls(links)
-
-
-\dontshow{setwd(.old_wd)}
+\dontshow{
+setwd(.old_wd)
+}
 
 }

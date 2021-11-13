@@ -19,24 +19,27 @@
 #'
 #' @importFrom ggplot2 last_plot ggsave
 #' @importFrom grDevices png
-#' 
+#'
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
 #' # create a ggplot2 chart
-#' ggplot(pressure, aes(temperature, pressure)) + 
-#' geom_point()
-#' 
+#' ggplot(pressure, aes(temperature, pressure)) +
+#'   geom_point()
+#'
 #' # Use 'access_img()' to render the chart with alt text
 #' access_img(alt = "Vapor Pressure of Mercury as a Function of Temperature")
 #'
-#'# Create a png.
-#'file.create(tempfile("some_img", fileext = ".png"))
+#' # Create a png.
+#' file.create(tempfile("some_img", fileext = ".png"))
 #'
-#'# Read it from disk and include alt text
-#'access_img("some_img.png", alt = "Some meaningful alt text")
+#' # Read it from disk and include alt text
+#' access_img("some_img.png", alt = "Some meaningful alt text")
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 #'
-#' \dontshow{setwd(.old_wd)}
-#' 
 #' @export
 access_img <- function(img = last_plot(), alt = NULL, wid = NULL,
                        ht = NULL, dpi = 300, css_class = NULL, css_id = NULL) {

@@ -7,20 +7,20 @@
 #' @param text Raw text required for Rmarkdown body.
 #' @param lan lang attribute value.
 #' @param theme Text styling to apply. Current valid value is "default" only.
-#' All other themes present accessibility errors on testing. 
+#' All other themes present accessibility errors on testing.
 #' @param highlight Currently only "null" is a valid, due to accessibility
 #' errors found in all built-in highlight options.
-#' 
+#'
 #' @return An assembled html output page containing the required toc code.
 #'
 insert_yaml <- function(toc,
-                       header,
-                       text,
-                       lan,
-                       theme = "default",
-                       highlight = "null") {
+                        header,
+                        text,
+                        lan,
+                        theme = "default",
+                        highlight = "null") {
   # if theme is cerulean or simplex, break with error message
-  if(theme != "default"){
+  if (theme != "default") {
     warning(paste("The", theme, "theme has known accessibility errors and is
     not supported by this function."))
     # apply default theme instead

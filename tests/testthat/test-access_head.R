@@ -43,7 +43,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ## R Markdown
 This is an R Markdown document. Markdown is a <http://rmarkdown.rstudio.com>.",
-           con = no_yaml_rmd
+  con = no_yaml_rmd
 )
 # testfile for YAML-specified lang attribute
 lang_rmd <- tempfile(fileext = ".Rmd")
@@ -98,8 +98,9 @@ knitr::opts_chunk$set(echo = TRUE)
 test_that("Expected behaviour on inplace = FALSE", {
   # check no warnings
   expect_message(access_head(test_rmd, lan = "en"), c("Setting html lan to en"))
-  expect_message(access_head(test_rmd, lan = "en"),
-                 "Writing file to"
+  expect_message(
+    access_head(test_rmd, lan = "en"),
+    "Writing file to"
   )
   expect_true(file.exists(outfile))
 })

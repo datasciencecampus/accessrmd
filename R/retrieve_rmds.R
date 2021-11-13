@@ -15,20 +15,22 @@
 #'
 #' @importFrom stringr str_split str_extract str_remove_all
 #' @importFrom rlist list.apply
-#' 
+#'
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
 #' # Create a test directory
 #' dir.create("parent")
 #' dir.create("parent/child")
-#' 
+#'
 #' # Create some rmds to find
 #' # An empty vector to collect file names
 #' nm_vec <- character()
 #' # create numbered file names
 #' for (num in 1:6) {
-#' nm <- paste0(num, "-test.Rmd")
-#' nm_vec <- append(nm_vec, nm)
+#'   nm <- paste0(num, "-test.Rmd")
+#'   nm_vec <- append(nm_vec, nm)
 #' }
 #' # Create some files in parent & child directories
 #' file.create(paste0("parent/", nm_vec[1:3]))
@@ -39,8 +41,10 @@
 #'
 #' # tidy up environment
 #' unlink(c("parent", "child"), recursive = TRUE)
-#' \dontshow{setwd(.old_wd)}
-#' 
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
+#'
 #' @export
 retrieve_rmds <- function(search_dir = ".", recurse = TRUE, to_txt = FALSE) {
   # find rmd files

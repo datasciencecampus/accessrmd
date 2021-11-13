@@ -14,38 +14,42 @@
 #'
 #' @importFrom stringr str_split str_extract str_remove_all str_squish str_count
 #' @importFrom rlist list.apply
-#' 
+#'
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
-#'# create a testfile
-#'rmd <- tempfile("testing", fileext = ".rmd")
-#'# write basic markdown content
-#'writeLines('---
-#'title: "Suspicious Alt Text"
-#'author: "Some Author"
-#'date: "`r format(Sys.Date(), "%d %b %Y")`"
-#'output: html_document
-#'---
-#'  
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
+#' # create a testfile
+#' rmd <- tempfile("testing", fileext = ".rmd")
+#' # write basic markdown content
+#' writeLines('---
+#' title: "Suspicious Alt Text"
+#' author: "Some Author"
+#' date: "`r format(Sys.Date(), "%d %b %Y")`"
+#' output: html_document
+#' ---
+#'
 #'  ```{r setup, include=FALSE}
-#'knitr::opts_chunk$set(echo = TRUE)
-#'```
+#' knitr::opts_chunk$set(echo = TRUE)
+#' ```
 #'
-#'## R Markdown
+#' ## R Markdown
 #'
-#'![nbsp](some_img)
+#' ![nbsp](some_img)
 #'
-#'![another_img](another_img)',
-#'con = rmd)
+#' ![another_img](another_img)',
+#'   con = rmd
+#' )
 #'
-#'# test the file for suspicious alt text
-#'sus_alt(rmd, lan = "en")
+#' # test the file for suspicious alt text
+#' sus_alt(rmd, lan = "en")
 #'
-#'# Adjust the document header to improve screen reader accessibility
-#'access_head(rmd, lan = "en")
+#' # Adjust the document header to improve screen reader accessibility
+#' access_head(rmd, lan = "en")
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 #'
-#' \dontshow{setwd(.old_wd)}
-#' 
 #' @export
 sus_alt <- function(rmd_path = NULL, lan = detect_html_lang(lines)) {
   message(paste0("Checking ", basename(rmd_path), "..."))

@@ -56,11 +56,16 @@ Creates an Rmarkdown template with the HTML structure required by screen
 readers.
 }
 \examples{
-\dontshow{.old_wd <- setwd(tempdir())}
+\dontshow{
+.old_wd <- setwd(tempdir())
+}
 # create an accessible rmarkdown document from scratch
 access_rmd(
-"some_filenm", title = "Title Goes Here", lan = "en", author = "Author here"
+  "some_filenm",
+  title = "Title Goes Here", lan = "en", author = "Author here"
 )
-\dontshow{setwd(.old_wd)}
+\dontshow{
+setwd(.old_wd)
+}
 
 }

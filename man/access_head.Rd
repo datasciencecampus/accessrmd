@@ -41,7 +41,9 @@ Reads an Rmd file, converting the YAML header to a format that is screen
 reader friendly.
 }
 \examples{
-\dontshow{.old_wd <- setwd(tempdir())}
+\dontshow{
+.old_wd <- setwd(tempdir())
+}
 # create a testfile
 rmd <- tempfile("testing", fileext = ".rmd")
 # write basic markdown content
@@ -51,7 +53,7 @@ author: "Some Author"
 date: "`r format(Sys.Date(), "\%d \%b \%Y")`"
 output: html_document
 ---
- 
+
  ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -60,7 +62,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Adjust the document header to improve screen reader accessibility
 access_head(rmd, lan = "en")
-
-\dontshow{setwd(.old_wd)}
+\dontshow{
+setwd(.old_wd)
+}
 
 }

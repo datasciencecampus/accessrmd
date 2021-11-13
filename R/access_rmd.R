@@ -25,14 +25,19 @@
 #' specified within the function parameters.
 #'
 #' @importFrom stringr str_remove_all
-#' 
+#'
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
 #' # create an accessible rmarkdown document from scratch
 #' access_rmd(
-#' "some_filenm", title = "Title Goes Here", lan = "en", author = "Author here"
+#'   "some_filenm",
+#'   title = "Title Goes Here", lan = "en", author = "Author here"
 #' )
-#' \dontshow{setwd(.old_wd)}
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 #'
 #' @export
 access_rmd <- function(
@@ -111,8 +116,10 @@ plot from the knitted HTML document."
   # end of template ---------------------------------------------------------
 
   # Assemble output
-  html_out <- insert_yaml(toc = toc, header = header, text = text, lan = lan,
-                          theme = theme, highlight = highlight)
+  html_out <- insert_yaml(
+    toc = toc, header = header, text = text, lan = lan,
+    theme = theme, highlight = highlight
+  )
 
   # write to file
   message(paste("Writing file to", filenm))

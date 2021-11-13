@@ -29,18 +29,24 @@ lan1 <- "cy"
 
 test_that("Lan messages behave", {
   expect_message(
-    insert_yaml(toc = FALSE, header = html_head, text = rmd_text, lan = lan,
-                theme = "default"),
+    insert_yaml(
+      toc = FALSE, header = html_head, text = rmd_text, lan = lan,
+      theme = "default"
+    ),
     "Setting html lan to en"
   )
   expect_message(
-    insert_yaml(toc = FALSE, header = html_head, text = rmd_text, lan = lan1,
-                theme = "default"),
+    insert_yaml(
+      toc = FALSE, header = html_head, text = rmd_text, lan = lan1,
+      theme = "default"
+    ),
     "Setting html lan to cy"
   )
   expect_error(
-    insert_yaml(toc = FALSE, header = html_head, text = rmd_text,
-                theme = "default"),
+    insert_yaml(
+      toc = FALSE, header = html_head, text = rmd_text,
+      theme = "default"
+    ),
     '"lan" is missing'
   )
 })
@@ -73,19 +79,22 @@ test_that("Output toc is correct", {
 })
 
 test_that("Func applies default theme only", {
-  expect_true(grepl("theme: default", insert_yaml(toc = FALSE,
-              header = html_head,
-              text = rmd_text,
-              lan = lan,
-              theme = "default")
-              )
-  )
-  expect_warning(insert_yaml(toc = FALSE,
-                             header = html_head,
-                             text = rmd_text,
-                             lan = lan,
-                             theme = "cerulean"),
-                 "The cerulean theme has known accessibility errors and is
+  expect_true(grepl("theme: default", insert_yaml(
+    toc = FALSE,
+    header = html_head,
+    text = rmd_text,
+    lan = lan,
+    theme = "default"
+  )))
+  expect_warning(
+    insert_yaml(
+      toc = FALSE,
+      header = html_head,
+      text = rmd_text,
+      lan = lan,
+      theme = "cerulean"
+    ),
+    "The cerulean theme has known accessibility errors and is
     not supported by this function."
   )
 })

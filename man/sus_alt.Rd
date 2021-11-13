@@ -22,7 +22,9 @@ placeholder values, including: 'nbsp', 'spacer' and src attribute value
 (filename).
 }
 \examples{
-\dontshow{.old_wd <- setwd(tempdir())}
+\dontshow{
+.old_wd <- setwd(tempdir())
+}
 # create a testfile
 rmd <- tempfile("testing", fileext = ".rmd")
 # write basic markdown content
@@ -32,7 +34,7 @@ author: "Some Author"
 date: "`r format(Sys.Date(), "\%d \%b \%Y")`"
 output: html_document
 ---
- 
+
  ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -42,14 +44,16 @@ knitr::opts_chunk$set(echo = TRUE)
 ![nbsp](some_img)
 
 ![another_img](another_img)',
-con = rmd)
+  con = rmd
+)
 
 # test the file for suspicious alt text
 sus_alt(rmd, lan = "en")
 
 # Adjust the document header to improve screen reader accessibility
 access_head(rmd, lan = "en")
-
-\dontshow{setwd(.old_wd)}
+\dontshow{
+setwd(.old_wd)
+}
 
 }

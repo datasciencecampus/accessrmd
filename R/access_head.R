@@ -21,30 +21,33 @@
 #'
 #' @importFrom stringr str_split str_remove str_squish str_sub
 #' @importFrom knitr current_input
-#' 
+#'
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
-#'# create a testfile
-#'rmd <- tempfile("testing", fileext = ".rmd")
-#'# write basic markdown content
-#'writeLines('---
-#'title: "testfile"
-#'author: "Some Author"
-#'date: "`r format(Sys.Date(), "%d %b %Y")`"
-#'output: html_document
-#'---
-#'  
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
+#' # create a testfile
+#' rmd <- tempfile("testing", fileext = ".rmd")
+#' # write basic markdown content
+#' writeLines('---
+#' title: "testfile"
+#' author: "Some Author"
+#' date: "`r format(Sys.Date(), "%d %b %Y")`"
+#' output: html_document
+#' ---
+#'
 #'  ```{r setup, include=FALSE}
-#'knitr::opts_chunk$set(echo = TRUE)
-#'```
+#' knitr::opts_chunk$set(echo = TRUE)
+#' ```
 #'
-#'## R Markdown', con = rmd)
+#' ## R Markdown', con = rmd)
 #'
-#'# Adjust the document header to improve screen reader accessibility
-#'access_head(rmd, lan = "en")
+#' # Adjust the document header to improve screen reader accessibility
+#' access_head(rmd, lan = "en")
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 #'
-#' \dontshow{setwd(.old_wd)}
-#' 
 #' @export
 access_head <- function(
                         rmd_path = NULL,
@@ -114,8 +117,10 @@ access_head <- function(
   # toc status --------------------------------------------------------------
 
   tocify <- FALSE
-  tocify <- any(grepl("toc: true|toc: yes|toc_float: true|toc_float: yes",
-                      header_txt))
+  tocify <- any(grepl(
+    "toc: true|toc: yes|toc_float: true|toc_float: yes",
+    header_txt
+  ))
 
   # reassemble the accessible head ------------------------------------------
 
