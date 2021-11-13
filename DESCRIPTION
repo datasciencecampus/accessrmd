@@ -13,11 +13,10 @@ Authors@R:
            comment = "Author and maintainer of the htmltools package, of which
            'accessrmd/R/tags.R' is attributed.")
            )
-Description: The aim of 'accessrmd' is to provide a simple method to improve the
-    accessibility of Rmarkdown documents. The package provides functions for 
-    creating or modifying Rmarkdown documents to resolve some of the known
-    errors and alerts that result in accessibility issues for screen reader
-    users.
+Description: Provides a simple method to improve the accessibility of Rmarkdown
+    documents. The package provides functions for creating or modifying
+    Rmarkdown documents, resolving known errors and alerts that result in
+    accessibility issues for screen reader users.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
