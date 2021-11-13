@@ -19,7 +19,7 @@ Description: Provides a simple method to improve the accessibility of Rmarkdown
     documents. The package provides functions for creating or modifying
     Rmarkdown documents, resolving known errors and alerts that result in
     accessibility issues for screen reader users.
-License: MIT + file LICENSE
+License: file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
