@@ -3,7 +3,10 @@
 \docType{data}
 \name{tags}
 \alias{tags}
-\title{"tags" object from "htmltools".}
+\title{"tags" object from "htmltools".
+License: GPL (>= 2)
+\href{https://github.com/rstudio/htmltools}{htmltools GitHub}
+\href{https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html}{gpl 2 terms}}
 \format{
 An object of class \code{list} of length 181.
 }

@@ -1,6 +1,8 @@
 #' "tags" object from "htmltools".
 #' License: GPL (>= 2)
-#' URL: https://github.com/rstudio/htmltools
+#' [htmltools GitHub](https://github.com/rstudio/htmltools)
+#' [gpl 2 terms](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+#' 
 #'
 #' Does not appear to be exported from htmltools namespace. Dependency has been
 #' established with "utils::getFromNamespace"

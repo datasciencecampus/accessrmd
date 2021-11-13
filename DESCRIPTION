@@ -6,12 +6,14 @@ Authors@R:
            family = "Leyshon",
            role = c("aut", "cre"),
            email = "richard.leyshon@ons.gov.uk"),
+           person(family = "datasciencecampus", role = "cph"),
            person(given = "Carson",
            family = "Sievert",
            role = c("aut", "ctb"),
            email = "carson@rstudio.com",
            comment = "Author and maintainer of the htmltools package, of which
-           'accessrmd/R/tags.R' is attributed.")
+           'accessrmd/R/tags.R' is attributed."),
+           person(family = "RStudio", role = "cph")
            )
 Description: Provides a simple method to improve the accessibility of Rmarkdown
     documents. The package provides functions for creating or modifying
