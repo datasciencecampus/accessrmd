@@ -3,10 +3,7 @@ package includes other open source software components. The following is a list
 of these components:
 
 * accessrmd: written by package author
-* tags: GPL 2
 * `R/sysdata.R` contains `langs` a large character vector derived from
 https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry.
 Copyright belongs to the Internet Assigned Numbers Authority, 2021. No license
 details included.
-
-Full copies of the license agreements used by these components are included in `inst/htmlwidgets/lib`.
