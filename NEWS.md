@@ -2,6 +2,11 @@
 
 ## Changelog
 
+### Version 1.0.0
+
+### Updating licensing documentation.
+
+
 ### Version: 0.0.0.9000
 
 #### access_head
