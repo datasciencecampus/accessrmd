@@ -139,7 +139,7 @@ plots too.
 handling cases where no date, no author, what about other potential metas like
 abstract for academic papers?
 * wrapper function that finds all images and replaces with 'access_img()' code.
-* 'check_urls()' links like: <http://rmarkdown.rstudio.com> aren't found. This
+* 'check_urls()' links like: <https://rmarkdown.rstudio.com> aren't found. This
 is an uncommon usage in my experience, but is found within the standard
 'rmarkdown' template.
 * Microsoft Azure Cognitive Services free API: automate alt text generation for
