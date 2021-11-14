@@ -4,7 +4,7 @@
 
 ### Version 1.0.0
 
-### Updating licensing documentation.
+* Updating licensing documentation.
 
 
 ### Version: 0.0.0.9000
@@ -117,9 +117,12 @@ not a html_document output.
 
 ## To do
 
-**MVP**
-* Refactor 'insert_yaml()', inserted code chunk should contain a call to 
-* correct header hierarchy.
+* 'accesrmd()' include more extensive accessibility guidance within the template
+text.
+* Func to insert 'access_img()' code in docs wherever markdown or HTML syntax
+images are found.
+* Func to checkcorrect header hierarchy.
+* 'access_head()' & 'access_rmd()' code_folding compatibility.
 * refactor: find all alts
 * wrapper function that packages up broken links, sus alt text, long alt text,
 header hierarchy, correct img HTML in one go.
@@ -128,6 +131,10 @@ Investigate tmpfile behaviour.
 
 ## Parked
 
+### Features
+
+* 'access_img()' only works for ggplot charts. Need to include logic for base
+plots too.
 * 'assemble_header()' handles errors gracefully. Consider refactoring and
 handling cases where no date, no author, what about other potential metas like
 abstract for academic papers?
@@ -141,44 +148,14 @@ uploaded?
 * .Rmds modified with 'access_head()' render with a warning about title
 metadata. May wish to consider the alternative format [.rhtml](https://bookdown.org/yihui/rmarkdown-cookbook/html-hardcore.html).
 
-### access_head
+### Tests
 
-* additional required functionality: toc_float
-* code_folding compatibility.
+#### access_head:
 
-### access_rmd
-
-* code folding compatibility
-* toc_float functionality
-* Include more extensive accessibility guidance within the template text.
-
-### access_img
-
-* intermediate plots occasionally appear in dir
-
-***
-
-## Tests
-
-### access_head:
-
-* grepl yaml bounds. Running on an Rmd containing the following url:
-![Coloured stripes of chronologically ordered temperatures where they increase in red to show the warming global temperature](../images/_stripes_GLOBE---1850-2020-MO.png)
-Results in non standard YAML bounds. Using regex to increase specificity but would make a good test case.
 * Check on start / end lines for all cases.
 * Reads correctly when no EOF marker included.
 
-### access_img
+#### access_img
 
-* rmd knitting behaviour is producing saved intermediate chart images in the wd of the rmd. Once resolved, this would make a good test case.
-
-
-### sus_alt
-
-***
-
-## Parked
-
-### access_img
-
-* Only works for ggplot charts. Need to include logic for base plots too.
+* rmd knitting behaviour is producing saved intermediate chart images in the wd
+of the rmd. Once resolved, this would make a good test case.
