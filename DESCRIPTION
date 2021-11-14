@@ -8,10 +8,10 @@ Authors@R:
            email = "richard.leyshon@ons.gov.uk"),
            person(family = "datasciencecampus", role = "cph")
            )
-Description: Provides a simple method to improve the accessibility of Rmarkdown
-    documents. The package provides functions for creating or modifying
-    Rmarkdown documents, resolving known errors and alerts that result in
-    accessibility issues for screen reader users.
+Description: Provides a simple method to improve the accessibility of
+    'rmarkdown' documents. The package provides functions for creating or
+    modifying 'rmarkdown' documents, resolving known errors and alerts that
+    result in accessibility issues for screen reader users.
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
