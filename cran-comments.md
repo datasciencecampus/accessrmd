@@ -26,8 +26,6 @@ Duration: 43.1s
   
   Non-FOSS package license (file LICENSE)
   
-  Package has a VignetteBuilder field but no prebuilt vignette index.
-
 0 errors ✓ | 0 warnings ✓ | 1 note x
 ```
 ***
