@@ -1,5 +1,5 @@
 Package: accessrmd
-Title: Improving the Accessibility of Rmarkdown Documents
+Title: Improving the Accessibility of 'rmarkdown' Documents
 Version: 1.0.0
 Authors@R: 
     c(person(given = "Rich",
