@@ -87,6 +87,7 @@ access_rmd <- function(
   text <- "
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = "")
 ```
   
 ## Adapted R Markdown
