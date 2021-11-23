@@ -92,8 +92,8 @@ knitr::opts_chunk$set(comment = \"\")
   
 ## Adapted R Markdown
 
-This R Markdown templated has been adapted using the 'accessrmd' package. This
-template has a different head and HTML structure to the standard R markdown
+This R Markdown template has been adapted using the 'accessrmd' package. This
+template has a different header and HTML structure to the standard R markdown
 template. This is to improve the accessibility of the knitted HTML documents for
 screen readers.
 
@@ -108,12 +108,24 @@ summary(cars)
 
 ## Plots
   
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r pressure, echo=FALSE, message=FALSE}
+plt <- ggplot2::ggplot(
+  pressure,
+  ggplot2::aes(temperature, pressure)
+  ) +
+  ggplot2::geom_point()
+
+accessrmd::access_img(
+  plt, 
+  alt = \"Vapor Pressure of Mercury as a Function of Temperature\",
+  ht = 400
+  )
+
 ```
 
-In the above chunk, `echo = FALSE` was used to hide the R code that produced the
-plot from the knitted HTML document."
+In the above chunk, `echo=FALSE` was used to hide the R code that produced the
+plot from the knitted HTML document. `message=FALSE` was also used to stop
+  messages being knitted to the HTML output."
   # end of template ---------------------------------------------------------
 
   # Assemble output
