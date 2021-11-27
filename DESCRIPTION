@@ -6,7 +6,7 @@ Authors@R:
            family = "Leyshon",
            role = c("aut", "cre"),
            email = "richard.leyshon@ons.gov.uk"),
-           person(family = "datasciencecampus", role = "cph")
+           person(given = "Crown Copyright 2021", role = "cph")
            )
 Description: Provides a simple method to improve the accessibility of
     'rmarkdown' documents. The package provides functions for creating or
