@@ -76,7 +76,24 @@ access_head <- function(
   header_txt <- setdiff(yaml_head, "---")
   # check html output is compatible.
   check_compat(header_txt)
-
+  # check config comment ----------------------------------------------------
+  # look for `knitr::opts_chunk$set(comment = "")`
+  # regex tested: https://regex101.com/r/LHHz88/1
+  comm_line <- rmd_body[
+    grep("opts_chunk\\$set\\(comment ?= ?(\"\"|'')\\)", rmd_body)
+    ]
+  comm_line <- "knitr::opts_chunk$set(comment='')"
+  comm_line <- "# knitr::opts_chunk$set(comment='')"
+  not_active <- grepl("^#", comm_line)
+  # conditions for inserting will be line not found or commented out
+  if(length(comm_line) == 0){
+    # An acceptable comment line should be inserted into the config chunk
+    message("Inserting specified chunk config comment \"\"")
+  } else if(not_active){
+    # Uncomment the comm_line
+    message("Activating the specified chunk config comment")
+  }
+  
   # return theme ------------------------------------------------------------
   theme <- find_theme(header_txt)
   # Clean out quotations
