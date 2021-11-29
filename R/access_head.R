@@ -88,10 +88,10 @@ access_head <- function(
   # conditions for inserting will be line not found or commented out
   if(length(comm_line) == 0){
     # An acceptable comment line should be inserted into the config chunk
-    message("Inserting specified chunk config comment \"\"")
+    message("Adjusting config chunk specification.")
   } else if(not_active){
     # Uncomment the comm_line
-    message("Activating the specified chunk config comment")
+    message("Activating specified chunk config.")
   }
   
   # return theme ------------------------------------------------------------
