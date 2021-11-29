@@ -94,6 +94,24 @@ knitr::opts_chunk$set(echo = TRUE)
 ',
   con = toc_file
 )
+# create test files for config chunk specification
+hashed_config <- tempfile(fileext = ".Rmd")
+file.create(hashed_config)
+writeLines('---
+title: "subitle testing"
+subtitle: "Here\'s a subtitle to test"
+author: "Richard Leyshon"
+date: "29/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#knitr::opts_chunk$set(comment = "")
+```
+
+## R Markdown', con = hashed_config)
+
 # tests -------------------------------------------------------------------
 test_that("Expected behaviour on inplace = FALSE", {
   # check no warnings
@@ -144,6 +162,16 @@ test_that("Inline code has been correctly written", {
     readLines(inline_rmd)
   )))
 })
+
+test_that("Config chunk gets correct conditional treatment", {
+  expect_message(access_head(hashed_config, lan = "en", inplace = TRUE),
+                 "Activating specified chunk config.")
+  adj_hashed_config <- readLines(hashed_config)
+  expect_false(grepl("^#",
+                     adj_hashed_config[grep(
+                       'set\\(comment = \"\"\\)', adj_hashed_config)]
+                     ))
+  })
 
 # set the wd to test directory
 with(globalenv(), {
