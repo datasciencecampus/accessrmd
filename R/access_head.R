@@ -91,7 +91,7 @@ access_head <- function(
     # Uncomment the comm_line
     message("Activating specified chunk config.")
     # replace hashed code with unhashed
-    comm_line[comm_loc] <- str_squish(str_remove(comm_line, "^#"))
+    rmd_body[comm_loc] <- str_squish(str_remove(comm_line, "^#"))
   }
   
   # return theme ------------------------------------------------------------
