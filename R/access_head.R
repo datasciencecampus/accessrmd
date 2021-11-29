@@ -79,17 +79,15 @@ access_head <- function(
   # check config comment ----------------------------------------------------
   # look for `knitr::opts_chunk$set(comment = "")`
   # regex tested: https://regex101.com/r/LHHz88/1
-  comm_line <- rmd_body[
-    grep("opts_chunk\\$set\\(comment ?= ?(\"\"|'')\\)", rmd_body)
-    ]
+  comm_loc <- grep("opts_chunk\\$set\\(comment ?= ?(\"\"|'')\\)", rmd_body)
+  comm_line <- rmd_body[comm_loc]
   comm_line <- "knitr::opts_chunk$set(comment='')"
   comm_line <- "# knitr::opts_chunk$set(comment='')"
-  not_active <- grepl("^#", comm_line)
   # conditions for inserting will be line not found or commented out
   if(length(comm_line) == 0){
     # An acceptable comment line should be inserted into the config chunk
     message("Adjusting config chunk specification.")
-  } else if(not_active){
+  } else if(grepl("^#", comm_line)){
     # Uncomment the comm_line
     message("Activating specified chunk config.")
   }
