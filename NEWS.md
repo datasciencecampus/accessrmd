@@ -6,10 +6,22 @@
 
 * Updating licensing documentation.
 
+#### 'access_head()'
+
+* Inserts a setup chunk with `knitr::opts_chunk$set(comment = "")` if not found.
+This controls the appearance of code chunk outputs, ensuring that preceding
+hashes do not appear before code output. (Reported to be the better setup for
+accessibility, see [bookdown guidance](https://bookdown.org/yihui/rmarkdown-cookbook/html-accessibility.html#html-accessibility))
+* Errors on recursive use.
+
+#### 'access_img()'
+* Inserts a setup chunk with `knitr::opts_chunk$set(comment = "")`. This
+controls the appearance of code chunk outputs, ensuring that preceding hashes do
+not appear before code output.
 
 ### Version: 0.0.0.9000
 
-#### access_head
+#### 'access_head()'
 
 * Replaces basic YAML with accessible HTML header. Currently supports title, 
 author and date.
@@ -30,11 +42,6 @@ ioslides, slidy and xaringan.
 errors.
 * Sets highlight to null - the only option that does not result in accessibility
 errors.
-* Inserts a setup chunk with `knitr::opts_chunk$set(comment = "")` if not found.
-This controls the appearance of code chunk outputs, ensuring that preceding
-hashes do not appear before code output. (Reported to be the better setup for
-accessibility, see [bookdown guidance](https://bookdown.org/yihui/rmarkdown-cookbook/html-accessibility.html#html-accessibility))
-* Errors on recursive use.
 
 #### 'access_img()'
 
@@ -56,10 +63,6 @@ text (as opposed to markdown syntax which can be unreliable).
 errors.
 * Sets highlight to null - the only option that does not result in accessibility
 issues.
-* Inserts a setup chunk with `knitr::opts_chunk$set(comment = "")`. This
-controls the appearance of code chunk outputs, ensuring that preceding hashes do
-not appear before code output. (Reported to be the better setup for
-accessibility, see [bookdown guidance](https://bookdown.org/yihui/rmarkdown-cookbook/html-accessibility.html#html-accessibility))
 
 #### 'assemble_header()' (Not exported)
 
