@@ -102,6 +102,7 @@ access_head <- function(
   if(length(conf_loc) == 0){
     message("Inserting config chunk.")
     rmd_body <- c(
+      "", 
       "```{r setup, include=FALSE}",
       "knitr::opts_chunk$set(comment = \"\")",
       "```",
