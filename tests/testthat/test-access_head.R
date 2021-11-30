@@ -173,6 +173,13 @@ test_that("Config chunk gets correct conditional treatment", {
                      ))
   })
 
+test_that("Func errors on recursive use", 
+          expect_error(expect_message(
+            access_head(test_rmd, lan = "en", inplace = TRUE),
+            "Have you previously run 'access_head()' on this file?")
+            )
+)
+
 # set the wd to test directory
 with(globalenv(), {
   setwd(.old_wd)
