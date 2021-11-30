@@ -91,7 +91,7 @@ access_head <- function(
     message("Inserting config chunk.")
     rmd_body <- c(
       "```{r setup, include=FALSE}",
-      "knitr::opts_chunk$set(comment = \"\"",
+      "knitr::opts_chunk$set(comment = \"\")",
       "```",
       "",
       rmd_body
