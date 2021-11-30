@@ -127,6 +127,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown', con = no_setup)
 
+no_comment <- tempfile(fileext = ".Rmd")
+file.create(no_comment)
+writeLines('---
+title: "Hashed config"
+author: "Richard Leyshon"
+date: "29/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown', con = no_comment)
+
 # tests -------------------------------------------------------------------
 test_that("Expected behaviour on inplace = FALSE", {
   # check no warnings
@@ -194,6 +209,8 @@ test_that("Config chunk gets correct conditional treatment", {
                   grepl("knitr::opts_chunk\\$set\\(comment = \"\"\\)",
                         adj_no_setup))
               )
+  expect_message(access_head(no_comment, lan = "en", inplace = TRUE),
+                 "Specifying config comment.")
   })
 
 test_that("Func errors on recursive use", 
