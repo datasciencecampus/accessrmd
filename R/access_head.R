@@ -70,6 +70,18 @@ access_head <- function(
   yaml_head <- lines[yaml_seq]
   # extract rmd body
   rmd_body <- lines[(max(yaml_seq) + 1):length(lines)]
+  # need to break if func is used recursively
+  # find TOC YAML spec & html wrapper markers that 'access_head()' already used
+  if(
+    # yaml spec
+    any(grepl("highlight: null", yaml_head)) &
+    any(grepl("theme: default", yaml_head)) &
+    # html wrapper spec
+    grepl("<html lang", rmd_body[1]) &
+    grepl("</html>", rmd_body[length(rmd_body)])
+  ){
+    stop("Have you previously run 'access_head()' on this file?")
+  }
   # dynamic head logic ------------------------------------------------------
   # Will need to identify YAML elements present and convert to html flexibly
   # remove YAML bounds "---"
