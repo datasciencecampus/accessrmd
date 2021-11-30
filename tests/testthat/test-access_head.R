@@ -98,8 +98,7 @@ knitr::opts_chunk$set(echo = TRUE)
 hashed_config <- tempfile(fileext = ".Rmd")
 file.create(hashed_config)
 writeLines('---
-title: "subitle testing"
-subtitle: "Here\'s a subtitle to test"
+title: "Hashed config"
 author: "Richard Leyshon"
 date: "29/11/2021"
 output: html_document
@@ -111,6 +110,22 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## R Markdown', con = hashed_config)
+
+no_setup <- tempfile(fileext = ".Rmd")
+file.create(no_setup)
+writeLines('---
+title: "subitle testing"
+author: "Richard Leyshon"
+date: "30/11/2021"
+output: html_document
+---
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+#knitr::opts_chunk$set(comment = "")
+```
+
+## R Markdown', con = no_setup)
 
 # tests -------------------------------------------------------------------
 test_that("Expected behaviour on inplace = FALSE", {
@@ -171,6 +186,14 @@ test_that("Config chunk gets correct conditional treatment", {
                      adj_hashed_config[grep(
                        'set\\(comment = \"\"\\)', adj_hashed_config)]
                      ))
+  expect_message(access_head(no_setup, lan = "en", inplace = TRUE),
+                 "Inserting config chunk.")
+  adj_no_setup <- readLines(no_setup)
+  expect_true(any(grepl("```\\{r setup, include=FALSE\\}", adj_no_setup)) &
+                any(
+                  grepl("knitr::opts_chunk\\$set\\(comment = \"\"\\)",
+                        adj_no_setup))
+              )
   })
 
 test_that("Func errors on recursive use", 
