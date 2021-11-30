@@ -86,7 +86,7 @@ access_head <- function(
   # conditions for inserting will be line not found or commented out
   if(length(comm_line) == 0){
     # An acceptable comment line should be inserted into the config chunk
-    message("Adjusting config chunk specification.")
+    message("Inserting config chunk specification.")
   } else if(grepl("^#", comm_line)){
     # Uncomment the comm_line
     message("Activating specified chunk config.")
