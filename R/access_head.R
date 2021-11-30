@@ -87,6 +87,14 @@ access_head <- function(
   if(length(comm_line) == 0){
     # An acceptable comment line should be inserted into the config chunk
     message("Inserting config chunk specification.")
+    # find the config chunk
+    conf_loc <- grep("```\\{r setup", rmd_body)
+    # insert the comment spec
+    rmd_body <- c(
+      rmd_body[1:conf_loc],
+      "knitr::opts_chunk$set(comment = \"\")",
+      rmd_body[(conf_loc + 1):length(rmd_body)]
+      )
   } else if(grepl("^#", comm_line)){
     # Uncomment the comm_line
     message("Activating specified chunk config.")
@@ -137,7 +145,7 @@ access_head <- function(
     header_txt
   ))
 
-  # reassemble the accessible head ------------------------------------------
+  # reassemble the document ------------------------------------------------
 
   html_out <- insert_yaml(
     toc = tocify,
