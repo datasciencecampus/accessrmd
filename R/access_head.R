@@ -83,18 +83,30 @@ access_head <- function(
   comm_line <- rmd_body[comm_loc]
   # comm_line <- "knitr::opts_chunk$set(comment='')"
   # comm_line <- "# knitr::opts_chunk$set(comment='')"
-  # conditions for inserting will be line not found or commented out
-  if(length(comm_line) == 0){
+  # conditions for inserting will be comment line not found or commented out
+  # also, if no config chunk set, insert one
+  # find the config chunk
+  conf_loc <- grep("```\\{r setup", rmd_body)
+  if(length(conf_loc) == 0){
+    message("Inserting config chunk.")
+    rmd_body <- c(
+      "```{r setup, include=FALSE}",
+      "knitr::opts_chunk$set(comment = \"\"",
+      "```",
+      "",
+      rmd_body
+    )
+    
+  } else if(length(comm_line) == 0){
     # An acceptable comment line should be inserted into the config chunk
     message("Inserting config chunk specification.")
-    # find the config chunk
-    conf_loc <- grep("```\\{r setup", rmd_body)
     # insert the comment spec
     rmd_body <- c(
       rmd_body[1:conf_loc],
       "knitr::opts_chunk$set(comment = \"\")",
       rmd_body[(conf_loc + 1):length(rmd_body)]
       )
+    
   } else if(grepl("^#", comm_line)){
     # Uncomment the comm_line
     message("Activating specified chunk config.")
