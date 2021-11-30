@@ -211,6 +211,9 @@ test_that("Config chunk gets correct conditional treatment", {
               )
   expect_message(access_head(no_comment, lan = "en", inplace = TRUE),
                  "Specifying config comment.")
+  adj_no_comment <- readLines(no_comment)
+  expect_true(any(grepl("knitr::opts_chunk\\$set\\(comment = \"\"\\)",
+                        adj_no_comment)))
   })
 
 test_that("Func errors on recursive use", 
