@@ -99,7 +99,7 @@ access_head <- function(
     
   } else if(length(comm_line) == 0){
     # An acceptable comment line should be inserted into the config chunk
-    message("Inserting config chunk specification.")
+    message("Specifying config comment.")
     # insert the comment spec
     rmd_body <- c(
       rmd_body[1:conf_loc],
@@ -109,7 +109,7 @@ access_head <- function(
     
   } else if(grepl("^#", comm_line)){
     # Uncomment the comm_line
-    message("Activating specified chunk config.")
+    message("Activating comment config.")
     # replace hashed code with unhashed
     rmd_body[comm_loc] <- str_squish(str_remove(comm_line, "^#"))
   }

@@ -165,7 +165,7 @@ test_that("Inline code has been correctly written", {
 
 test_that("Config chunk gets correct conditional treatment", {
   expect_message(access_head(hashed_config, lan = "en", inplace = TRUE),
-                 "Activating specified chunk config.")
+                 "Activating comment config.")
   adj_hashed_config <- readLines(hashed_config)
   expect_false(grepl("^#",
                      adj_hashed_config[grep(
