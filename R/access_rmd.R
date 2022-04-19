@@ -40,8 +40,7 @@
 #' }
 #'
 #' @export
-access_rmd <- function(
-                       filenm = NULL,
+access_rmd <- function(filenm = NULL,
                        title = NULL,
                        subtitle = NULL,
                        lan = NULL,
@@ -87,9 +86,9 @@ access_rmd <- function(
   text <- "
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(comment = \"\")
+knitr::opts_chunk$set(comment = \"\")  # nolint
 ```
-  
+
 ## Adapted R Markdown
 
 This R Markdown template has been adapted using the 'accessrmd' package. This
@@ -101,13 +100,13 @@ For more help in using R Markdown see <http://rmarkdown.rstudio.com>.
 
 Clicking the **Knit** button will generate a document including typed content
 and the output of any R code chunks. For example:
-    
+
 ```{r cars}
 summary(cars)
 ```
 
 ## Plots
-  
+
 ```{r pressure, echo=FALSE, message=FALSE}
 plt <- ggplot2::ggplot(
   pressure,
@@ -116,11 +115,10 @@ plt <- ggplot2::ggplot(
   ggplot2::geom_point()
 
 accessrmd::access_img(
-  plt, 
+  plt,
   alt = \"Vapor Pressure of Mercury as a Function of Temperature\",
   ht = 400
   )
-
 ```
 
 In the above chunk, `echo=FALSE` was used to hide the R code that produced the
