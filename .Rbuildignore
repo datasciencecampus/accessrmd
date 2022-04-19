@@ -11,3 +11,4 @@
 ^codecov\.yml$
 vignettes/index.Rmd
 vignettes/www/*
+^\.pre-commit-config\.yaml$
