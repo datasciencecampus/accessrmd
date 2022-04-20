@@ -5,6 +5,7 @@
 ### Version 1.0.0
 
 * Updating licensing documentation.
+* Styling with styler precommit.
 
 #### 'access_head()'
 
