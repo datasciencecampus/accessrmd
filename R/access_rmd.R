@@ -83,15 +83,15 @@ access_rmd <- function(filenm = NULL,
   )
 
   # template ----------------------------------------------------------------
-  text <- "
+  text <- '
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(comment = \"\")  # nolint
+knitr::opts_chunk$set(comment = "")
 ```
 
 ## Adapted R Markdown
 
-This R Markdown template has been adapted using the 'accessrmd' package. This
+This R Markdown template has been adapted using the \'accessrmd\' package. This
 template has a different header and HTML structure to the standard R markdown
 template. This is to improve the accessibility of the knitted HTML documents for
 screen readers.
@@ -116,14 +116,15 @@ plt <- ggplot2::ggplot(
 
 accessrmd::access_img(
   plt,
-  alt = \"Vapor Pressure of Mercury as a Function of Temperature\",
+  alt = "Vapor Pressure of Mercury as a Function of Temperature",
   ht = 400
   )
 ```
 
 In the above chunk, `echo=FALSE` was used to hide the R code that produced the
 plot from the knitted HTML document. `message=FALSE` was also used to stop
-  messages being knitted to the HTML output."
+  messages being knitted to the HTML output.'
+
   # end of template ---------------------------------------------------------
 
   # Assemble output
