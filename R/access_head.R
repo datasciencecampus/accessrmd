@@ -49,8 +49,7 @@
 #' }
 #'
 #' @export
-access_head <- function(
-                        rmd_path = NULL,
+access_head <- function(rmd_path = NULL,
                         lan = detect_html_lang(lines),
                         inplace = FALSE,
                         encoding = "utf-8",
@@ -72,14 +71,14 @@ access_head <- function(
   rmd_body <- lines[(max(yaml_seq) + 1):length(lines)]
   # need to break if func is used recursively
   # find TOC YAML spec & html wrapper markers that 'access_head()' already used
-  if(
+  if (
     # yaml spec
     any(grepl("highlight: null", yaml_head)) &
-    any(grepl("theme: default", yaml_head)) &
-    # html wrapper spec
-    grepl("<html lang", rmd_body[1]) &
-    grepl("</html>", rmd_body[length(rmd_body)])
-  ){
+      any(grepl("theme: default", yaml_head)) &
+      # html wrapper spec
+      grepl("<html lang", rmd_body[1]) &
+      grepl("</html>", rmd_body[length(rmd_body)])
+  ) {
     stop("Have you previously run 'access_head()' on this file?")
   }
   # dynamic head logic ------------------------------------------------------
@@ -99,18 +98,17 @@ access_head <- function(
   # also, if no config chunk set, insert one
   # find the config chunk
   conf_loc <- grep("```\\{r setup", rmd_body)
-  if(length(conf_loc) == 0){
+  if (length(conf_loc) == 0) {
     message("Inserting config chunk.")
     rmd_body <- c(
-      "", 
+      "",
       "```{r setup, include=FALSE}",
       "knitr::opts_chunk$set(comment = \"\")",
       "```",
       "",
       rmd_body
     )
-    
-  } else if(length(comm_line) == 0){
+  } else if (length(comm_line) == 0) {
     # An acceptable comment line should be inserted into the config chunk
     message("Specifying config comment.")
     # insert the comment spec
@@ -118,15 +116,14 @@ access_head <- function(
       rmd_body[1:conf_loc],
       "knitr::opts_chunk$set(comment = \"\")",
       rmd_body[(conf_loc + 1):length(rmd_body)]
-      )
-    
-  } else if(grepl("^#", comm_line)){
+    )
+  } else if (grepl("^#", comm_line)) {
     # Uncomment the comm_line
     message("Activating comment config.")
     # replace hashed code with unhashed
     rmd_body[comm_loc] <- str_squish(str_remove(comm_line, "^#"))
   }
-  
+
   # return theme ------------------------------------------------------------
   theme <- find_theme(header_txt)
   # Clean out quotations
