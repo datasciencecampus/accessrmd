@@ -19,5 +19,6 @@ return_heading <- function(txt, lvl, class) {
   } else {
     h_lvl <- paste0("h", lvl)
     heading <- tags[[h_lvl]](txt, class = paste(class, "toc-ignore"))
+    return(heading)
   }
 }
