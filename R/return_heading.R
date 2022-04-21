@@ -17,12 +17,21 @@
 #' @return null if txt is length 0 or p tag styled to appear as required heading
 #' level with class attr applied.
 #'
-return_heading <- function(txt, lvl, class) {
+return_heading <- function(txt,
+                           lvl,
+                           class,
+                           font_weights = c("h1" = 38, "h2" = 30, "h3" = 24)) {
   if (length(txt) == 0) {
     return(NULL)
   } else {
-    h_lvl <- paste0("h", lvl)
-    heading <- tags[[h_lvl]](txt, class = paste(class, "toc-ignore"))
+    # assemble the required css styling txt
+    styling <- sprintf(
+      "font-size:%spx; font-weight=500",
+      unname(font_weights[lvl])
+    )
+    # assemble the p tag using the styling above
+    heading <- tags[["p"]](txt, style = styling,
+      class = paste(class, "toc-ignore"))
     return(heading)
   }
 }
