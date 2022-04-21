@@ -4,7 +4,7 @@
 \alias{return_heading}
 \title{Return a HTML p tag formatted to resemble a heading tag.}
 \usage{
-return_heading(txt, lvl, class)
+return_heading(txt, lvl, class, font_weights = c(h1 = 38, h2 = 30, h3 = 24))
 }
 \arguments{
 \item{txt}{The text to be used as the 'heading' text.}
@@ -14,6 +14,9 @@ on.}
 
 \item{class}{A character string to use as the first class attribute. Do not
 include "toc-ignore", this will be added.}
+
+\item{font_weights}{A named character vector. Names are heading levels &
+numeric values to apply as font weight.}
 }
 \value{
 null if txt is length 0 or p tag styled to appear as required heading

@@ -14,6 +14,9 @@
 #' @param class A character string to use as the first class attribute. Do not
 #' include "toc-ignore", this will be added.
 #'
+#' @param font_weights A named character vector. Names are heading levels &
+#' numeric values to apply as font weight.
+#'
 #' @return null if txt is length 0 or p tag styled to appear as required heading
 #' level with class attr applied.
 #'
