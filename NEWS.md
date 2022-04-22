@@ -117,7 +117,7 @@ not a html_document output.
 #### 'return_heading()' (Not exported)
 
 * Returns NULL if heading text is length zero.
-* Returns required heading level and class if text exceeds length zero.
+* Returns p tags styled to emulate headings, as advised in accessibility review.
 
 #### 'sus_alt()'
 
