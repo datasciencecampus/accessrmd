@@ -1,5 +1,6 @@
 accesrmd
 accessrmd
+attr
 aut
 behaviour
 bookdown
@@ -58,6 +59,7 @@ tmpfile
 toc
 uk
 utf
+vectorised
 wd
 xaringan
 yaml

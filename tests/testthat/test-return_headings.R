@@ -10,13 +10,15 @@ test_that("Tag is returned", {
 })
 
 test_that(
-  "lvl results in correct heading tag",
-  expect_true(grepl("h1", unlist(eg_title))[1])
+  "lvl results in correct heading styling",
+  expect_true(grepl("font-size:38px;", eg_title))
 )
+
 test_that(
   "Correct class returned",
-  expect_true(grepl("title toc-ignore", unlist(eg_title))[2])
+  expect_true(grepl("title toc-ignore", eg_title))
 )
+
 test_that(
   "Returns NULL on length zero character",
   expect_null(

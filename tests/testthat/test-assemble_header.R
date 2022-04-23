@@ -22,19 +22,13 @@ header2 <- assemble_header(
 test_that("Metas render correctly without subtitle", {
   # title is h1
   expect_equal(
-    any(grepl("title toc-ignore", unlist(header1[[4]][[1]]))),
-    any(grepl("h1", unlist(header1[[4]][[1]])))
+    any(grepl("title toc-ignore", unlist(header1[[3]]))),
+    any(grepl("h1", unlist(header1[[3]])))
   )
-  # author is h2
-  expect_equal(
-    any(grepl("author: John Doe", unlist(header1[[4]][[1]]))),
-    any(grepl("h2", unlist(header1[[4]][[1]])))
-  )
-  # date is h2
-  expect_equal(
-    any(grepl("date: March 22, 2005", unlist(header1[[4]][[2]]))),
-    any(grepl("h2", unlist(header1[[4]][[2]])))
-  )
+  # author is set
+  expect_true(any(grepl("author: John Doe", unlist(header1[[4]][[1]]))))
+  # date is set
+  expect_true(any(grepl("date: March 22, 2005", unlist(header1[[4]][[2]]))))
 })
 
 test_that("Metas render correctly with subtitle", {
@@ -43,23 +37,23 @@ test_that("Metas render correctly with subtitle", {
     any(grepl("title toc-ignore", unlist(header2[[3]]))),
     any(grepl("h1", unlist(header2[[3]])))
   )
-  # subtitle is h2
+  # subtitle is p tag
   expect_equal(
     any(grepl(
       "subtitle: More about Habits",
       unlist(header2[[4]][[1]])
     )),
-    any(grepl("h2", unlist(header2[[4]][[1]])))
+    any(grepl("^p$", unlist(header2[[4]][[1]])))
   )
-  # author is h3
+  # author is p tag
   expect_equal(
     any(grepl("author: John Doe", unlist(header2[[4]][[2]]))),
-    any(grepl("h3", unlist(header2[[4]][[2]])))
+    any(grepl("^p$", unlist(header2[[4]][[2]])))
   )
-  # date is h3
+  # date is p tag
   expect_equal(
     any(grepl("date: March 22, 2005", unlist(header2[[4]][[3]]))),
-    any(grepl("h3", unlist(header2[[4]][[3]])))
+    any(grepl("^p$", unlist(header2[[4]][[3]])))
   )
 })
 

@@ -1,23 +1,40 @@
-#' Return a HTML heading tag of the required level.
+#' Return a HTML p tag formatted to resemble a heading tag.
 #'
-#' Returns a HTML heading tag of any of the available levels (h1, h2, h3 and so
-#' on). The class selectors applied will always include "toc-ignore", but an
-#' additional selector may be included within the class parameter. If an object
-#' of length zero is passed to the txt parameter, NULL is returned.
+#' Returns a HTML heading p tag formatted with inline css to appear like of any
+#' of the available levels (h1, h2, h3 and so on). This approach is in response
+#' to review comments regarding headings that contained no text potentially
+#' confusing screen reader users. The class selectors applied will always
+#' include "toc-ignore", but an additional selector may be included within the
+#' class parameter. If an object of length zero is passed to the txt parameter,
+#' NULL is returned, allowing for vectorised usage.
 #'
-#' @param txt The text to be used as the heading text.
-#' @param lvl A number to be used for the heading level. 1 == tags$h1() and so
+#' @param txt The text to be used as the 'heading' text.
+#' @param lvl A number indicating the heading level. 1 == tags$h1() and so
 #' on.
 #' @param class A character string to use as the first class attribute. Do not
 #' include "toc-ignore", this will be added.
 #'
-#' @return null if txt is length 0 or required heading level with class attr
+#' @param font_weights A named character vector. Names are heading levels &
+#' numeric values to apply as font weight.
 #'
-return_heading <- function(txt, lvl, class) {
+#' @return null if txt is length 0 or p tag styled to appear as required heading
+#' level with class attr applied.
+#'
+return_heading <- function(txt,
+                           lvl,
+                           class,
+                           font_weights = c("h1" = 38, "h2" = 30, "h3" = 24)) {
   if (length(txt) == 0) {
     return(NULL)
   } else {
-    h_lvl <- paste0("h", lvl)
-    heading <- tags[[h_lvl]](txt, class = paste(class, "toc-ignore"))
+    # assemble the required css styling txt
+    styling <- sprintf(
+      "font-size:%spx; font-weight=500",
+      unname(font_weights[lvl])
+    )
+    # assemble the p tag using the styling above
+    heading <- tags[["p"]](txt, style = styling,
+      class = paste(class, "toc-ignore"))
+    return(heading)
   }
 }
