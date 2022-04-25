@@ -96,7 +96,8 @@ template has a different header and HTML structure to the standard R markdown
 template. This is to improve the accessibility of the knitted HTML documents for
 screen readers.
 
-For more help in using R Markdown see <http://rmarkdown.rstudio.com>.
+For more help in using R Markdown see the
+[RStudio RMarkdown documentation](http://rmarkdown.rstudio.com).
 
 Clicking the **Knit** button will generate a document including typed content
 and the output of any R code chunks. For example:

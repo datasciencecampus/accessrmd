@@ -43,7 +43,9 @@ test_that("recurse = FALSE returns expected length vec", {
   )
 })
 
+# teardown ----------------------------------------------------------------
 
+unlink(c(all_files, all_dirs))
 
 # set the wd to test directory
 with(globalenv(), {

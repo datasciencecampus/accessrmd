@@ -90,6 +90,14 @@ test_that(
   )
 )
 
+# teardown ----------------------------------------------------------------
+
+temps <- c(test_file, test_toc, out_file, test_dir)
+unlink(temps)
+# files written to temp with access_rmd()
+temp_rmds <- c("error_file.Rmd", "another_error.Rmd", "forgotten_suffix.Rmd")
+unlink(temp_rmds)
+
 # set the wd to test directory
 with(globalenv(), {
   setwd(.old_wd)
