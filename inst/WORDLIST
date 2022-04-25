@@ -11,6 +11,7 @@ covr
 cph
 cre
 css
+datasciencecampus
 EOF
 flexdashboard
 Flexdashboard
@@ -19,6 +20,7 @@ Func
 ggplot
 htmltools
 https
+iana
 img
 imgs
 inplace
@@ -31,7 +33,10 @@ leyshon
 Leyshon
 lim
 metas
+ODC
+OGL
 ons
+opendatacommons
 pngs
 precommit
 RCurl
@@ -54,6 +59,7 @@ stringr
 styler
 subtag
 sus
+sysdata
 testthat
 tmpfile
 toc
@@ -61,6 +67,7 @@ uk
 utf
 vectorised
 wd
+www
 xaringan
 yaml
 YAML
