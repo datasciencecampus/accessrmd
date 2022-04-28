@@ -105,10 +105,6 @@ not a html_document output.
 * Handler assembles html document with inserted toc code.
 * Messages on toc or toc_float.
 
-#### 'find_all_imgs()' (Not exported)
-
-* Helper func to find all images within an Rmd.
-
 #### 'retrieve_rmds()'
 
 * Search for Rmds within a file structure, return relative paths.
@@ -134,9 +130,8 @@ not a html_document output.
 text.
 * Func to insert 'access_img()' code in docs wherever markdown or HTML syntax
 images are found.
-* Func to checkcorrect header hierarchy.
+* Func to check correct header hierarchy.
 * 'access_head()' & 'access_rmd()' code_folding compatibility.
-* refactor: find all alts
 * wrapper function that packages up broken links, sus alt text, long alt text,
 header hierarchy, correct img HTML in one go.
 * 'access_img()' leading to intermediate plots being saved on Windows.
