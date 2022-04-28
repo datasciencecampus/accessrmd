@@ -2,6 +2,7 @@ accesrmd
 accessrmd
 attr
 aut
+authorised
 behaviour
 bookdown
 Changelog
@@ -31,12 +32,18 @@ lang
 langs
 leyshon
 Leyshon
+licence
+Licence
+licences
+Licensor
 lim
 metas
 ODC
 OGL
+OGLv
 ons
 opendatacommons
+organisation
 pngs
 precommit
 RCurl
@@ -64,6 +71,7 @@ testthat
 tmpfile
 toc
 uk
+URI
 utf
 vectorised
 wd
