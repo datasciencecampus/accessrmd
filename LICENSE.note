@@ -1,8 +1,8 @@
-The accessrmd package as a whole is distributed under OGL 3.0. The accessrmd
-package includes other open source software components. The following is a list
-of these components:
+The accessrmd package as a whole is distributed under MIT license (see file
+LICENSE). The accessrmd package includes other open source software components.
+The following is a list of these components:
 
-* accessrmd: Written by package author. OGL 3.0. Copyright datasciencecampus, 2022.
+* accessrmd: Written by package author. MIT. Copyright datasciencecampus, 2022.
 * langs: ODC-By. ![Open Data Commons](https://opendatacommons.org/licenses/by/1-0/)
 * `R/sysdata.R` contains `langs` a large character vector derived from
 https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry.
