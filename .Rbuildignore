@@ -12,3 +12,4 @@
 vignettes/index.Rmd
 vignettes/www/*
 ^\.pre-commit-config\.yaml$
+^LICENSE\.md$

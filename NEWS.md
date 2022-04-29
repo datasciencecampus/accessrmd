@@ -6,6 +6,7 @@
 
 * Updating licensing documentation.
 * Styling with styler precommit.
+* Switch from OGL to MIT license, documented in [issue #24](https://github.com/datasciencecampus/accessrmd/issues/24).
 
 #### 'access_head()'
 
