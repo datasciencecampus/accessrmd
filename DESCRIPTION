@@ -12,7 +12,7 @@ Description: Provides a simple method to improve the accessibility of
     'rmarkdown' documents. The package provides functions for creating or
     modifying 'rmarkdown' documents, resolving known errors and alerts that
     result in accessibility issues for screen reader users.
-License: file LICENSE
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
